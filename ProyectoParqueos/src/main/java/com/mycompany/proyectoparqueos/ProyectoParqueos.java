@@ -1,17 +1,14 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- */
-
 package com.mycompany.proyectoparqueos;
 
 /**
  *
- * @author ximen
+ * @author ximena molina - juan pablo cambronero
  */
 public class ProyectoParqueos {
 
     public static void main(String[] args) {
-        System.out.println("Hello World!");
-        // Hola si me sirve jajaj
+        //crear ventana de menu inicial
+        MenuInicial menuInicial = new MenuInicial();
+        menuInicial.setVisible(true); //permite que menu inicial sea visible
     }
 }
