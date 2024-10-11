@@ -1,8 +1,6 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package com.mycompany.proyectoparqueos;
+
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -135,10 +133,26 @@ public class ScrRegistrarAdministrador extends javax.swing.JFrame {
         btnCancelar.setBackground(new java.awt.Color(204, 204, 204));
         btnCancelar.setText("CANCELAR");
         btnCancelar.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btnCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelarActionPerformed(evt);
+            }
+        });
 
         btnAceptar.setBackground(new java.awt.Color(204, 204, 204));
         btnAceptar.setText("ACEPTAR");
         btnAceptar.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btnAceptar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAceptarActionPerformed(evt);
+            }
+        });
+
+        inpPIN.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                inpPINActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -271,6 +285,26 @@ public class ScrRegistrarAdministrador extends javax.swing.JFrame {
     private void inpDireccionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inpDireccionActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_inpDireccionActionPerformed
+
+    private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
+        try{
+            Administrador administrador = new Administrador(inpNombre.getText(), inpApellidos.getText(), inpTelefono.getText(), inpCorreo.getText(), inpDireccion.getText(),inpPIN.getText(), inpIdentificacion.getText());
+        } 
+        catch(ValidacionesExceptions e){
+                JOptionPane.showMessageDialog(this, e.getMessage());
+               }
+    }//GEN-LAST:event_btnAceptarActionPerformed
+
+    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
+        // TODO add your handling code here:
+        MenuRegistrar menuRegistrar = new MenuRegistrar();
+        menuRegistrar.setVisible(true);
+        this.setVisible(false); //menu de registrar datos desaparece
+    }//GEN-LAST:event_btnCancelarActionPerformed
+
+    private void inpPINActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inpPINActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_inpPINActionPerformed
 
     /**
      * @param args the command line arguments
