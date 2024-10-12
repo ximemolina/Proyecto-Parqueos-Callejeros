@@ -254,7 +254,8 @@ public class ScrRegistrarAdministrador extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    
+    // <editor-fold defaultstate="collapsed" desc="Inputs y labels"> 
     private void inpNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inpNombreActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_inpNombreActionPerformed
@@ -286,12 +287,16 @@ public class ScrRegistrarAdministrador extends javax.swing.JFrame {
     private void inpDireccionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inpDireccionActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_inpDireccionActionPerformed
-
+    // </editor-fold> 
+    
     private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
         try{
             Administrador administrador = new Administrador(inpNombre.getText(), inpApellidos.getText(), inpTelefono.getText(), inpCorreo.getText(), inpDireccion.getText(),inpPIN.getText(), inpIdentificacion.getText());
             File archivoAdministrador = new File("Administrador.txt");
             administrador.guardarUsuario(archivoAdministrador);
+            ScrAccionesAdministrador pantalla = new ScrAccionesAdministrador();
+            pantalla.setVisible(true);
+            this.setVisible(false);
         } 
         catch(ValidacionesExceptions e){
                 JOptionPane.showMessageDialog(this, e.getMessage());
@@ -306,7 +311,7 @@ public class ScrRegistrarAdministrador extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void inpPINActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inpPINActionPerformed
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_inpPINActionPerformed
 
     /**
