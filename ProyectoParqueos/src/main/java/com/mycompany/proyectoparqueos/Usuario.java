@@ -1,5 +1,6 @@
 package com.mycompany.proyectoparqueos;
 
+import java.io.*;
 import java.time.*;
 public class Usuario {
     //atributos
@@ -21,6 +22,20 @@ public class Usuario {
             setFechaIngreso();
             setPin(pPin);
             setIdentificacionUsuario(pIdentificacionUsuario);
+    }
+    //guarda información en archivo
+   public void guardarUsuario(File nombreArchivo){
+       try{
+            FileWriter escribir = new FileWriter(nombreArchivo, true); //permite escribir en diferentes ocasiones en archivos
+            escribir.write(toString()); //escribe informarion de usuario
+            escribir.close(); //cierra escritor
+       } catch(Exception e){
+           System.out.print(e.getMessage());
+       }
+   } 
+    //retornar String con informacion
+    public String toString(){
+        return "\n" + getIdentificacionUsuario() + "," + getPin() +"," + getNombre() +"," + getApellido()+","+getTelefono()+","+getCorreo()+","+getDireccionFisica()+","+ getFechaIngreso();
     }
     //setters
     public void setNombre(String pNombre){
