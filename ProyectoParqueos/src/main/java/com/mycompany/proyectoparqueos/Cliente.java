@@ -1,14 +1,15 @@
 package com.mycompany.proyectoparqueos;
 
+import java.time.YearMonth;
 import java.util.ArrayList;
-
+import java.time.*;
 public class Cliente extends Usuario { 
     private ArrayList<Carro> carros;  // Lista de carros asociados al cliente
     private ArrayList<Tarjeta> tarjetas;
-    
+    private Tarjeta tarjeta;
     // Constructor
-    public Cliente(String pNombre, String pApellido, String pTelefono, String pCorreo, String pDireccionFisica, String pPin, String pIdentificacionUsuario) {
-        super(pNombre, pApellido, pTelefono, pCorreo, pDireccionFisica, pPin, pIdentificacionUsuario);
+    public Cliente(String pNombre, String pApellido, String pTelefono, String pCorreo, String pDireccionFisica, LocalDate pFechaIngreso,String pPin, String pIdentificacionUsuario) {
+        super(pNombre, pApellido, pTelefono, pCorreo, pDireccionFisica,pFechaIngreso, pPin, pIdentificacionUsuario);
         this.carros = new ArrayList<>();
     }
 
@@ -75,6 +76,26 @@ public class Cliente extends Usuario {
         } else {
             System.out.println("No puedes comprar tiempo para este espacio porque no está ocupado por uno de tus carros.");
         }
+    }
+        public void setTarjeta(Tarjeta tarjeta) {
+        // Validar que el número de tarjeta tenga exactamente 16 dígitos
+        if (tarjeta.getNumeroTarjeta() == null || !tarjeta.getNumeroTarjeta().matches("\\d{16}")) {
+            throw new IllegalArgumentException("El número de tarjeta debe tener exactamente 16 dígitos.");
+        }   
+
+        // Validar la fecha de vencimiento (no debe estar vencida)
+        YearMonth fechaActual = YearMonth.now();
+        if (tarjeta.getFechaVencimiento().isBefore(fechaActual)) {
+            throw new IllegalArgumentException("La tarjeta está vencida.");
+        }
+
+        // Validar que el código de validación tenga exactamente 3 dígitos
+        if (tarjeta.getCodigoValidacion() == null || !tarjeta.getCodigoValidacion().matches("\\d{3}")) {
+            throw new IllegalArgumentException("El código de validación debe tener exactamente 3 dígitos.");
+        }
+
+        // Si todas las validaciones pasan, se asigna la tarjeta
+        this.tarjeta = tarjeta;
     }
 }
        

@@ -95,7 +95,10 @@ public class MenuInicial extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresarActionPerformed
-        
+        //se crea ventana para ingresar y se pone visible
+        MenuIngresar menuIngresar = new MenuIngresar();
+        menuIngresar.setVisible(true);
+        this.setVisible(false); //menu inicial desaparece    
     }//GEN-LAST:event_btnIngresarActionPerformed
 
     private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed

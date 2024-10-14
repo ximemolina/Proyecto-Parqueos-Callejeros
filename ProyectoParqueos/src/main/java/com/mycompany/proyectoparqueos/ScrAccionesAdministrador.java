@@ -9,14 +9,20 @@ package com.mycompany.proyectoparqueos;
  * @author ximen
  */
 public class ScrAccionesAdministrador extends javax.swing.JFrame {
-
+     
+    private Administrador admin;
     /**
      * Creates new form ScrAccionesAdministrador
      */
-    public ScrAccionesAdministrador() {
+    public ScrAccionesAdministrador(Administrador pAdmin) {
+        setAdmin(pAdmin);
         initComponents();
     }
 
+    //setters
+    public void setAdmin(Administrador administrador){
+        admin = administrador;
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -33,7 +39,7 @@ public class ScrAccionesAdministrador extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         btnModificarAdmin = new javax.swing.JButton();
         btnEliminarAdmin = new javax.swing.JButton();
-        btnEliminarConsultar = new javax.swing.JButton();
+        btnConsultarAdmin = new javax.swing.JButton();
         btnGenerarReporte = new javax.swing.JButton();
         btnConfigurarParqueo1 = new javax.swing.JButton();
         btnVolver = new javax.swing.JButton();
@@ -72,12 +78,12 @@ public class ScrAccionesAdministrador extends javax.swing.JFrame {
             }
         });
 
-        btnEliminarConsultar.setBackground(new java.awt.Color(204, 204, 204));
-        btnEliminarConsultar.setText("CONSULTAR DATOS");
-        btnEliminarConsultar.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        btnEliminarConsultar.addActionListener(new java.awt.event.ActionListener() {
+        btnConsultarAdmin.setBackground(new java.awt.Color(204, 204, 204));
+        btnConsultarAdmin.setText("CONSULTAR DATOS");
+        btnConsultarAdmin.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btnConsultarAdmin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnEliminarConsultarActionPerformed(evt);
+                btnConsultarAdminActionPerformed(evt);
             }
         });
 
@@ -125,12 +131,12 @@ public class ScrAccionesAdministrador extends javax.swing.JFrame {
                         .addGap(41, 41, 41)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(btnConfigurarParqueo1, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnEliminarConsultar, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(btnConsultarAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(119, 119, 119)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(btnGenerarReporte, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btnModificarAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(168, Short.MAX_VALUE))
+                .addContainerGap(54, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -149,13 +155,12 @@ public class ScrAccionesAdministrador extends javax.swing.JFrame {
                 .addGap(47, 47, 47)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnModificarAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnEliminarConsultar, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnConsultarAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(43, 43, 43)
                 .addComponent(btnEliminarAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(80, Short.MAX_VALUE))
+                .addContainerGap(70, Short.MAX_VALUE))
         );
 
-        btnVolver.getAccessibleContext().setAccessibleName("Volver");
         btnVolver.getAccessibleContext().setAccessibleDescription("");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -184,16 +189,18 @@ public class ScrAccionesAdministrador extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnEliminarAdminActionPerformed
 
-    private void btnEliminarConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarConsultarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnEliminarConsultarActionPerformed
+    private void btnConsultarAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarAdminActionPerformed
+        this.setVisible(false);
+        ScrConsultarAdmin pantalla  =new ScrConsultarAdmin(admin);   
+        pantalla.setVisible(true);
+    }//GEN-LAST:event_btnConsultarAdminActionPerformed
 
     private void btnGenerarReporteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGenerarReporteActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnGenerarReporteActionPerformed
 
     private void btnConfigurarParqueo1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfigurarParqueo1ActionPerformed
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_btnConfigurarParqueo1ActionPerformed
 
     private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
@@ -205,7 +212,7 @@ public class ScrAccionesAdministrador extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
+    public void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -232,15 +239,16 @@ public class ScrAccionesAdministrador extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ScrAccionesAdministrador().setVisible(true);
+                ScrAccionesAdministrador registrar = new ScrAccionesAdministrador(admin);
+                registrar.setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnConfigurarParqueo1;
+    private javax.swing.JButton btnConsultarAdmin;
     private javax.swing.JButton btnEliminarAdmin;
-    private javax.swing.JButton btnEliminarConsultar;
     private javax.swing.JButton btnGenerarReporte;
     private javax.swing.JButton btnModificarAdmin;
     private javax.swing.JButton btnVolver;

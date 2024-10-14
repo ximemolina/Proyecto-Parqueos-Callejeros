@@ -1,5 +1,5 @@
 package com.mycompany.proyectoparqueos;
-
+import java.time.format.DateTimeFormatter;
 import java.io.*;
 import java.time.*;
 public class Usuario {
@@ -9,19 +9,19 @@ public class Usuario {
     private int telefono;
     private String correo;
     private String direccionFisica;
-    private LocalDateTime fechaIngreso;
+    private LocalDate fechaIngreso;
     private String pin;
     private String identificacionUsuario;
-    private Tarjeta tarjeta;
+
     
     //constructor
-    public Usuario(String pNombre, String pApellido, String pTelefono, String pCorreo, String pDireccionFisica, String pPin, String pIdentificacionUsuario) {
+    public Usuario(String pNombre, String pApellido, String pTelefono, String pCorreo, String pDireccionFisica, LocalDate pFechaIngreso,String pPin, String pIdentificacionUsuario) {
             setNombre(pNombre);
             setApellido(pApellido);
             setTelefono(pTelefono);
             setCorreo(pCorreo);
             setDireccionFisica(pDireccionFisica);
-            setFechaIngreso();
+            setFechaIngreso(pFechaIngreso);
             setPin(pPin);
             setIdentificacionUsuario(pIdentificacionUsuario);
     }
@@ -37,7 +37,11 @@ public class Usuario {
    } 
     //retornar String con informacion
     public String toString(){
-        return "\n" + getIdentificacionUsuario() + "," + getPin() +"," + getNombre() +"," + getApellido()+","+getTelefono()+","+getCorreo()+","+getDireccionFisica()+","+ getFechaIngreso();
+        LocalDate fecha = getFechaIngreso();
+        DateTimeFormatter formato = DateTimeFormatter.ofPattern("yyyy/MM/dd");
+        // Convertir LocalDate a String
+        String fechaEnTexto = fecha.format(formato);
+        return "\n" + getIdentificacionUsuario() + "," + getPin() +"," + getNombre() +"," + getApellido()+","+getTelefono()+","+getCorreo()+","+getDireccionFisica()+","+ fechaEnTexto;
     }
     //setters
     public void setNombre(String pNombre){
@@ -70,11 +74,15 @@ public class Usuario {
 
     public void setCorreo(String pCorreo) {
         if(pCorreo.contains("@")){
-            String [] partesSeparadas = pCorreo.split("@");
-            if(partesSeparadas[0].length() >= 3 && partesSeparadas[1].length() >= 3)
-                correo = pCorreo;
-            else
+            try{
+                String [] partesSeparadas = pCorreo.split("@");
+                if(partesSeparadas[0].length() >= 3 && partesSeparadas[1].length() >= 3)
+                    correo = pCorreo;
+                else
+                    throw new ValidacionesExceptions("Error: Correo inválido");}
+            catch(Exception e){
                 throw new ValidacionesExceptions("Error: Correo inválido");
+            }
         } else{
             throw new ValidacionesExceptions("Error: Correo debe contener @");
         }
@@ -90,9 +98,14 @@ public class Usuario {
         
     }
 
-    public void setFechaIngreso() {
-        LocalDateTime hoy = LocalDateTime.now();  
-        fechaIngreso = hoy;
+    public void setFechaIngreso(LocalDate pFechaIngreso) {
+        LocalDate hoy = LocalDate.now();  
+        if (pFechaIngreso.isBefore(hoy) || pFechaIngreso.isEqual(hoy)) {
+            fechaIngreso = pFechaIngreso;
+        } else {
+            throw new ValidacionesExceptions("Fecha de ingreso como trabajador debe ser menor o igual a la fecha actual");
+        }
+        
     }
 
     public void setPin(String pPin) {
@@ -107,27 +120,6 @@ public class Usuario {
             identificacionUsuario = pIdentificacionUsuario;
         else
             throw new ValidacionesExceptions("Error: Identificacion debe tener de 2 a 25 caracteres");
-    }
-    
-    public void setTarjeta(Tarjeta tarjeta) {
-        // Validar que el número de tarjeta tenga exactamente 16 dígitos
-        if (tarjeta.getNumeroTarjeta() == null || !tarjeta.getNumeroTarjeta().matches("\\d{16}")) {
-            throw new IllegalArgumentException("El número de tarjeta debe tener exactamente 16 dígitos.");
-        }   
-
-        // Validar la fecha de vencimiento (no debe estar vencida)
-        YearMonth fechaActual = YearMonth.now();
-        if (tarjeta.getFechaVencimiento().isBefore(fechaActual)) {
-            throw new IllegalArgumentException("La tarjeta está vencida.");
-        }
-
-        // Validar que el código de validación tenga exactamente 3 dígitos
-        if (tarjeta.getCodigoValidacion() == null || !tarjeta.getCodigoValidacion().matches("\\d{3}")) {
-            throw new IllegalArgumentException("El código de validación debe tener exactamente 3 dígitos.");
-        }
-
-        // Si todas las validaciones pasan, se asigna la tarjeta
-        this.tarjeta = tarjeta;
     }
     
     //getters
@@ -151,7 +143,7 @@ public class Usuario {
         return direccionFisica;
     }
 
-    public LocalDateTime getFechaIngreso() {
+    public LocalDate getFechaIngreso() {
         return fechaIngreso;
     }
 
