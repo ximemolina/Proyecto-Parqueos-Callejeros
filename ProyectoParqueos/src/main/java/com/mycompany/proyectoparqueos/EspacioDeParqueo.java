@@ -21,11 +21,15 @@ public class EspacioDeParqueo {
         this.numeroEspacio = pNumeroEspacio;
     }
     
-    public void setTiempoComprado(int pTiempoComprado, Parqueo parqueo) {
-        if (pTiempoComprado % parqueo.getPrecioHora() != 0) {
-            throw new IllegalArgumentException("El tiempo comprado debe ser un múltiplo del precio por hora.");
+   public void setTiempoComprado(int pTiempoComprado) {
+        this.tiempoComprado = pTiempoComprado; 
+    }
+    
+    public void setCarro(Carro carro){
+        if (carro == null){
+            this.carro = carro;
+            this.disponible = false;
         }
-        this.tiempoComprado = pTiempoComprado;
     }
     
     public int getNumeroEspacio(){
@@ -43,6 +47,7 @@ public class EspacioDeParqueo {
     public boolean getDisponible(){
         return disponible;
     }
+    
     
     public String toString(){
         return "Numero de espacio: "+ getNumeroEspacio() +" Tiempo Comprado: " + getTiempoComprado() +
