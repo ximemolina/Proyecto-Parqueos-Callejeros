@@ -352,7 +352,7 @@ public class ModificarAdmin extends javax.swing.JFrame {
                 System.out.println(infoACambiar);
             
                 administrador2.modificarDatosAdmin(infoACambiar);
-                ScrAccionesAdministrador pantalla = new ScrAccionesAdministrador(admin);
+                ScrAccionesAdministrador pantalla = new ScrAccionesAdministrador(admin,parqueo);
                 pantalla.setVisible(true);
                 this.setVisible(false);
             }

@@ -19,6 +19,7 @@ public class ProyectoParqueos {
         File archivoCliente = new File("Cliente.txt");
         File archivoAdministrador = new File("Administrador.txt");
         File archivoInspector = new File("Inspector.txt");
+        File archivoParqueo = new File("Parqueo.txt");
         //se  crean archivos de las clases si no han sido creados
         
             if (parqueo == null) {
@@ -68,6 +69,13 @@ public class ProyectoParqueos {
         try{
             if(!archivoInspector.exists())
                 archivoInspector.createNewFile();
+        }
+        catch(Exception e){
+            e.getMessage();
+        }
+        try{
+            if(!archivoParqueo.exists())
+                archivoParqueo.createNewFile();
         }
         catch(Exception e){
             e.getMessage();
