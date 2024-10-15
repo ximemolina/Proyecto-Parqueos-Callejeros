@@ -44,5 +44,22 @@ public class Carro {
     public String getModelo(){
         return modelo;
     }
-      
+    
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null || getClass() != obj.getClass()) {
+            return false;
+        }
+        Carro carro = (Carro) obj;
+        return placa.equals(carro.placa);  
+    }
+    
+    @Override
+    
+    public int hashCode() {
+        return placa.hashCode();  // Utilizar el hashCode de la placa, ya que es el único atributo relevante para la comparación
+    }
 }

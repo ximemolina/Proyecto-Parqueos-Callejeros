@@ -28,7 +28,7 @@ public class Multa {
         if (fechaMulta != null && fechaMulta.isBefore(LocalDateTime.now())) {
             this.fechaMulta = fechaMulta;
         } else {
-            throw new IllegalArgumentException("La fecha de la multa no puede ser futura.");
+            throw new ValidacionesExceptions("La fecha de la multa no puede ser futura.");
         }
     }
     

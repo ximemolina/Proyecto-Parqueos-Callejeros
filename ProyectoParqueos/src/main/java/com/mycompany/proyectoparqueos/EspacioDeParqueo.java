@@ -26,11 +26,16 @@ public class EspacioDeParqueo {
     }
     
     public void setCarro(Carro carro){
-        if (carro == null){
-            this.carro = carro;
-            this.disponible = false;
-        }
+    if (carro != null){
+        this.carro = carro;
+        this.disponible = false;
+    } else {
+        this.carro = null;
+        this.disponible = true;
     }
+}
+
+
     
     public void setDisponible(boolean disponible){
         this.disponible = disponible;

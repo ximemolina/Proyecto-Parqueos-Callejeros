@@ -16,6 +16,8 @@ public class MenuParquear extends javax.swing.JFrame {
         initComponents();
         setCliente(cliente);
         setParqueo(parqueo);
+        llenarComboBoxEspaciosDeParqueo();
+        llenarComboBoxCarros();
     }
     
     public void setCliente(Cliente cliente){
@@ -171,52 +173,151 @@ public class MenuParquear extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+    
+    private void llenarComboBoxCarros() {
+        comboBoxCarros.removeAllItems();  // Limpiar ComboBox antes de llenarlo
+
+        // Obtener la lista de carros del cliente
+        ArrayList<Carro> carrosDelCliente = cliente.getCarros();  // Suponiendo que tienes un método getCarros() en Cliente
+
+        // Llenar ComboBox con las placas de los carros
+        for (Carro carro : carrosDelCliente) {
+            comboBoxCarros.addItem(carro.getPlaca());  // Agregar la placa de cada carro al ComboBox
+        }
+    }
 
     private void comboBoxCarrosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboBoxCarrosActionPerformed
-        // Limpiar todos los elementos actuales del ComboBox
-        comboBoxCarros.removeAllItems();
-        
-        ArrayList<Carro> carros = cliente.getCarros();
-        
-        for (Carro carro : carros) {
-            comboBoxCarros.addItem(carro.getPlaca()); // Agrega cada placa al ComboBox
-        }
-        
+        if (comboBoxCarros.getSelectedItem() != null) {
+        // Obtener la placa seleccionada del ComboBox
         String placaSeleccionada = (String) comboBoxCarros.getSelectedItem();
-        
+
+        // Buscar el carro correspondiente en la lista de carros del cliente
         for (Carro carro : cliente.getCarros()) {
             if (carro.getPlaca().equals(placaSeleccionada)) {
-                carroSeleccionado = carro;
+                this.carroSeleccionado = carro;  // Asignar el carro seleccionado
                 break; 
             }
         }
+
+        // Aquí puedes usar el carro seleccionado
+        if (carroSeleccionado != null) {
+            System.out.println("Carro seleccionado: " + carroSeleccionado.getPlaca());
+        }
+    }
         
     }//GEN-LAST:event_comboBoxCarrosActionPerformed
-
-    private void comboBoxEspaciosDeParqueoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboBoxEspaciosDeParqueoActionPerformed
-        comboBoxEspaciosDeParqueo.removeAllItems();
+    private void llenarComboBoxEspaciosDeParqueo() {
+        comboBoxEspaciosDeParqueo.removeAllItems();  // Limpiar ComboBox antes de llenarlo
 
         ArrayList<EspacioDeParqueo> espaciosDisponibles = parqueo.getEspaciosDisponibles();
-        
+
+        // Llenar ComboBox con los espacios disponibles
         for (EspacioDeParqueo espacio : espaciosDisponibles) {
-            comboBoxEspaciosDeParqueo.addItem(String.valueOf(espacio.getNumeroEspacio())); 
+            comboBoxEspaciosDeParqueo.addItem(String.valueOf(espacio.getNumeroEspacio()));
         }
+    }
+    
+    private void actualizarComboBoxCarros() {
+        comboBoxCarros.removeAllItems();  // Limpiar el ComboBox antes de llenarlo
+
+        // Obtener la lista de carros del cliente
+        ArrayList<Carro> carrosDelCliente = cliente.getCarros();
+
+        // Lista para almacenar los carros no parqueados
+        ArrayList<Carro> carrosNoParqueados = new ArrayList<>();
+
+        // Recorrer todos los carros del cliente
+        for (Carro carro : carrosDelCliente) {
+            boolean estaParqueado = false;
+
+            // Verificar si el carro está asociado a algún espacio de parqueo
+            for (EspacioDeParqueo espacio : parqueo.getEspaciosParqueo()) {
+                if (espacio.getCarro() != null && espacio.getCarro().equals(carro)) {
+                    estaParqueado = true;  // Si el carro está parqueado, lo marcamos
+                    break;  // No hace falta seguir buscando si ya encontramos que está parqueado
+                }
+            }
+
+            // Si el carro no está parqueado, lo agregamos a la lista de carros no parqueados
+            if (!estaParqueado) {
+                carrosNoParqueados.add(carro);
+            }
+        }
+
+        // Ahora llenamos el ComboBox solo con los carros que no están parqueados
+        for (Carro carro : carrosNoParqueados) {
+            comboBoxCarros.addItem(carro.getPlaca());  // Agregar la placa del carro no parqueado al ComboBox
+        }
+
+        // Si no quedan carros disponibles, agregar un mensaje
+        if (carrosNoParqueados.isEmpty()) {
+            comboBoxCarros.addItem("No hay carros disponibles para parquear");
+        }
+    }
+    
+    
+
+    
+    private void comboBoxEspaciosDeParqueoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboBoxEspaciosDeParqueoActionPerformed
+       if (comboBoxEspaciosDeParqueo.getSelectedItem() != null) {
+        // Obtener el valor seleccionado del ComboBox como String
+        String numeroEspacioSeleccionado = (String) comboBoxEspaciosDeParqueo.getSelectedItem();
         
-        int numeroParqueoSeleccionado = (int) comboBoxEspaciosDeParqueo.getSelectedItem();
+        // Convertir el String a entero
+        int numeroParqueoSeleccionado = Integer.parseInt(numeroEspacioSeleccionado);
         
-        for (EspacioDeParqueo espacio : espaciosDisponibles){
-            if (espacio.getNumeroEspacio() == numeroParqueoSeleccionado){
-                espacioSeleccionado = espacio;
+        // Obtener los espacios disponibles
+        ArrayList<EspacioDeParqueo> espaciosDisponibles = parqueo.getEspaciosDisponibles();
+
+        // Buscar el espacio correspondiente
+        EspacioDeParqueo espacioSeleccionadoObjeto = null;
+        for (EspacioDeParqueo espacio : espaciosDisponibles) {
+            if (espacio.getNumeroEspacio() == numeroParqueoSeleccionado) {
+                espacioSeleccionadoObjeto = espacio;  // Asignar el objeto espacio
                 break;
             }
-        } 
+        }
+
+        // Si se encontró el espacio, asignarlo a la variable de la clase
+        if (espacioSeleccionadoObjeto != null) {
+            espacioSeleccionado = espacioSeleccionadoObjeto;  // Asignar al atributo de la clase
+            System.out.println("Espacio seleccionado asignado: " + espacioSeleccionado.getNumeroEspacio());
+        }
+    }
     }//GEN-LAST:event_comboBoxEspaciosDeParqueoActionPerformed
 
     private void BtnAceptarParquearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAceptarParquearActionPerformed
-        cliente.parquear(carroSeleccionado, espacioSeleccionado);
-        MenuCliente pantalla = new MenuCliente(cliente, parqueo);
-        pantalla.setVisible(true);
-        this.setVisible(false);
+                // Verificar si el carro y el espacio han sido seleccionados
+        if (carroSeleccionado == null || espacioSeleccionado == null) {
+            System.out.println("Error: Selecciona un carro y un espacio.");
+            return;
+        }
+
+        // Intentar parquear el carro en el espacio
+        boolean parqueoExitoso = cliente.parquear(carroSeleccionado, espacioSeleccionado);
+
+        // Si el parqueo fue exitoso, actualizamos las listas
+        if (parqueoExitoso) {
+            System.out.println("Estado del espacio 1 después de parquear:");
+
+            // Buscar el espacio 1 y mostrar su estado directamente
+            for (EspacioDeParqueo espacio : parqueo.getEspaciosParqueo()) {
+                if (espacio.getNumeroEspacio() == 1) {  // Verifica si es el espacio 1
+                    Carro carro = espacio.getCarro();
+                    if (carro != null) {
+                        System.out.println("Espacio 1 - Ocupado por carro: " + carro.getPlaca());
+                    } else {
+                        System.out.println("Espacio 1 - Libre");
+                    }
+                    break;  // Salir después de encontrar y mostrar el espacio 1
+                }
+            }
+
+            actualizarComboBoxCarros();  // Actualizar el ComboBox de los carros no parqueados
+            llenarComboBoxEspaciosDeParqueo();  // Actualizar el ComboBox de los espacios disponibles
+        } else {
+            System.out.println("No se pudo parquear el carro.");
+        }
     }//GEN-LAST:event_BtnAceptarParquearActionPerformed
 
     private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
@@ -251,11 +352,12 @@ public class MenuParquear extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(MenuParquear.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-
+        
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new MenuParquear(cliente, parqueo).setVisible(true);
+                
             }
         });
     }
