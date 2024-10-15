@@ -2,7 +2,7 @@ package com.mycompany.proyectoparqueos;
 import java.time.format.DateTimeFormatter;
 import java.io.*;
 import java.time.*;
-import javax.swing.JOptionPane;
+
 public class Usuario {
     //atributos
     private String nombre;

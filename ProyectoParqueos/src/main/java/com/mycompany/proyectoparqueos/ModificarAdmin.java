@@ -335,17 +335,23 @@ public class ModificarAdmin extends javax.swing.JFrame {
     }//GEN-LAST:event_inpNombreActionPerformed
 
     private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
-            String mes = inpMes.getText();
-            String año = inpAño.getText();
-            String dia = inpDia.getText();
-            String fechaActualizada = año + "-"+mes+"-"+dia;
-            LocalDate fecha = LocalDate.parse(fechaActualizada);
-            Administrador administrador2 = new Administrador(inpNombre.getText(), inpApellido.getText(), inpTelefono.getText(), inpCorreo.getText(), inpDireccion.getText(),fecha ,admin.getPin(), inpIdentificacion.getText());
-            String infoACambiar = administrador2.toString();
             try{
-                administrador2.guardarInfoAdmin(infoACambiar);}
-            catch(Exception e){
-                System.out.println(e.getMessage());
+                String mes = inpMes.getText();
+                String año = inpAño.getText();
+                String dia = inpDia.getText();
+                String fechaActualizada = año + "-"+mes+"-"+dia;
+                LocalDate fecha = LocalDate.parse(fechaActualizada);
+                Administrador administrador2 = new Administrador(inpNombre.getText(), inpApellido.getText(), inpTelefono.getText(), inpCorreo.getText(), inpDireccion.getText(),fecha ,admin.getPin(), inpIdentificacion.getText());
+                String infoACambiar = administrador2.toString();
+                System.out.println(infoACambiar);
+            
+                administrador2.modificarDatosAdmin(infoACambiar);
+                ScrAccionesAdministrador pantalla = new ScrAccionesAdministrador(admin);
+                pantalla.setVisible(true);
+                this.setVisible(false);
+            }
+            catch(ValidacionesExceptions e){
+                JOptionPane.showMessageDialog(this, e.getMessage());
             }
     }//GEN-LAST:event_btnAceptarActionPerformed
 

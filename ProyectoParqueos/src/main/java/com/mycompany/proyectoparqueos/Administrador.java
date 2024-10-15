@@ -9,32 +9,24 @@ public class Administrador extends Usuario{//administrador hereda todo del Usuar
     }
     
     //modificar los datos de un archivo del admin
-    public void modificarDatosAdmin(){
-        FileWriter leer = null;
-        BufferedWriter buffer = null;
+    public void modificarDatosAdmin(String informacion){
+        
         try{
-            String[] info = guardarInfoAdmin(toString());
-            leer = new FileWriter("Administrador.txt", true);
-            buffer = new BufferedWriter(leer);
-            String[] stringsCompletos;
-            for(int i = 0; i < info.length; i++){ //revisar esta linea tmb
-                //System.out.println(info[i]);
-                stringsCompletos = info[i].split(",");
-                leer.write("\n"+stringsCompletos[2]+","+ stringsCompletos[3]+","+ stringsCompletos[4]+","+stringsCompletos[5]+","+stringsCompletos[6]+","+stringsCompletos[1]+","+stringsCompletos[0]);
+            String [] info = guardarInfoAdmin(informacion);
+
+            File archivoAdministrador = new File("Administrador.txt");
+            FileWriter leer = new FileWriter(archivoAdministrador, true);
+            BufferedWriter buffer = new BufferedWriter(leer);
+
+            for(String i : info){ //revisar esta linea tmb
+                buffer.write(i+"\n");
             
             }
+            buffer.close();
+            leer.close();
         }
         catch(IOException e){
             System.out.println(e.getMessage());
-        }finally{
-            try{
-            buffer.close();
-            leer.close();
-            
-            }catch(IOException e){
-                System.out.println(e.getMessage());
-            
-            }
         }
     }
     
@@ -61,16 +53,20 @@ public class Administrador extends Usuario{//administrador hereda todo del Usuar
         leer = new FileReader("Administrador.txt");
         buffer = new BufferedReader(leer);
         int elemento = 0;
+        String elemento1;
+        String elemento2;
         String infoAdmin;
         String[] infoRecopilar;
+        //System.out.println(informacion);
         while((infoAdmin = buffer.readLine())!= null ){
             infoRecopilar = infoAdmin.split(",");
-            if(infoRecopilar[0].equals(informacionCompleta[0])){ //revisar esta linea
+            elemento1 = infoRecopilar[0];
+            elemento2 = informacionCompleta[0];
+            if(elemento2.trim().equals(elemento1.trim())){ //revisar esta linea
                 arreglo[elemento] =informacion;
             }else{
                 arreglo[elemento] = infoAdmin;
             }
-            System.out.println(arreglo[elemento]);
             elemento ++;
             
         }
