@@ -1,3 +1,7 @@
 
-IdUsuarioIngresar,1420,Santiago,Alavarado,14725896,fesfes@esfesefs,fesfesfesf,2024/10/14,1478523698741258,2050-10,474,A,,,a,,,ASDA,MARC,MODA
-hola,1234,Enrique,Chavarría,14785412,correo@gmail,DireccionFisica,2024/10/14,1478541295876541,2050-10,147,ASD,MARK,MODE,PKS,ERTS,FSDS20
+
+
+IdUsuarioIngresar,PIN0,Santiago,Alavarado,14725896,fesfes@esfesefs,fesfesfesf,2024/10/14,1478523698741258,2050-10,474,A,,MODEL1,a,,,ASDA,MARC,MODA
+
+
+hola,1234,Enrique,Chavarría,14785412,correo@gmail,DireccionFisica,2024/10/14,1478541295876541,2024-12,147,ASD,MARCA04,MODE,PKS,ERTS,FSDS20

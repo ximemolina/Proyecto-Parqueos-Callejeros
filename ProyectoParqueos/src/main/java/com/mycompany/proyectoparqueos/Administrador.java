@@ -18,7 +18,7 @@ public class Administrador extends Usuario{//administrador hereda todo del Usuar
             FileWriter leer = new FileWriter(archivoAdministrador, true);
             BufferedWriter buffer = new BufferedWriter(leer);
 
-            for(String i : info){ //revisar esta linea tmb
+            for(String i : info){ 
                 buffer.write(i+"\n");
             
             }
@@ -63,7 +63,7 @@ public class Administrador extends Usuario{//administrador hereda todo del Usuar
             infoRecopilar = infoAdmin.split(",");
             elemento1 = infoRecopilar[0];
             elemento2 = informacionCompleta[0];
-            if(elemento2.trim().equals(elemento1.trim())){ //revisar esta linea
+            if(elemento2.trim().equals(elemento1.trim())){
                 arreglo[elemento] =informacion;
             }else{
                 arreglo[elemento] = infoAdmin;
@@ -121,7 +121,7 @@ public class Administrador extends Usuario{//administrador hereda todo del Usuar
             infoRecopilar = infoAdmin.split(",");
             elemento1 = infoRecopilar[0];
             elemento2 = informacionCompleta[0];
-            if(!elemento2.trim().equals(elemento1.trim())){ //revisar esta linea
+            if(!elemento2.trim().equals(elemento1.trim())){ 
                 arreglo[elemento] = infoAdmin;
             }
             elemento ++;

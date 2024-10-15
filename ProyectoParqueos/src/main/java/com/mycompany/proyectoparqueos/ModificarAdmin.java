@@ -1,13 +1,11 @@
 package com.mycompany.proyectoparqueos;
 
+import java.util.Random;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import javax.swing.JOptionPane;
 
-/**
- *
- * @author ximen
- */
+
 public class ModificarAdmin extends javax.swing.JFrame {
 
     Administrador admin;
@@ -362,7 +360,28 @@ public class ModificarAdmin extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAceptarActionPerformed
 
     private void btnModificarPinActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarPinActionPerformed
-        // TODO add your handling code here:
+        String correo = JOptionPane.showInputDialog("Digite su correo electrónico para mandarle pin único:");
+        if (correo == null) {
+            return;
+        } 
+        String caracteresPermitidos = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+        Random random = new Random();
+        StringBuilder sb = new StringBuilder(4);
+
+        for (int i = 0; i < 4; i++) {
+            int indiceAleatorio = random.nextInt(caracteresPermitidos.length());
+            char caracterAleatorio = caracteresPermitidos.charAt(indiceAleatorio);
+            sb.append(caracterAleatorio);
+        }
+
+        String pin = sb.toString();
+        //******************************************aqui faltaría agregar mandar Pin por correo***************************************///
+        System.out.println(pin);
+        verificarPinAdmin pantalla = new verificarPinAdmin(admin,parqueo,correo,pin);
+        pantalla.setVisible(true);
+        this.setVisible(false);
+        
+        
     }//GEN-LAST:event_btnModificarPinActionPerformed
 
     private void inpMesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inpMesActionPerformed
