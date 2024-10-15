@@ -1,16 +1,16 @@
 package com.mycompany.proyectoparqueos;
 
-import java.time.LocalDate;
+
 import javax.swing.JOptionPane;
 
-public class ScrAccionesAdministrador extends javax.swing.JFrame {
+public class MenuAdministrador extends javax.swing.JFrame {
      
     private Administrador admin;
     Parqueo parqueo;
     /**
      * Creates new form ScrAccionesAdministrador
      */
-    public ScrAccionesAdministrador(Administrador pAdmin, Parqueo parqueo) {
+    public MenuAdministrador(Administrador pAdmin, Parqueo parqueo) {
         setAdmin(pAdmin);
         setParqueo(parqueo);
         initComponents();
@@ -250,20 +250,21 @@ public class ScrAccionesAdministrador extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ScrAccionesAdministrador.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MenuAdministrador.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ScrAccionesAdministrador.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MenuAdministrador.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ScrAccionesAdministrador.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MenuAdministrador.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ScrAccionesAdministrador.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MenuAdministrador.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                ScrAccionesAdministrador registrar = new ScrAccionesAdministrador(admin, parqueo);
+                MenuAdministrador registrar = new MenuAdministrador(admin, parqueo);
                 registrar.setVisible(true);
             }
         });

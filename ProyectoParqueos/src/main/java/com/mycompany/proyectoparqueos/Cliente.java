@@ -180,7 +180,7 @@ public class Cliente extends Usuario {
     //elimina el archivo del cliente
     public void eliminarCliente(String informacion){
             try{
-            String [] info = guardarInfoAdmin2(informacion);
+            String [] info = guardarInfoCliente2(informacion);
 
             File archivoAdministrador = new File("Cliente.txt");
             FileWriter leer = new FileWriter(archivoAdministrador, true);
@@ -200,7 +200,7 @@ public class Cliente extends Usuario {
     }
         
         //guarda la informacion del archivo excepto por el usuario a eliminar
-    public String[] guardarInfoAdmin2(String informacion)throws IOException{
+    public String[] guardarInfoCliente2(String informacion)throws IOException{
         FileReader leer = new FileReader("Cliente.txt");
         BufferedReader buffer = new BufferedReader(leer);
         String [] arreglo = new String[totalClientes(buffer)];

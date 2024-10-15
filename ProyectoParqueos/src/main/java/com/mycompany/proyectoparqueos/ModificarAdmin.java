@@ -305,7 +305,7 @@ public class ModificarAdmin extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
-        ScrAccionesAdministrador pantalla = new ScrAccionesAdministrador(admin, parqueo);
+        MenuAdministrador pantalla = new MenuAdministrador(admin, parqueo);
         pantalla.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_btnVolverActionPerformed
@@ -350,7 +350,7 @@ public class ModificarAdmin extends javax.swing.JFrame {
                 System.out.println(infoACambiar);
             
                 administrador2.modificarDatosAdmin(infoACambiar);
-                ScrAccionesAdministrador pantalla = new ScrAccionesAdministrador(admin,parqueo);
+                MenuAdministrador pantalla = new MenuAdministrador(admin,parqueo);
                 pantalla.setVisible(true);
                 this.setVisible(false);
             }
@@ -377,7 +377,7 @@ public class ModificarAdmin extends javax.swing.JFrame {
         String pin = sb.toString();
         //******************************************aqui faltaría agregar mandar Pin por correo***************************************///
         System.out.println(pin);
-        verificarPinAdmin pantalla = new verificarPinAdmin(admin,parqueo,correo,pin);
+        VerificarPinAdmin pantalla = new VerificarPinAdmin(admin,parqueo,correo,pin);
         pantalla.setVisible(true);
         this.setVisible(false);
         

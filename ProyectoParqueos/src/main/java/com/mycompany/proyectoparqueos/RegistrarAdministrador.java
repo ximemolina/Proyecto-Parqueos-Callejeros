@@ -367,7 +367,7 @@ public class RegistrarAdministrador extends javax.swing.JFrame {
             Administrador administrador = new Administrador(inpNombre.getText(), inpApellidos.getText(), inpTelefono.getText(), inpCorreo.getText(), inpDireccion.getText(),fecha ,inpPIN.getText(), inpIdentificacion.getText());
             File archivoAdministrador = new File("Administrador.txt");
             administrador.guardarUsuario(archivoAdministrador);
-            ScrAccionesAdministrador pantalla = new ScrAccionesAdministrador(administrador, parqueo);
+            MenuAdministrador pantalla = new MenuAdministrador(administrador, parqueo);
             pantalla.setVisible(true);
             this.setVisible(false);
         } 

@@ -217,7 +217,7 @@ public class IngresarAdmin extends javax.swing.JFrame {
                         LocalDate fecha = LocalDate.parse(lista[7], DateTimeFormatter.ofPattern("yyyy/MM/dd"));
                         //crea objeto Administrador con atributos respectivos para poder pasarselos a pantalla de acciones de admin
                         Administrador admin = new Administrador(lista[2], lista[3],lista[4], lista[5], lista[6], fecha, lista[1], lista[0]);
-                        ScrAccionesAdministrador pantalla = new ScrAccionesAdministrador(admin, parqueo);
+                        MenuAdministrador pantalla = new MenuAdministrador(admin, parqueo);
                         pantalla.setVisible(true);
                         this.setVisible(false);
                         return;

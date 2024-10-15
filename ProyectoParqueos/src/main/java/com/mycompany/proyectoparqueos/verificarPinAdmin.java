@@ -3,13 +3,13 @@ package com.mycompany.proyectoparqueos;
 
 import javax.swing.JOptionPane;
 
-public class verificarPinAdmin extends javax.swing.JFrame {
+public class VerificarPinAdmin extends javax.swing.JFrame {
 
     Administrador admin;
     Parqueo parqueo;
     String correo;
     String pin;
-    public verificarPinAdmin(Administrador admin, Parqueo parqueo, String correo, String pin) {
+    public VerificarPinAdmin(Administrador admin, Parqueo parqueo, String correo, String pin) {
         initComponents();
         setAdmin(admin);
         setParqueo(parqueo);
@@ -165,7 +165,7 @@ public class verificarPinAdmin extends javax.swing.JFrame {
             admin.setPin(inpPinNuevo.getText());
             String info = admin.toString();
             admin.modificarDatosAdmin(info);
-            ScrAccionesAdministrador pantalla = new ScrAccionesAdministrador(admin, parqueo);
+            MenuAdministrador pantalla = new MenuAdministrador(admin, parqueo);
             pantalla.setVisible(true);
             this.setVisible(false);
         }catch(ValidacionesExceptions e){
@@ -191,20 +191,21 @@ public class verificarPinAdmin extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(verificarPinAdmin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VerificarPinAdmin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(verificarPinAdmin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VerificarPinAdmin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(verificarPinAdmin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VerificarPinAdmin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(verificarPinAdmin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VerificarPinAdmin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new verificarPinAdmin( admin,  parqueo, correo, pin).setVisible(true);
+                new VerificarPinAdmin( admin,  parqueo, correo, pin).setVisible(true);
             }
         });
     }

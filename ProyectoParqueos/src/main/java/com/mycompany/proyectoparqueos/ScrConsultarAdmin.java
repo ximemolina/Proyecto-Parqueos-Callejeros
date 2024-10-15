@@ -153,7 +153,7 @@ public class ScrConsultarAdmin extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
-        ScrAccionesAdministrador pantalla = new ScrAccionesAdministrador(admin, parqueo);
+        MenuAdministrador pantalla = new MenuAdministrador(admin, parqueo);
         pantalla.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_btnVolverActionPerformed
