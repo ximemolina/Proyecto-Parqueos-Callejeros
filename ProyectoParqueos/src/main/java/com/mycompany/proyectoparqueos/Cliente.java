@@ -3,6 +3,7 @@ package com.mycompany.proyectoparqueos;
 import java.time.YearMonth;
 import java.util.ArrayList;
 import java.time.*;
+
 public class Cliente extends Usuario { 
     private ArrayList<Carro> carros;  // Lista de carros asociados al cliente
     private Tarjeta tarjeta;
@@ -49,17 +50,19 @@ public class Cliente extends Usuario {
         } 
         return super.toString() + ","+ tarjeta.getNumeroTarjeta() + "," + tarjeta.getFechaVencimiento() + "," + tarjeta.getCodigoValidacion() + listaCarros;
     }
-    public boolean parquear(Carro carro, Parqueo parqueo) {
-        // Buscar un espacio disponible en el parqueo
-        for (EspacioDeParqueo espacio : parqueo.getEspaciosParqueo()) {
-            if (!espacio.getDisponible()) {  // Si el espacio está libre
-                espacio.setCarro(carro);  // Asociar el espacio con el carro
-                System.out.println("Carro parqueado en el espacio: " + espacio.getNumeroEspacio());
-                return true;  // Carro parqueado con éxito
-            }
+    
+    public boolean parquear(Carro carro, EspacioDeParqueo espacioSeleccionado) {
+        
+        if (espacioSeleccionado.getDisponible()) { 
+            espacioSeleccionado.setCarro(carro);  
+            espacioSeleccionado.setDisponible(false); 
+
+            System.out.println("Carro parqueado en el espacio: " + espacioSeleccionado.getNumeroEspacio());
+            return true;  
         }
-        System.out.println("No hay espacios disponibles.");
-        return false;  // No se pudo parquear porque no hay espacios libres
+        
+        System.out.println("El espacio ya está ocupado.");
+        return false;  
     }
         
     public boolean desaparcar(Carro carro, Parqueo parqueo) {

@@ -99,6 +99,10 @@ public class Administrador extends Usuario{//administrador hereda todo del Usuar
         }
     }
     
+    public void configuracionParqueo(){
+        // falta implementar la configuracion solo la puede usar el administrador
+    }
+    
         //guarda la informacion del archivo excepto por el usuario a eliminar
     public String[] guardarInfoAdmin2(String informacion)throws IOException{
         FileReader leer = new FileReader("Administrador.txt");

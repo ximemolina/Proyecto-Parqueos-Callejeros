@@ -32,6 +32,10 @@ public class EspacioDeParqueo {
         }
     }
     
+    public void setDisponible(boolean disponible){
+        this.disponible = disponible;
+    }
+    
     public int getNumeroEspacio(){
         return numeroEspacio;
     }

@@ -107,8 +107,17 @@ public class Parqueo {
         return espaciosParqueo;
     }
     
-    public void configuracionParqueo(){
-        // falta implementar la configuracion solo la puede usar el administrador
+    public ArrayList<EspacioDeParqueo> getEspaciosDisponibles() {
+        ArrayList<EspacioDeParqueo> espaciosDisponibles = new ArrayList<>();
+
+        for (EspacioDeParqueo espacio : espaciosParqueo) {
+            // Si el espacio no está ocupado, se agrega a la lista de disponibles
+            if (espacio.getDisponible()) {
+                espaciosDisponibles.add(espacio);
+            }
+        }
+
+        return espaciosDisponibles; // Retorna la lista de espacios disponibles
     }
     
     public void agregarEspacioParqueo(EspacioDeParqueo espacio) {

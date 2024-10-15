@@ -243,6 +243,7 @@ public class AñadirCarroCliente extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new AñadirCarroCliente(cliente).setVisible(true);
+                
             }
         });
     }
