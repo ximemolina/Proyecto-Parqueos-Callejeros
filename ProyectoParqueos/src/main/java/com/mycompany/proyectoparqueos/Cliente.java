@@ -5,31 +5,46 @@ import java.util.ArrayList;
 import java.time.*;
 public class Cliente extends Usuario { 
     private ArrayList<Carro> carros;  // Lista de carros asociados al cliente
-    private ArrayList<Tarjeta> tarjetas;
     private Tarjeta tarjeta;
     // Constructor
-    public Cliente(String pNombre, String pApellido, String pTelefono, String pCorreo, String pDireccionFisica, LocalDate pFechaIngreso,String pPin, String pIdentificacionUsuario) {
+    public Cliente(String pNombre, String pApellido, String pTelefono, String pCorreo, String pDireccionFisica, LocalDate pFechaIngreso,String pPin, String pIdentificacionUsuario,long pNumTarjeta,int pMes, int pAño, int pCodValidacion) {
         super(pNombre, pApellido, pTelefono, pCorreo, pDireccionFisica,pFechaIngreso, pPin, pIdentificacionUsuario);
         this.carros = new ArrayList<>();
+        
+        YearMonth fechaEspecifica = YearMonth.of(pAño, pMes);
+        Tarjeta tarjetaNueva = new Tarjeta(pNumTarjeta,fechaEspecifica, pCodValidacion);
+        setTarjeta(tarjetaNueva);
     }
 
     public ArrayList<Carro> getCarros() {
         return carros;
     }
     
-    public void agregarCarro(Carro carro) {
+    public void agregarCarro(String placa, String marca, String modelo) {
+        Carro carro = new Carro(placa, marca, modelo);
         carros.add(carro);
     }
     
+    public void setTarjeta(Tarjeta pTarjeta){
+        tarjeta = pTarjeta;
+    }
     
     public boolean removerCarro(Carro carro) {
         return carros.remove(carro);
     }
-    
-    public void agregarTarjeta(Tarjeta tarjeta){
-        tarjetas.add(tarjeta);
+    //retorna string con informaicon
+    public String toString(){
+        String listaCarros = "";
+        for (Carro auto : carros){ //llenar string con informacion de carros
+            if (auto.getMarca() != null && auto.getModelo() != null)
+                listaCarros = listaCarros + "," + auto.getPlaca() + "," + auto.getMarca() + "," + auto.getModelo();
+            else if (auto.getMarca() == null && auto.getModelo() != null){
+                listaCarros = listaCarros + "," + auto.getPlaca() + "," + " "+ "," + auto.getModelo();
+            } else if(auto.getMarca() != null && auto.getModelo() == null)
+                listaCarros = listaCarros + "," + auto.getPlaca() + "," + auto.getMarca()+ "," + " ";
+        } 
+        return super.toString() + ","+ tarjeta.getNumeroTarjeta() + "," + tarjeta.getFechaVencimiento() + "," + tarjeta.getCodigoValidacion() + listaCarros;
     }
-    
     public boolean parquear(Carro carro, Parqueo parqueo) {
         // Buscar un espacio disponible en el parqueo
         for (EspacioDeParqueo espacio : parqueo.getEspaciosParqueo()) {
@@ -77,26 +92,7 @@ public class Cliente extends Usuario {
             System.out.println("No puedes comprar tiempo para este espacio porque no está ocupado por uno de tus carros.");
         }
     }
-        public void setTarjeta(Tarjeta tarjeta) {
-        // Validar que el número de tarjeta tenga exactamente 16 dígitos
-        if (tarjeta.getNumeroTarjeta() == null || !tarjeta.getNumeroTarjeta().matches("\\d{16}")) {
-            throw new IllegalArgumentException("El número de tarjeta debe tener exactamente 16 dígitos.");
-        }   
 
-        // Validar la fecha de vencimiento (no debe estar vencida)
-        YearMonth fechaActual = YearMonth.now();
-        if (tarjeta.getFechaVencimiento().isBefore(fechaActual)) {
-            throw new IllegalArgumentException("La tarjeta está vencida.");
-        }
-
-        // Validar que el código de validación tenga exactamente 3 dígitos
-        if (tarjeta.getCodigoValidacion() == null || !tarjeta.getCodigoValidacion().matches("\\d{3}")) {
-            throw new IllegalArgumentException("El código de validación debe tener exactamente 3 dígitos.");
-        }
-
-        // Si todas las validaciones pasan, se asigna la tarjeta
-        this.tarjeta = tarjeta;
-    }
 }
        
 

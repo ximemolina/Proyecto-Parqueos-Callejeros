@@ -1,13 +1,7 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package com.mycompany.proyectoparqueos;
 
-/**
- *
- * @author ximen
- */
+import javax.swing.JOptionPane;
+
 public class ScrAccionesAdministrador extends javax.swing.JFrame {
      
     private Administrador admin;
@@ -182,11 +176,23 @@ public class ScrAccionesAdministrador extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnModificarAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarAdminActionPerformed
-        // TODO add your handling code here:
+        this.setVisible(false);
+        ModificarAdmin pantalla = new ModificarAdmin(admin);
+        pantalla.setVisible(true);
     }//GEN-LAST:event_btnModificarAdminActionPerformed
 
     private void btnEliminarAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarAdminActionPerformed
-        // TODO add your handling code here:
+        //mostrar mensaje de confirmacion
+        int opcion = JOptionPane.showConfirmDialog(null, "¿Está seguro de que desea eliminar el usuario?", "CONFIRMACION", JOptionPane.YES_NO_CANCEL_OPTION);
+
+        if (opcion == JOptionPane.YES_OPTION) {
+            eliminarAdmin();
+            MenuInicial menu = new MenuInicial();
+            menu.setVisible(true);
+            this.setVisible(false);
+        } else if (opcion == JOptionPane.NO_OPTION) { 
+            JOptionPane.showMessageDialog(null, "Se cancela la eliminación. "); 
+        }
     }//GEN-LAST:event_btnEliminarAdminActionPerformed
 
     private void btnConsultarAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarAdminActionPerformed
@@ -244,7 +250,11 @@ public class ScrAccionesAdministrador extends javax.swing.JFrame {
             }
         });
     }
-
+    //elimina el usuario
+    public void eliminarAdmin(){
+    
+    
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnConfigurarParqueo1;
     private javax.swing.JButton btnConsultarAdmin;

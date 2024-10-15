@@ -122,7 +122,7 @@ public class MenuRegistrar extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnRegistrarAdministradorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarAdministradorActionPerformed
-        ScrRegistrarAdministrador scrRegistrarAdministrador = new ScrRegistrarAdministrador();
+        RegistrarAdministrador scrRegistrarAdministrador = new RegistrarAdministrador();
         scrRegistrarAdministrador.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_btnRegistrarAdministradorActionPerformed
@@ -132,7 +132,9 @@ public class MenuRegistrar extends javax.swing.JFrame {
     }//GEN-LAST:event_btnRegistrarInspectorActionPerformed
 
     private void btnRegistrarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarClienteActionPerformed
-        // TODO add your handling code here:
+        RegistrarCliente registrarCliente = new RegistrarCliente();
+        registrarCliente.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_btnRegistrarClienteActionPerformed
 
     private void btnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarActionPerformed

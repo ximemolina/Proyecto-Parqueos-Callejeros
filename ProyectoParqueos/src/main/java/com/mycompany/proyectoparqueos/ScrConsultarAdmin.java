@@ -1,16 +1,9 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package com.mycompany.proyectoparqueos;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
-/**
- *
- * @author ximen
- */
+
 public class ScrConsultarAdmin extends javax.swing.JFrame {
     
     Administrador admin;
@@ -53,6 +46,11 @@ public class ScrConsultarAdmin extends javax.swing.JFrame {
 
         btnVolver.setBackground(new java.awt.Color(204, 204, 204));
         btnVolver.setText("Volver");
+        btnVolver.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVolverActionPerformed(evt);
+            }
+        });
 
         jLabel2.setFont(new java.awt.Font("Segoe UI Variable", 1, 18)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
@@ -153,6 +151,12 @@ public class ScrConsultarAdmin extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
+        ScrAccionesAdministrador pantalla = new ScrAccionesAdministrador(admin);
+        pantalla.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_btnVolverActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -198,12 +202,13 @@ public class ScrConsultarAdmin extends javax.swing.JFrame {
         lblIdentificacion.setText("Identificacion de Usuario: "+ admin.getIdentificacionUsuario());
         lblDireccion.setText("Dirección física: " + admin.getDireccionFisica());
         LocalDate fecha = admin.getFechaIngreso();
-        DateTimeFormatter formato = DateTimeFormatter.ofPattern("yyyy/MM/dd");
+        DateTimeFormatter formato = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         // Convertir LocalDate a String
         String fechaEnTexto = fecha.format(formato);
         lblFechaIngreso.setText("Fecha de ingreso como trabajador: " + fechaEnTexto);
     }
-
+    
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnVolver;
     private javax.swing.JLabel jLabel2;

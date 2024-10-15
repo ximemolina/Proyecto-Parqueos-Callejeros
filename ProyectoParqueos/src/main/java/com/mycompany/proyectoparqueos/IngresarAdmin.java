@@ -34,7 +34,6 @@ public class IngresarAdmin extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMaximumSize(new java.awt.Dimension(32767, 32767));
-        setPreferredSize(new java.awt.Dimension(620, 450));
 
         jPanel1.setBackground(new java.awt.Color(153, 153, 153));
         jPanel1.setMinimumSize(new java.awt.Dimension(0, 0));
@@ -208,10 +207,7 @@ public class IngresarAdmin extends javax.swing.JFrame {
                 
                 try{
                     lista = contenido.split(","); //divide la linea en cada atributo de administrador
-                    System.out.println( lista[0] + lista[1]);
-                    System.out.println( "\n"+id + pin);
                     if(lista[0].equals(id) && lista[1].equals(pin)){
-                        System.out.println("hola");
                         String[] fechaActualizada = lista[7].split("/");
                         String fechaReal = fechaActualizada[0] + "-"+fechaActualizada[1]+"-"+fechaActualizada[2];
                         LocalDate fecha = LocalDate.parse(fechaReal);
