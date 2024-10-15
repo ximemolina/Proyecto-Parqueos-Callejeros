@@ -1,9 +1,3 @@
 
-fesfesesf,1234,Mario,Quiros,12345678,fesfsfes@fefes,fesfsefsf,2024/10/14
-fesfesesf,1234,Mario,Quiros,12345678,fesfsfes@fefes,fesfsefsf,2024/10/14
-fesfesfs,1234,Carlos,Sanabria,12345678,fwadwaddw@fefes,fesesffse,2024/10/14,1.478523697401482E15,2028-10,11
-idUsuario,1234,Carlos,Montoyra,14785237,dwadwa@fwafaw,fwafawfa,2024/10/14,1.478523697412589E15,2028-10,0
-idUso,1234,Maria,Portilla,14785236,dwadaw@fwafaw,fwafawf,2024/10/14,1.478523697415821E15,2027-10,101
-idUsuarioId,pin1,Maria,cervantes,14785214,dwadwa@afwafw,fwafawfaw,2024/10/14,1.478523697412589E15,2028-10,147
-fesfsefsfe,1234,Maria,Chavarría,14785214,fefsfs@fesfes,fesfsefesfe,2024/10/14,1478523698741254,2025-10,147
-IdUsuarioIngresar,1420,Santiago,Alavarado,14725896,fesfes@esfesefs,fesfesfesf,2024/10/14,1478523698741258,2050-10,474null,A,,,a,,,ASDA,MARC,MODA
+IdUsuarioIngresar,1420,Santiago,Alavarado,14725896,fesfes@esfesefs,fesfesfesf,2024/10/14,1478523698741258,2050-10,474,A,,,a,,,ASDA,MARC,MODA
+hola,1234,Enrique,Chavarría,14785412,correo@gmail,DireccionFisica,2024/10/14,1478541295876541,2050-10,147,ASD,MARK,MODE,PKS,ERTS,FSDS20

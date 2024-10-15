@@ -29,9 +29,9 @@ public class MenuIngresar extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         btnVolver = new javax.swing.JButton();
-        btnRegistrarAdministrador = new javax.swing.JButton();
-        btnRegistrarInspector = new javax.swing.JButton();
-        btnRegistrarCliente = new javax.swing.JButton();
+        btnIngresarAdministrador = new javax.swing.JButton();
+        btnIngresarInspector = new javax.swing.JButton();
+        btnIngresarCliente = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -50,31 +50,31 @@ public class MenuIngresar extends javax.swing.JFrame {
             }
         });
 
-        btnRegistrarAdministrador.setBackground(new java.awt.Color(204, 204, 204));
-        btnRegistrarAdministrador.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        btnRegistrarAdministrador.setText("Administrador");
-        btnRegistrarAdministrador.setPreferredSize(new java.awt.Dimension(112, 23));
-        btnRegistrarAdministrador.addActionListener(new java.awt.event.ActionListener() {
+        btnIngresarAdministrador.setBackground(new java.awt.Color(204, 204, 204));
+        btnIngresarAdministrador.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnIngresarAdministrador.setText("Administrador");
+        btnIngresarAdministrador.setPreferredSize(new java.awt.Dimension(112, 23));
+        btnIngresarAdministrador.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnRegistrarAdministradorActionPerformed(evt);
+                btnIngresarAdministradorActionPerformed(evt);
             }
         });
 
-        btnRegistrarInspector.setBackground(new java.awt.Color(204, 204, 204));
-        btnRegistrarInspector.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        btnRegistrarInspector.setText("Inspector");
-        btnRegistrarInspector.addActionListener(new java.awt.event.ActionListener() {
+        btnIngresarInspector.setBackground(new java.awt.Color(204, 204, 204));
+        btnIngresarInspector.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnIngresarInspector.setText("Inspector");
+        btnIngresarInspector.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnRegistrarInspectorActionPerformed(evt);
+                btnIngresarInspectorActionPerformed(evt);
             }
         });
 
-        btnRegistrarCliente.setBackground(new java.awt.Color(204, 204, 204));
-        btnRegistrarCliente.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        btnRegistrarCliente.setText("Cliente");
-        btnRegistrarCliente.addActionListener(new java.awt.event.ActionListener() {
+        btnIngresarCliente.setBackground(new java.awt.Color(204, 204, 204));
+        btnIngresarCliente.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnIngresarCliente.setText("Cliente");
+        btnIngresarCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnRegistrarClienteActionPerformed(evt);
+                btnIngresarClienteActionPerformed(evt);
             }
         });
 
@@ -94,9 +94,9 @@ public class MenuIngresar extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnRegistrarCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnRegistrarInspector, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnRegistrarAdministrador, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnIngresarCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnIngresarInspector, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnIngresarAdministrador, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(224, 224, 224))
         );
         jPanel1Layout.setVerticalGroup(
@@ -107,11 +107,11 @@ public class MenuIngresar extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(btnRegistrarAdministrador, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnIngresarAdministrador, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(btnRegistrarInspector, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnIngresarInspector, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(btnRegistrarCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnIngresarCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(101, Short.MAX_VALUE))
         );
 
@@ -136,19 +136,21 @@ public class MenuIngresar extends javax.swing.JFrame {
         this.setVisible(false);
     }//GEN-LAST:event_btnVolverActionPerformed
 
-    private void btnRegistrarAdministradorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarAdministradorActionPerformed
+    private void btnIngresarAdministradorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresarAdministradorActionPerformed
         IngresarAdmin ingresarAdmin = new IngresarAdmin();
         ingresarAdmin.setVisible(true);
         this.setVisible(false);
-    }//GEN-LAST:event_btnRegistrarAdministradorActionPerformed
+    }//GEN-LAST:event_btnIngresarAdministradorActionPerformed
 
-    private void btnRegistrarInspectorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarInspectorActionPerformed
+    private void btnIngresarInspectorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresarInspectorActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnRegistrarInspectorActionPerformed
+    }//GEN-LAST:event_btnIngresarInspectorActionPerformed
 
-    private void btnRegistrarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarClienteActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnRegistrarClienteActionPerformed
+    private void btnIngresarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresarClienteActionPerformed
+        IngresarCliente menu = new IngresarCliente();
+        menu.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_btnIngresarClienteActionPerformed
 
     /**
      * @param args the command line arguments
@@ -186,9 +188,9 @@ public class MenuIngresar extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnRegistrarAdministrador;
-    private javax.swing.JButton btnRegistrarCliente;
-    private javax.swing.JButton btnRegistrarInspector;
+    private javax.swing.JButton btnIngresarAdministrador;
+    private javax.swing.JButton btnIngresarCliente;
+    private javax.swing.JButton btnIngresarInspector;
     private javax.swing.JButton btnVolver;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;

@@ -32,6 +32,10 @@ public class Cliente extends Usuario {
     public boolean removerCarro(Carro carro) {
         return carros.remove(carro);
     }
+    //getter
+    public Tarjeta getTarjeta() {
+        return tarjeta;
+    }
     //retorna string con informaicon
     public String toString(){
         String listaCarros = "";

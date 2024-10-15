@@ -62,9 +62,9 @@
               <Group type="102" alignment="1" attributes="0">
                   <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="btnRegistrarCliente" min="-2" pref="156" max="-2" attributes="0"/>
-                      <Component id="btnRegistrarInspector" min="-2" pref="156" max="-2" attributes="0"/>
-                      <Component id="btnRegistrarAdministrador" min="-2" pref="156" max="-2" attributes="0"/>
+                      <Component id="btnIngresarCliente" min="-2" pref="156" max="-2" attributes="0"/>
+                      <Component id="btnIngresarInspector" min="-2" pref="156" max="-2" attributes="0"/>
+                      <Component id="btnIngresarAdministrador" min="-2" pref="156" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="224" max="-2" attributes="0"/>
               </Group>
@@ -78,11 +78,11 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="jLabel2" min="-2" pref="32" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Component id="btnRegistrarAdministrador" min="-2" pref="76" max="-2" attributes="0"/>
+                  <Component id="btnIngresarAdministrador" min="-2" pref="76" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Component id="btnRegistrarInspector" min="-2" pref="76" max="-2" attributes="0"/>
+                  <Component id="btnIngresarInspector" min="-2" pref="76" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Component id="btnRegistrarCliente" min="-2" pref="76" max="-2" attributes="0"/>
+                  <Component id="btnIngresarCliente" min="-2" pref="76" max="-2" attributes="0"/>
                   <EmptySpace pref="101" max="32767" attributes="0"/>
               </Group>
           </Group>
@@ -111,7 +111,7 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnVolverActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="btnRegistrarAdministrador">
+        <Component class="javax.swing.JButton" name="btnIngresarAdministrador">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="cc" green="cc" red="cc" type="rgb"/>
@@ -125,10 +125,10 @@
             </Property>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnRegistrarAdministradorActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnIngresarAdministradorActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="btnRegistrarInspector">
+        <Component class="javax.swing.JButton" name="btnIngresarInspector">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="cc" green="cc" red="cc" type="rgb"/>
@@ -139,10 +139,10 @@
             <Property name="text" type="java.lang.String" value="Inspector"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnRegistrarInspectorActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnIngresarInspectorActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="btnRegistrarCliente">
+        <Component class="javax.swing.JButton" name="btnIngresarCliente">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="cc" green="cc" red="cc" type="rgb"/>
@@ -153,7 +153,7 @@
             <Property name="text" type="java.lang.String" value="Cliente"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnRegistrarClienteActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnIngresarClienteActionPerformed"/>
           </Events>
         </Component>
       </SubComponents>
