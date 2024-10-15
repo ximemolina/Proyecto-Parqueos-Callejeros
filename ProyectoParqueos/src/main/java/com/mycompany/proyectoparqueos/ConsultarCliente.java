@@ -3,10 +3,7 @@ package com.mycompany.proyectoparqueos;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
-/**
- *
- * @author ximen
- */
+
 public class ConsultarCliente extends javax.swing.JFrame {
 
     Cliente cliente;

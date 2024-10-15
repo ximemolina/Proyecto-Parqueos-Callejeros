@@ -10,10 +10,8 @@ import java.io.IOException;
 import java.time.LocalDate;
 import javax.swing.JOptionPane;
 import java.time.format.DateTimeFormatter;
-/**
- *
- * @author ximen
- */
+
+
 public class IngresarCliente extends javax.swing.JFrame {
 
     /**

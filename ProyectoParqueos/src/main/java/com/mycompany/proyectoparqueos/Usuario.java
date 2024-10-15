@@ -2,6 +2,7 @@ package com.mycompany.proyectoparqueos;
 import java.time.format.DateTimeFormatter;
 import java.io.*;
 import java.time.*;
+import javax.swing.JOptionPane;
 public class Usuario {
     //atributos
     private String nombre;
@@ -109,15 +110,92 @@ public class Usuario {
     }
 
     public void setPin(String pPin) {
-        if(pPin.length() == 4)
+        
+        if(pPin.length() == 4){
+            
             pin = pPin;
+        }
         else
             throw new ValidacionesExceptions("Error: PIN debe tener 4 caracteres exactos");
     }
 
     public void setIdentificacionUsuario(String pIdentificacionUsuario) {
-        if(pIdentificacionUsuario.length()>= 2 && pIdentificacionUsuario.length() <= 25)
-            identificacionUsuario = pIdentificacionUsuario;
+        if(pIdentificacionUsuario.length()>= 2 && pIdentificacionUsuario.length() <= 25){
+            String contenido;
+            try{
+                //se busca en los archivos de inspector, admin y cliente para verificar que id sea único
+                FileReader leer = new FileReader("Cliente.txt");
+                BufferedReader lectura = new BufferedReader(leer);
+                contenido = lectura.readLine(); //lee una línea del archivo
+                String [] lista;
+                while(contenido != null){
+
+                    try{
+                        lista = contenido.split(","); //divide la linea en cada atributo de usuario
+                        if(lista[0].equals(pIdentificacionUsuario)){ //si id coinciden, entonces tira error
+
+                            throw new ValidacionesExceptions("Error: Identificación debe ser única en la aplicación");
+                        }
+                        contenido = lectura.readLine();
+                    }catch(ValidacionesExceptions e){
+                        throw new ValidacionesExceptions("Error: Identificación debe ser única en la aplicación");
+                    }
+                    
+                    catch(Exception e){
+                        contenido = lectura.readLine();
+                    }
+                }
+                leer.close();
+                lectura.close();
+                leer = new FileReader("Administrador.txt");
+                lectura = new BufferedReader(leer);
+                contenido = lectura.readLine(); //lee una línea del archivo
+                String [] lista2;
+                while(contenido != null){
+
+                    try{
+                        lista2 = contenido.split(","); //divide la linea en cada atributo de usuario
+                        if(lista2[0].equals(pIdentificacionUsuario)){//si id coinciden, entonces tira error
+
+                            throw new ValidacionesExceptions("Error: Identificación debe ser única en la aplicación");
+                        }
+                        contenido = lectura.readLine();
+                    }catch(ValidacionesExceptions e){
+                        throw new ValidacionesExceptions("Error: Identificación debe ser única en la aplicación");
+                    }
+                    catch(Exception e){
+                        contenido = lectura.readLine();
+                    }
+                }
+                leer.close();
+                lectura.close();
+                leer = new FileReader("Inspector.txt");
+                lectura = new BufferedReader(leer);
+                contenido = lectura.readLine(); //lee una línea del archivo
+                String [] lista3;
+                while(contenido != null){
+
+                    try{
+                        lista3 = contenido.split(","); //divide la linea en cada atributo de usuario
+                        if(lista3[0].equals(pIdentificacionUsuario)){//si id coinciden, entonces tira error
+
+                            throw new ValidacionesExceptions("Error: Identificación debe ser única en la aplicación");
+                        }
+                        contenido = lectura.readLine();
+                    }catch(ValidacionesExceptions e){
+                        throw new ValidacionesExceptions("Error: Identificación debe ser única en la aplicación");
+                    }
+                    catch(Exception e){
+                        e.printStackTrace();
+                        contenido = lectura.readLine();
+                    }
+                }             
+                identificacionUsuario = pIdentificacionUsuario;
+
+            } catch(IOException exception){
+                exception.printStackTrace();
+            }
+        }
         else
             throw new ValidacionesExceptions("Error: Identificacion debe tener de 2 a 25 caracteres");
     }
