@@ -132,7 +132,7 @@ public class Usuario {
 
                     try{
                         lista = contenido.split(","); //divide la linea en cada atributo de usuario
-                        if(lista[0].equals(pIdentificacionUsuario)){ //si id coinciden, entonces tira error
+                        if(lista[0].equals(pIdentificacionUsuario) && !lista[1].equals(getPin()) && !lista[2].equals(getNombre())){ //si id coinciden, entonces tira error
 
                             throw new ValidacionesExceptions("Error: Identificación debe ser única en la aplicación");
                         }
@@ -155,7 +155,7 @@ public class Usuario {
 
                     try{
                         lista2 = contenido.split(","); //divide la linea en cada atributo de usuario
-                        if(lista2[0].equals(pIdentificacionUsuario)){//si id coinciden, entonces tira error
+                        if(lista2[0].equals(pIdentificacionUsuario) && !lista2[1].equals(getPin()) && !lista2[2].equals(getNombre())){//si id coinciden, entonces tira error
 
                             throw new ValidacionesExceptions("Error: Identificación debe ser única en la aplicación");
                         }
@@ -177,7 +177,7 @@ public class Usuario {
 
                     try{
                         lista3 = contenido.split(","); //divide la linea en cada atributo de usuario
-                        if(lista3[0].equals(pIdentificacionUsuario)){//si id coinciden, entonces tira error
+                        if(lista3[0].equals(pIdentificacionUsuario) && !lista3[1].equals(getPin()) && !lista3[2].equals(getNombre())){//si id coinciden, entonces tira error
 
                             throw new ValidacionesExceptions("Error: Identificación debe ser única en la aplicación");
                         }
@@ -186,7 +186,6 @@ public class Usuario {
                         throw new ValidacionesExceptions("Error: Identificación debe ser única en la aplicación");
                     }
                     catch(Exception e){
-                        e.printStackTrace();
                         contenido = lectura.readLine();
                     }
                 }             

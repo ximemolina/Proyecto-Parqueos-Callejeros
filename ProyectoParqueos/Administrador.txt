@@ -1,4 +1,3 @@
 
-id122,1234,Mariana,Araya,14785214,gmail@correo,direccionnnnnn,2010/10/12
-
-hola,1472,gegesg,gsegesges,14785412,fesfes@ffesfes,fesfefes,2021/10/02
+iduno,0000,Maria,Cordero,14845684,correo@gmail,dawfafawwaf,2024/01/20
+idKarla,1234,Karla,Zuñiga,54781245,gmail@correo2,fwafafa,2015/01/31

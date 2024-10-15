@@ -14,12 +14,13 @@ public class Administrador extends Usuario{//administrador hereda todo del Usuar
         BufferedWriter buffer = null;
         try{
             String[] info = guardarInfoAdmin(toString());
-            leer = new FileWriter("Administrador.txt, true");
+            leer = new FileWriter("Administrador.txt", true);
             buffer = new BufferedWriter(leer);
             String[] stringsCompletos;
             for(int i = 0; i < info.length; i++){ //revisar esta linea tmb
+                //System.out.println(info[i]);
                 stringsCompletos = info[i].split(",");
-                buffer.write("\n"+stringsCompletos[2]+","+ stringsCompletos[3]+","+ stringsCompletos[4]+","+stringsCompletos[5]+","+stringsCompletos[6]+","+stringsCompletos[1]+","+stringsCompletos[0]);
+                leer.write("\n"+stringsCompletos[2]+","+ stringsCompletos[3]+","+ stringsCompletos[4]+","+stringsCompletos[5]+","+stringsCompletos[6]+","+stringsCompletos[1]+","+stringsCompletos[0]);
             
             }
         }
@@ -61,8 +62,10 @@ public class Administrador extends Usuario{//administrador hereda todo del Usuar
         buffer = new BufferedReader(leer);
         int elemento = 0;
         String infoAdmin;
+        String[] infoRecopilar;
         while((infoAdmin = buffer.readLine())!= null ){
-            if(infoAdmin.split(",")[0].equals(informacionCompleta[0])){ //revisar esta linea
+            infoRecopilar = infoAdmin.split(",");
+            if(infoRecopilar[0].equals(informacionCompleta[0])){ //revisar esta linea
                 arreglo[elemento] =informacion;
             }else{
                 arreglo[elemento] = infoAdmin;

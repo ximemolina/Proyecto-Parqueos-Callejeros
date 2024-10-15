@@ -219,6 +219,7 @@ public class IngresarAdmin extends javax.swing.JFrame {
                     }
                     contenido = lectura.readLine();
                 }catch(Exception e){
+                    e.printStackTrace();
                     contenido = lectura.readLine();}
             }
             JOptionPane.showMessageDialog(null, "No se ha podido encontrar usuario", "Error", JOptionPane.ERROR_MESSAGE);

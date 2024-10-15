@@ -2,6 +2,7 @@ package com.mycompany.proyectoparqueos;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -397,21 +398,25 @@ public class ModificarAdmin extends javax.swing.JFrame {
     }
     //muestra atributos en la pantalla
     public void setInformacion(Administrador pAdmin){
-        admin = pAdmin;
-        inpApellido.setText(admin.getApellido());
-        inpCorreo.setText(admin.getCorreo());
-        inpDireccion.setText(admin.getDireccionFisica());
-        LocalDate fecha = admin.getFechaIngreso();
-        DateTimeFormatter formato = DateTimeFormatter.ofPattern("yyyy/MM/dd");
-        // Convertir LocalDate a String
-        String fechaEnTexto = fecha.format(formato);
-        String[]fechaEnTexto2 =fechaEnTexto.split("/");
-        inpAño.setText(fechaEnTexto2[0]);
-        inpMes.setText(fechaEnTexto2[1]);
-        inpDia.setText(fechaEnTexto2[2]);
-        inpIdentificacion.setText(admin.getIdentificacionUsuario());
-        inpNombre.setText(admin.getNombre());
-        inpTelefono.setText(String.valueOf(admin.getTelefono()));
+        try{
+            admin = pAdmin;
+            inpApellido.setText(admin.getApellido());
+            inpCorreo.setText(admin.getCorreo());
+            inpDireccion.setText(admin.getDireccionFisica());
+            LocalDate fecha = admin.getFechaIngreso();
+            DateTimeFormatter formato = DateTimeFormatter.ofPattern("yyyy/MM/dd");
+            // Convertir LocalDate a String
+            String fechaEnTexto = fecha.format(formato);
+            String[]fechaEnTexto2 =fechaEnTexto.split("/");
+            inpAño.setText(fechaEnTexto2[0]);
+            inpMes.setText(fechaEnTexto2[1]);
+            inpDia.setText(fechaEnTexto2[2]);
+            inpIdentificacion.setText(admin.getIdentificacionUsuario());
+            inpNombre.setText(admin.getNombre());
+            inpTelefono.setText(String.valueOf(admin.getTelefono()));
+        } catch(ValidacionesExceptions e){
+            JOptionPane.showMessageDialog(this, e.getMessage());
+        }
     }
     
     
