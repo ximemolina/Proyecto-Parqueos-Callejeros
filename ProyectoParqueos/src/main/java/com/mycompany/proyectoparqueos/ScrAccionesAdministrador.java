@@ -1,5 +1,6 @@
 package com.mycompany.proyectoparqueos;
 
+import java.time.LocalDate;
 import javax.swing.JOptionPane;
 
 public class ScrAccionesAdministrador extends javax.swing.JFrame {
@@ -186,10 +187,21 @@ public class ScrAccionesAdministrador extends javax.swing.JFrame {
         int opcion = JOptionPane.showConfirmDialog(null, "¿Está seguro de que desea eliminar el usuario?", "CONFIRMACION", JOptionPane.YES_NO_CANCEL_OPTION);
 
         if (opcion == JOptionPane.YES_OPTION) {
-            eliminarAdmin();
-            MenuInicial menu = new MenuInicial();
-            menu.setVisible(true);
-            this.setVisible(false);
+            
+            try{
+                
+            
+                admin.eliminarAdmin(admin.toString());
+                admin = null;
+                MenuInicial menu = new MenuInicial();
+                menu.setVisible(true);
+                
+                this.setVisible(false);
+            }
+            catch(ValidacionesExceptions e){
+                JOptionPane.showMessageDialog(this, e.getMessage());
+            }
+            
         } else if (opcion == JOptionPane.NO_OPTION) { 
             JOptionPane.showMessageDialog(null, "Se cancela la eliminación. "); 
         }
@@ -250,11 +262,7 @@ public class ScrAccionesAdministrador extends javax.swing.JFrame {
             }
         });
     }
-    //elimina el usuario
-    public void eliminarAdmin(){
-    
-    
-    }
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnConfigurarParqueo1;
     private javax.swing.JButton btnConsultarAdmin;
