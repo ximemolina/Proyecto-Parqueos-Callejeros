@@ -9,12 +9,17 @@ package com.mycompany.proyectoparqueos;
  * @author ximen
  */
 public class MenuIngresar extends javax.swing.JFrame {
-
+    Parqueo parqueo;
     /**
      * Creates new form MenuIngresar
      */
-    public MenuIngresar() {
+    public MenuIngresar(Parqueo parqueo) {
         initComponents();
+        setParqueo(parqueo);
+    }
+    
+    public void setParqueo(Parqueo parqueo){
+        this.parqueo = parqueo;
     }
 
     /**
@@ -131,13 +136,13 @@ public class MenuIngresar extends javax.swing.JFrame {
 
     private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
         // TODO add your handling code here:
-        MenuInicial menu = new MenuInicial();
+        MenuInicial menu = new MenuInicial(parqueo);
         menu.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_btnVolverActionPerformed
 
     private void btnIngresarAdministradorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresarAdministradorActionPerformed
-        IngresarAdmin ingresarAdmin = new IngresarAdmin();
+        IngresarAdmin ingresarAdmin = new IngresarAdmin(parqueo);
         ingresarAdmin.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_btnIngresarAdministradorActionPerformed
@@ -147,7 +152,7 @@ public class MenuIngresar extends javax.swing.JFrame {
     }//GEN-LAST:event_btnIngresarInspectorActionPerformed
 
     private void btnIngresarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresarClienteActionPerformed
-        IngresarCliente menu = new IngresarCliente();
+        IngresarCliente menu = new IngresarCliente(parqueo);
         menu.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_btnIngresarClienteActionPerformed
@@ -155,7 +160,7 @@ public class MenuIngresar extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
+    public void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -182,7 +187,7 @@ public class MenuIngresar extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new MenuIngresar().setVisible(true);
+                new MenuIngresar(parqueo).setVisible(true);
             }
         });
     }

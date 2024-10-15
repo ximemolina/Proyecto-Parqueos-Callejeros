@@ -5,13 +5,18 @@ import java.time.format.DateTimeFormatter;
 
 
 public class ConsultarCliente extends javax.swing.JFrame {
-
+    Parqueo parqueo;
     Cliente cliente;
     
-    public ConsultarCliente(Cliente cliente) {
+    public ConsultarCliente(Cliente cliente, Parqueo parqueo) {
         initComponents();
         setCliente(cliente);
+        setParqueo(parqueo);
         mostrarInfoCliente();
+    }
+    
+    public void setParqueo(Parqueo parqueo){
+        this.parqueo = parqueo;
     }
 
     /**
@@ -226,7 +231,7 @@ public class ConsultarCliente extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
-        MenuCliente pantalla = new MenuCliente(cliente);
+        MenuCliente pantalla = new MenuCliente(cliente, parqueo);
         pantalla.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_btnVolverActionPerformed
@@ -261,7 +266,7 @@ public class ConsultarCliente extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ConsultarCliente(cliente).setVisible(true);
+                new ConsultarCliente(cliente, parqueo).setVisible(true);
             }
         });
     }

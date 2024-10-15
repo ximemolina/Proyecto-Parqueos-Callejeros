@@ -7,12 +7,17 @@ import java.time.format.DateTimeFormatter;
 import javax.swing.JOptionPane;
 
 public class IngresarAdmin extends javax.swing.JFrame {
-
+    Parqueo parqueo;
     /**
      * Creates new form IngresarAdmin
      */
-    public IngresarAdmin() {
+    public IngresarAdmin(Parqueo parqueo) {
         initComponents();
+        setParqueo(parqueo);
+    }
+    
+    public void setParqueo(Parqueo parqueo){
+        this.parqueo = parqueo;
     }
 
     /**
@@ -144,7 +149,7 @@ public class IngresarAdmin extends javax.swing.JFrame {
 
     private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
         // TODO add your handling code here:
-        MenuIngresar menu = new MenuIngresar();
+        MenuIngresar menu = new MenuIngresar(parqueo);
         menu.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_btnVolverActionPerformed
@@ -164,7 +169,7 @@ public class IngresarAdmin extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
+    public void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -191,7 +196,7 @@ public class IngresarAdmin extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new IngresarAdmin().setVisible(true);
+                new IngresarAdmin(parqueo).setVisible(true);
             }
         });
     }
@@ -212,7 +217,7 @@ public class IngresarAdmin extends javax.swing.JFrame {
                         LocalDate fecha = LocalDate.parse(lista[7], DateTimeFormatter.ofPattern("yyyy/MM/dd"));
                         //crea objeto Administrador con atributos respectivos para poder pasarselos a pantalla de acciones de admin
                         Administrador admin = new Administrador(lista[2], lista[3],lista[4], lista[5], lista[6], fecha, lista[1], lista[0]);
-                        ScrAccionesAdministrador pantalla = new ScrAccionesAdministrador(admin);
+                        ScrAccionesAdministrador pantalla = new ScrAccionesAdministrador(admin, parqueo);
                         pantalla.setVisible(true);
                         this.setVisible(false);
                         return;

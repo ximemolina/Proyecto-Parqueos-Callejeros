@@ -6,7 +6,7 @@ public class MenuCliente extends javax.swing.JFrame {
     Cliente cliente;
     Parqueo parqueo;
     
-    public MenuCliente(Cliente cliente) {
+    public MenuCliente(Cliente cliente, Parqueo parqueo) {
         initComponents();
         setCliente(cliente);
         setParqueo(parqueo);
@@ -190,7 +190,7 @@ public class MenuCliente extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
-        MenuInicial pantalla = new MenuInicial();
+        MenuInicial pantalla = new MenuInicial(parqueo);
         pantalla.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_btnVolverActionPerformed
@@ -215,7 +215,7 @@ public class MenuCliente extends javax.swing.JFrame {
     }//GEN-LAST:event_btnReporteActionPerformed
 
     private void btnConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarActionPerformed
-        ConsultarCliente menu = new ConsultarCliente(cliente);
+        ConsultarCliente menu = new ConsultarCliente(cliente, parqueo);
         menu.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_btnConsultarActionPerformed
@@ -258,7 +258,7 @@ public class MenuCliente extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new MenuCliente(cliente).setVisible(true);
+                new MenuCliente(cliente, parqueo).setVisible(true);
             }
         });
     }

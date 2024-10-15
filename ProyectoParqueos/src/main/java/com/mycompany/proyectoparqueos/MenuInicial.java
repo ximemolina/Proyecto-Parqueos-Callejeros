@@ -1,14 +1,18 @@
 package com.mycompany.proyectoparqueos;
 
 public class MenuInicial extends javax.swing.JFrame {
-
+    Parqueo parqueo;
     /**
      * Creates new form MenuInicial
      */
-    public MenuInicial() {
+    public MenuInicial(Parqueo parqueo) {
         initComponents();
+        setParqueo(parqueo);
     }
-
+    
+    public void setParqueo(Parqueo parqueo){
+        this.parqueo = parqueo;
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -96,14 +100,14 @@ public class MenuInicial extends javax.swing.JFrame {
 
     private void btnIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresarActionPerformed
         //se crea ventana para ingresar y se pone visible
-        MenuIngresar menuIngresar = new MenuIngresar();
+        MenuIngresar menuIngresar = new MenuIngresar(parqueo);
         menuIngresar.setVisible(true);
         this.setVisible(false); //menu inicial desaparece    
     }//GEN-LAST:event_btnIngresarActionPerformed
 
     private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
         //se crea ventana para registrar y se pone visible
-        MenuRegistrar menuRegistrar = new MenuRegistrar();
+        MenuRegistrar menuRegistrar = new MenuRegistrar(parqueo);
         menuRegistrar.setVisible(true);
         this.setVisible(false); //menu inicial desaparece
     }//GEN-LAST:event_btnRegistrarActionPerformed
@@ -111,7 +115,7 @@ public class MenuInicial extends javax.swing.JFrame {
     
     
     
-    public static void main(String args[]) {
+    public void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -140,7 +144,7 @@ public class MenuInicial extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new MenuInicial().setVisible(true);
+                new MenuInicial(parqueo).setVisible(true);
             }
         });
     }

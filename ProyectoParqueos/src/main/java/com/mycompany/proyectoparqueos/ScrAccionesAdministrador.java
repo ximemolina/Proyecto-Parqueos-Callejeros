@@ -6,12 +6,18 @@ import javax.swing.JOptionPane;
 public class ScrAccionesAdministrador extends javax.swing.JFrame {
      
     private Administrador admin;
+    Parqueo parqueo;
     /**
      * Creates new form ScrAccionesAdministrador
      */
-    public ScrAccionesAdministrador(Administrador pAdmin) {
+    public ScrAccionesAdministrador(Administrador pAdmin, Parqueo parqueo) {
         setAdmin(pAdmin);
+        setParqueo(parqueo);
         initComponents();
+    }
+    
+    public void setParqueo(Parqueo parqueo){
+        this.parqueo = parqueo;
     }
 
     //setters
@@ -178,7 +184,7 @@ public class ScrAccionesAdministrador extends javax.swing.JFrame {
 
     private void btnModificarAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarAdminActionPerformed
         this.setVisible(false);
-        ModificarAdmin pantalla = new ModificarAdmin(admin);
+        ModificarAdmin pantalla = new ModificarAdmin(admin, parqueo);
         pantalla.setVisible(true);
     }//GEN-LAST:event_btnModificarAdminActionPerformed
 
@@ -193,7 +199,7 @@ public class ScrAccionesAdministrador extends javax.swing.JFrame {
             
                 admin.eliminarAdmin(admin.toString());
                 admin = null;
-                MenuInicial menu = new MenuInicial();
+                MenuInicial menu = new MenuInicial(parqueo);
                 menu.setVisible(true);
                 
                 this.setVisible(false);
@@ -222,7 +228,7 @@ public class ScrAccionesAdministrador extends javax.swing.JFrame {
     }//GEN-LAST:event_btnConfigurarParqueo1ActionPerformed
 
     private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
-            MenuInicial pantalla = new MenuInicial();
+            MenuInicial pantalla = new MenuInicial(parqueo);
             pantalla.setVisible(true);
             this.setVisible(false);
     }//GEN-LAST:event_btnVolverActionPerformed
@@ -257,7 +263,7 @@ public class ScrAccionesAdministrador extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                ScrAccionesAdministrador registrar = new ScrAccionesAdministrador(admin);
+                ScrAccionesAdministrador registrar = new ScrAccionesAdministrador(admin, parqueo);
                 registrar.setVisible(true);
             }
         });

@@ -16,7 +16,7 @@ public class EspacioDeParqueo {
     
     public void setNumeroEspacio(int pNumeroEspacio) {   
         if (String.valueOf(pNumeroEspacio).length() < 1 || String.valueOf(pNumeroEspacio).length() > 5) {
-            throw new IllegalArgumentException("El número de espacio debe tener entre 1 y 5 dígitos.");
+            throw new ValidacionesExceptions("El número de espacio debe tener entre 1 y 5 dígitos.");
         }
         this.numeroEspacio = pNumeroEspacio;
     }

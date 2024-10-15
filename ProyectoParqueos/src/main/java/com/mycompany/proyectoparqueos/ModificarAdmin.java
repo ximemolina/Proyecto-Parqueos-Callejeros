@@ -11,10 +11,16 @@ import javax.swing.JOptionPane;
 public class ModificarAdmin extends javax.swing.JFrame {
 
     Administrador admin;
+    Parqueo parqueo;
     
-    public ModificarAdmin(Administrador pAdmin) {
+    public ModificarAdmin(Administrador pAdmin, Parqueo parqueo) {
         initComponents();
         setInformacion(pAdmin);
+        setParqueo(parqueo);
+    }
+    
+    public void setParqueo(Parqueo parqueo){
+        this.parqueo = parqueo;
     }
 
     @SuppressWarnings("unchecked")
@@ -301,7 +307,7 @@ public class ModificarAdmin extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
-        ScrAccionesAdministrador pantalla = new ScrAccionesAdministrador(admin);
+        ScrAccionesAdministrador pantalla = new ScrAccionesAdministrador(admin, parqueo);
         pantalla.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_btnVolverActionPerformed
@@ -397,7 +403,7 @@ public class ModificarAdmin extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                ModificarAdmin pantalla = new ModificarAdmin(admin);
+                ModificarAdmin pantalla = new ModificarAdmin(admin, parqueo);
                 pantalla.setVisible(true);
             }
         });

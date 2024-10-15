@@ -5,12 +5,17 @@ import javax.swing.JOptionPane;
 import java.time.*;
 
 public class RegistrarAdministrador extends javax.swing.JFrame {
-
+    Parqueo parqueo;
     /**
      * Creates new form ScrRegistrarAdministrador
      */
-    public RegistrarAdministrador() {
+    public RegistrarAdministrador(Parqueo parqueo) {
         initComponents();
+        setParqueo(parqueo);
+    }
+    
+    public void setParqueo(Parqueo parqueo){
+        this.parqueo = parqueo;
     }
 
     /**
@@ -362,7 +367,7 @@ public class RegistrarAdministrador extends javax.swing.JFrame {
             Administrador administrador = new Administrador(inpNombre.getText(), inpApellidos.getText(), inpTelefono.getText(), inpCorreo.getText(), inpDireccion.getText(),fecha ,inpPIN.getText(), inpIdentificacion.getText());
             File archivoAdministrador = new File("Administrador.txt");
             administrador.guardarUsuario(archivoAdministrador);
-            ScrAccionesAdministrador pantalla = new ScrAccionesAdministrador(administrador);
+            ScrAccionesAdministrador pantalla = new ScrAccionesAdministrador(administrador, parqueo);
             pantalla.setVisible(true);
             this.setVisible(false);
         } 
@@ -376,7 +381,7 @@ public class RegistrarAdministrador extends javax.swing.JFrame {
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
         // TODO add your handling code here:
-        MenuRegistrar menuRegistrar = new MenuRegistrar();
+        MenuRegistrar menuRegistrar = new MenuRegistrar(parqueo);
         menuRegistrar.setVisible(true);
         this.setVisible(false); //menu de registrar datos desaparece
     }//GEN-LAST:event_btnCancelarActionPerformed
@@ -400,7 +405,7 @@ public class RegistrarAdministrador extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
+    public void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -428,7 +433,7 @@ public class RegistrarAdministrador extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new RegistrarAdministrador().setVisible(true);
+                new RegistrarAdministrador(parqueo).setVisible(true);
             }
         });
     }

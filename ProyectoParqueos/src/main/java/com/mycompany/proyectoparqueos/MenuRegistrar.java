@@ -1,12 +1,17 @@
 package com.mycompany.proyectoparqueos;
 
 public class MenuRegistrar extends javax.swing.JFrame {
-
+    Parqueo parqueo;
     /**
      * Creates new form MenuRegistrar
      */
-    public MenuRegistrar() {
+    public MenuRegistrar(Parqueo parqueo) {
         initComponents();
+        setParqueo(parqueo);
+    }
+    
+    public void setParqueo(Parqueo parqueo){
+        this.parqueo = parqueo;
     }
 
     /**
@@ -122,7 +127,7 @@ public class MenuRegistrar extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnRegistrarAdministradorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarAdministradorActionPerformed
-        RegistrarAdministrador scrRegistrarAdministrador = new RegistrarAdministrador();
+        RegistrarAdministrador scrRegistrarAdministrador = new RegistrarAdministrador(parqueo);
         scrRegistrarAdministrador.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_btnRegistrarAdministradorActionPerformed
@@ -132,13 +137,13 @@ public class MenuRegistrar extends javax.swing.JFrame {
     }//GEN-LAST:event_btnRegistrarInspectorActionPerformed
 
     private void btnRegistrarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarClienteActionPerformed
-        RegistrarCliente registrarCliente = new RegistrarCliente();
+        RegistrarCliente registrarCliente = new RegistrarCliente(parqueo);
         registrarCliente.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_btnRegistrarClienteActionPerformed
 
     private void btnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarActionPerformed
-        MenuInicial menuInicial = new MenuInicial();
+        MenuInicial menuInicial = new MenuInicial(parqueo);
         menuInicial.setVisible(true); //permite que menu inicial sea visible
         this.setVisible(false);
     }//GEN-LAST:event_btnRegresarActionPerformed
@@ -146,7 +151,7 @@ public class MenuRegistrar extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
+    public void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -173,7 +178,7 @@ public class MenuRegistrar extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new MenuRegistrar().setVisible(true);
+                new MenuRegistrar(parqueo).setVisible(true);
             }
         });
     }

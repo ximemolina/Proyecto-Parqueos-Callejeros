@@ -7,11 +7,17 @@ import javax.swing.JOptionPane;
 import java.io.File;
 public class AñadirCarroCliente extends javax.swing.JFrame {
     
-    private Cliente cliente;
+    Cliente cliente;
+    Parqueo parqueo;
      
-    public AñadirCarroCliente(Cliente cliente) {
+    public AñadirCarroCliente(Cliente cliente, Parqueo parqueo) {
         initComponents();
         setCliente(cliente);
+        setParqueo(parqueo);
+    }
+    
+    public void setParqueo(Parqueo parqueo){
+        this.parqueo = parqueo;
     }
 
     /**
@@ -207,7 +213,7 @@ public class AñadirCarroCliente extends javax.swing.JFrame {
         catch(Exception e){
             JOptionPane.showMessageDialog(this, e.getMessage());
         }
-        MenuCliente pantalla = new MenuCliente(cliente);
+        MenuCliente pantalla = new MenuCliente(cliente, parqueo);
         pantalla.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_btnFinalizarRegistroActionPerformed
@@ -242,7 +248,7 @@ public class AñadirCarroCliente extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new AñadirCarroCliente(cliente).setVisible(true);
+                new AñadirCarroCliente(cliente, parqueo).setVisible(true);
                 
             }
         });
