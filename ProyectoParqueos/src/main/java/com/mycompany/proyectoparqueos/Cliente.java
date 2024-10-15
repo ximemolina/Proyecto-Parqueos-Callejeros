@@ -68,9 +68,9 @@ public class Cliente extends Usuario {
             return true;  
         }
         
-        System.out.println("El espacio ya está ocupado.");
-        return false;  
-    }
+            System.out.println("El espacio ya está ocupado.");
+            return false;  
+        }
         
     public boolean desaparcar(Carro carro, Parqueo parqueo) {
         // Buscar en la lista de espacios del parqueo el carro a desaparcar
@@ -88,20 +88,20 @@ public class Cliente extends Usuario {
     public void comprarTiempo(int cantidad, EspacioDeParqueo espacio, Parqueo parqueo) {
         // Validar que la cantidad sea positiva
         if (cantidad <= 0) {
-            throw new IllegalArgumentException("La cantidad de tiempo debe ser positiva.");
+            throw new ValidacionesExceptions("La cantidad de tiempo debe ser positiva.");
         }
 
         // Validar que la cantidad de tiempo sea un múltiplo del precio por hora
         if (cantidad % parqueo.getPrecioHora() != 0) {
-            throw new IllegalArgumentException("El tiempo comprado debe ser un múltiplo del precio por hora.");
+            throw new ValidacionesExceptions("El tiempo comprado debe ser un múltiplo del precio por hora.");
         }
 
         // Verificar que el espacio esté ocupado y que el carro en el espacio sea del cliente
-        if (espacio.getDisponible() && carros.contains(espacio.getCarro())) {
+        if (!espacio.getDisponible() && carros.contains(espacio.getCarro())) {
             // Actualizar el tiempo comprado en el espacio
             int tiempoActual = espacio.getTiempoComprado();
             espacio.setTiempoComprado(tiempoActual + cantidad);
-            System.out.println("Tiempo comprado: " + cantidad + " horas. Tiempo total ahora: " + espacio.getTiempoComprado() + " horas.");
+            System.out.println("Tiempo comprado: " + cantidad + " minutos. Tiempo total ahora: " + espacio.getTiempoComprado() + " minutos.");
         } else {
             System.out.println("No puedes comprar tiempo para este espacio porque no está ocupado por uno de tus carros.");
         }

@@ -28,7 +28,7 @@ public class Parqueo {
             this.codigoTerminal = codigoTerminal;
         } 
         else {
-            throw new IllegalArgumentException("Código terminal inválido: Debe tener exactamente 6 caracteres.");
+            throw new ValidacionesExceptions("Código terminal inválido: Debe tener exactamente 6 caracteres.");
         }
     }
     
@@ -37,7 +37,7 @@ public class Parqueo {
             this.tiempoMinimo = pTiempoMinimo;
         } 
         else {
-            throw new IllegalArgumentException("El tiempo mínimo debe ser un número entero positivo.");
+            throw new ValidacionesExceptions("El tiempo mínimo debe ser un número entero positivo.");
         }
     }
     
@@ -46,7 +46,7 @@ public class Parqueo {
             this.precioHora = pPrecioHora;
         } 
         else {
-            throw new IllegalArgumentException("El precio por hora debe ser un número entero par.");
+            throw new ValidacionesExceptions("El precio por hora debe ser un número entero par.");
         }
     }
 
@@ -62,7 +62,7 @@ public class Parqueo {
             this.cierra = pCierra;
         } 
         else {
-            throw new IllegalArgumentException("La hora de cierre debe ser posterior a la hora de apertura.");
+            throw new ValidacionesExceptions("La hora de cierre debe ser posterior a la hora de apertura.");
         }
     }
     
@@ -71,7 +71,7 @@ public class Parqueo {
             this.costoMulta = pCostoMulta;
         } 
         else {
-            throw new IllegalArgumentException("El costo de la multa no puede ser negativo.");
+            throw new ValidacionesExceptions("El costo de la multa no puede ser negativo.");
         }
     }
     
@@ -124,7 +124,7 @@ public class Parqueo {
         if (!espacioExiste(espacio.getNumeroEspacio())) {
             espaciosParqueo.add(espacio);
         } else {
-            throw new IllegalArgumentException("El espacio de parqueo " + espacio.getNumeroEspacio() + " ya existe.");
+            throw new ValidacionesExceptions("El espacio de parqueo " + espacio.getNumeroEspacio() + " ya existe.");
         }
     }
 
@@ -139,7 +139,7 @@ public class Parqueo {
     
     public void agregarGrupoEspacios(int inicio, int fin) {
         if (inicio > fin) {
-            throw new IllegalArgumentException("El rango de inicio para agregar debe ser menor o igual que el final.");
+            throw new ValidacionesExceptions("El rango de inicio para agregar debe ser menor o igual que el final.");
         }
 
         for (int i = inicio; i <= fin; i++) {
@@ -163,7 +163,7 @@ public class Parqueo {
     
     public void eliminarGrupoEspacios(int inicio, int fin) {
         if (inicio > fin) {
-            throw new IllegalArgumentException("El rango de inicio debe ser menor o igual que el final.");
+            throw new ValidacionesExceptions("El rango de inicio debe ser menor o igual que el final.");
         }
 
         for (int i = inicio; i <= fin; i++) {
@@ -175,4 +175,16 @@ public class Parqueo {
             }
         }
     }
+    
+    public void mostrarEspaciosYCarros() {
+        for (EspacioDeParqueo espacio : this.getEspaciosParqueo()) {
+            Carro carro = espacio.getCarro();
+            if (carro != null) {
+                System.out.println("Espacio " + espacio.getNumeroEspacio() + " - Ocupado por carro: " + carro.getPlaca());
+            } else {
+                System.out.println("Espacio " + espacio.getNumeroEspacio() + " - Libre");
+            }
+        }
+    }
+
 }

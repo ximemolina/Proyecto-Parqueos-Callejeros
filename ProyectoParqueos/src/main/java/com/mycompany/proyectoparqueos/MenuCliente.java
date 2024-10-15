@@ -203,11 +203,15 @@ public class MenuCliente extends javax.swing.JFrame {
     }//GEN-LAST:event_btnParquearActionPerformed
 
     private void btnAgregarTiempoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarTiempoActionPerformed
-        // TODO add your handling code here:
+        MenuAgregarTiempo pantalla = new MenuAgregarTiempo(cliente, parqueo);
+        pantalla.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_btnAgregarTiempoActionPerformed
 
     private void btnDesaparcarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDesaparcarActionPerformed
-        // TODO add your handling code here:
+        MenuDesaparcar pantalla = new MenuDesaparcar(cliente, parqueo);
+        pantalla.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_btnDesaparcarActionPerformed
 
     private void btnReporteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReporteActionPerformed

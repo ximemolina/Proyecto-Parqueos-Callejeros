@@ -22,6 +22,7 @@ public class ProyectoParqueos {
         File archivoParqueo = new File("Parqueo.txt");
         //se  crean archivos de las clases si no han sido creados
         
+        
             if (parqueo == null) {
                 System.out.println("El objeto parqueo es null");
             } else {
