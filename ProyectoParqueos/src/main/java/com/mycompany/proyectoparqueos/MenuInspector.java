@@ -30,7 +30,7 @@ public class MenuInspector extends javax.swing.JFrame {
         btnEliminarInspector = new javax.swing.JButton();
         btnModificarInspector = new javax.swing.JButton();
         btnGenerarInspector = new javax.swing.JButton();
-        btnConsultarAdmin1 = new javax.swing.JButton();
+        btnConsultarInspector = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -84,12 +84,12 @@ public class MenuInspector extends javax.swing.JFrame {
             }
         });
 
-        btnConsultarAdmin1.setBackground(new java.awt.Color(204, 204, 204));
-        btnConsultarAdmin1.setText("CONSULTAR DATOS");
-        btnConsultarAdmin1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        btnConsultarAdmin1.addActionListener(new java.awt.event.ActionListener() {
+        btnConsultarInspector.setBackground(new java.awt.Color(204, 204, 204));
+        btnConsultarInspector.setText("CONSULTAR DATOS");
+        btnConsultarInspector.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btnConsultarInspector.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnConsultarAdmin1ActionPerformed(evt);
+                btnConsultarInspectorActionPerformed(evt);
             }
         });
 
@@ -100,7 +100,7 @@ public class MenuInspector extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(47, 47, 47)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(btnConsultarAdmin1, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnConsultarInspector, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnRevisarParqueo, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 104, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -133,7 +133,7 @@ public class MenuInspector extends javax.swing.JFrame {
                     .addComponent(btnGenerarInspector, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(50, 50, 50)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnConsultarAdmin1, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnConsultarInspector, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnModificarInspector, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(45, 45, 45)
                 .addComponent(btnEliminarInspector, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -197,9 +197,11 @@ public class MenuInspector extends javax.swing.JFrame {
         
     }//GEN-LAST:event_btnGenerarInspectorActionPerformed
 
-    private void btnConsultarAdmin1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarAdmin1ActionPerformed
-        
-    }//GEN-LAST:event_btnConsultarAdmin1ActionPerformed
+    private void btnConsultarInspectorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarInspectorActionPerformed
+        ConsultarInspector pantalla = new ConsultarInspector(inspector, parqueo);
+        pantalla.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_btnConsultarInspectorActionPerformed
 
     /**
      * @param args the command line arguments
@@ -245,7 +247,7 @@ public class MenuInspector extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnConsultarAdmin1;
+    private javax.swing.JButton btnConsultarInspector;
     private javax.swing.JButton btnEliminarInspector;
     private javax.swing.JButton btnGenerarInspector;
     private javax.swing.JButton btnModificarInspector;

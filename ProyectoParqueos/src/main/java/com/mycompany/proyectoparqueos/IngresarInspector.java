@@ -174,8 +174,8 @@ public class IngresarInspector extends javax.swing.JFrame {
                     if(lista[0].equals(id) && lista[1].equals(pin)){
                         LocalDate fecha = LocalDate.parse(lista[7], DateTimeFormatter.ofPattern("yyyy/MM/dd"));
                         //crea objeto Administrador con atributos respectivos para poder pasarselos a pantalla de acciones de admin
-                        Inspector inspector = new Inspector(lista[2], lista[3],lista[4], lista[5], lista[6], fecha, lista[1], lista[0], lista[8]);
-                        MenuInspector pantalla = new MenuInspector(inspector, parqueo);
+                        Inspector inspector2 = new Inspector(lista[2], lista[3],lista[4], lista[5], lista[6], fecha, lista[1], lista[0], lista[8]);
+                        MenuInspector pantalla = new MenuInspector(inspector2, parqueo);
                         pantalla.setVisible(true);
                         this.setVisible(false);
                         return;

@@ -226,7 +226,7 @@ public class MenuAdministrador extends javax.swing.JFrame {
 
     private void btnConsultarAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarAdminActionPerformed
         this.setVisible(false);
-        ScrConsultarAdmin pantalla  =new ScrConsultarAdmin(admin);   
+        ConsultarAdmin pantalla  =new ConsultarAdmin(admin);   
         pantalla.setVisible(true);
     }//GEN-LAST:event_btnConsultarAdminActionPerformed
 

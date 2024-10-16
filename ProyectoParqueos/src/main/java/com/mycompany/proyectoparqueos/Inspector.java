@@ -170,4 +170,13 @@ public class Inspector extends Usuario{
         }else
             throw new ValidacionesExceptions("Error: Terminal de inspección debe de ser de 6 caracteres exactos");
     }
+
+    public ArrayList<Multa> getMultas() {
+        return multas;
+    }
+
+    public String getCodigoTerminal() {
+        return codigoTerminal;
+    }
+    
 }
