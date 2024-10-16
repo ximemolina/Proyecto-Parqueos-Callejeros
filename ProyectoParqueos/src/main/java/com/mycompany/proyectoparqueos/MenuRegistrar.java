@@ -25,7 +25,6 @@ public class MenuRegistrar extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         btnRegistrarAdministrador = new javax.swing.JButton();
-        btnRegistrarInspector = new javax.swing.JButton();
         btnRegistrarCliente = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         btnRegresar = new javax.swing.JButton();
@@ -42,15 +41,6 @@ public class MenuRegistrar extends javax.swing.JFrame {
         btnRegistrarAdministrador.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnRegistrarAdministradorActionPerformed(evt);
-            }
-        });
-
-        btnRegistrarInspector.setBackground(new java.awt.Color(204, 204, 204));
-        btnRegistrarInspector.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        btnRegistrarInspector.setText("Inspector");
-        btnRegistrarInspector.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnRegistrarInspectorActionPerformed(evt);
             }
         });
 
@@ -86,14 +76,13 @@ public class MenuRegistrar extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(btnRegresar))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(237, 237, 237)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(btnRegistrarAdministrador, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnRegistrarCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnRegistrarInspector, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(btnRegresar)))
+                            .addComponent(btnRegistrarCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -103,13 +92,11 @@ public class MenuRegistrar extends javax.swing.JFrame {
                 .addComponent(btnRegresar, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(5, 5, 5)
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(52, 52, 52)
                 .addComponent(btnRegistrarAdministrador, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(btnRegistrarInspector, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(41, 41, 41)
                 .addComponent(btnRegistrarCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(96, Short.MAX_VALUE))
+                .addContainerGap(133, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -131,10 +118,6 @@ public class MenuRegistrar extends javax.swing.JFrame {
         scrRegistrarAdministrador.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_btnRegistrarAdministradorActionPerformed
-
-    private void btnRegistrarInspectorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarInspectorActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnRegistrarInspectorActionPerformed
 
     private void btnRegistrarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarClienteActionPerformed
         RegistrarCliente registrarCliente = new RegistrarCliente(parqueo);
@@ -186,7 +169,6 @@ public class MenuRegistrar extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnRegistrarAdministrador;
     private javax.swing.JButton btnRegistrarCliente;
-    private javax.swing.JButton btnRegistrarInspector;
     private javax.swing.JButton btnRegresar;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;

@@ -231,7 +231,7 @@ public class MenuCliente extends javax.swing.JFrame {
     }//GEN-LAST:event_btnModificarActionPerformed
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
-                //mostrar mensaje de confirmacion
+        //mostrar mensaje de confirmacion
         int opcion = JOptionPane.showConfirmDialog(null, "¿Está seguro de que desea eliminar el usuario?", "CONFIRMACION", JOptionPane.YES_NO_CANCEL_OPTION);
 
         if (opcion == JOptionPane.YES_OPTION) {

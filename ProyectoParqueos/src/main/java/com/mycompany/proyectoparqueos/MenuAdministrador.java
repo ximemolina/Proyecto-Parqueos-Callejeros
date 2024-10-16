@@ -6,7 +6,7 @@ import javax.swing.JOptionPane;
 public class MenuAdministrador extends javax.swing.JFrame {
      
     private Administrador admin;
-    Parqueo parqueo;
+    private Parqueo parqueo;
     /**
      * Creates new form ScrAccionesAdministrador
      */
@@ -44,6 +44,7 @@ public class MenuAdministrador extends javax.swing.JFrame {
         btnGenerarReporte = new javax.swing.JButton();
         btnConfigurarParqueo1 = new javax.swing.JButton();
         btnVolver = new javax.swing.JButton();
+        btnRegistrarInspector = new javax.swing.JButton();
 
         jMenu1.setText("jMenu1");
 
@@ -114,6 +115,15 @@ public class MenuAdministrador extends javax.swing.JFrame {
             }
         });
 
+        btnRegistrarInspector.setBackground(new java.awt.Color(204, 204, 204));
+        btnRegistrarInspector.setText("REGISTRAR INSPECTOR");
+        btnRegistrarInspector.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btnRegistrarInspector.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRegistrarInspectorActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -126,17 +136,16 @@ public class MenuAdministrador extends javax.swing.JFrame {
                         .addGap(152, 152, 152)
                         .addComponent(jLabel2))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(198, 198, 198)
-                        .addComponent(btnEliminarAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(41, 41, 41)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(btnConfigurarParqueo1, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnConsultarAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(btnConsultarAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnEliminarAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(119, 119, 119)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(btnGenerarReporte, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnModificarAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(btnModificarAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnRegistrarInspector, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(54, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -155,11 +164,13 @@ public class MenuAdministrador extends javax.swing.JFrame {
                     .addComponent(btnGenerarReporte, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(47, 47, 47)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnModificarAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnConsultarAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(43, 43, 43)
-                .addComponent(btnEliminarAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(70, Short.MAX_VALUE))
+                    .addComponent(btnConsultarAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnRegistrarInspector, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(35, 35, 35)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnEliminarAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnModificarAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(78, Short.MAX_VALUE))
         );
 
         btnVolver.getAccessibleContext().setAccessibleDescription("");
@@ -233,6 +244,12 @@ public class MenuAdministrador extends javax.swing.JFrame {
             this.setVisible(false);
     }//GEN-LAST:event_btnVolverActionPerformed
 
+    private void btnRegistrarInspectorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarInspectorActionPerformed
+        RegistrarInspector pantalla= new RegistrarInspector(admin, parqueo);
+        pantalla.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_btnRegistrarInspectorActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -276,6 +293,7 @@ public class MenuAdministrador extends javax.swing.JFrame {
     private javax.swing.JButton btnEliminarAdmin;
     private javax.swing.JButton btnGenerarReporte;
     private javax.swing.JButton btnModificarAdmin;
+    private javax.swing.JButton btnRegistrarInspector;
     private javax.swing.JButton btnVolver;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JMenu jMenu1;
