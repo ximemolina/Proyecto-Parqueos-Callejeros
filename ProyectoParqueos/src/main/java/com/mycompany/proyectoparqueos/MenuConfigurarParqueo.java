@@ -3,20 +3,23 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package com.mycompany.proyectoparqueos;
-
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 /**
  *
  * @author Admin
  */
 public class MenuConfigurarParqueo extends javax.swing.JFrame {
-     private Administrador admin;
-     private Parqueo parqueo;
+     Administrador admin;
+     Parqueo parqueo;
     /**
      * Creates new form MenuConfigurarParqueo
      */
-    public MenuConfigurarParqueo(Administrador admin) {
+    public MenuConfigurarParqueo(Administrador admin, Parqueo parqueo) {
         initComponents();
         setAdmin(admin);
+        setParqueo(parqueo);
     }
         public void setAdmin(Administrador administrador){
         admin = administrador;
@@ -343,10 +346,11 @@ public class MenuConfigurarParqueo extends javax.swing.JFrame {
                     .addComponent(lblNombre3, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnAceptar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblNombre7, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(inpEliminarHasta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(inpEliminarDesde, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(inpEliminarDesde, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(lblNombre7, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(inpEliminarHasta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(44, Short.MAX_VALUE))
         );
 
@@ -410,6 +414,84 @@ public class MenuConfigurarParqueo extends javax.swing.JFrame {
     }//GEN-LAST:event_inpCostoMultaActionPerformed
 
     private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
+        String abreText = inpHorarioAbre.getText();
+        String cierraText = inpHorarioCierra.getText();
+        parqueo.setAbre(abreText);
+        parqueo.setCierra(cierraText);
+        
+        try {
+            int precioHora = Integer.parseInt(inpPrecioPorHora.getText());
+            parqueo.setPrecioHora(precioHora);
+        } 
+        catch (NumberFormatException e) {
+            throw new ValidacionesExceptions("Por favor, ingresa un número válido para el precio por hora.");
+        }
+
+        try {
+            int tiempoMinimo = Integer.parseInt(inpTiempoMinimo.getText());
+            parqueo.setTiempoMinimo(tiempoMinimo);
+        } 
+        catch (NumberFormatException e) {
+            throw new ValidacionesExceptions("Por favor, ingresa un número válido para el tiempo mínimo.");
+        }
+
+        try {
+            int costoMulta = Integer.parseInt(inpCostoMulta.getText());
+            parqueo.setCostoMulta(costoMulta);
+        } 
+        catch (NumberFormatException e) {
+            throw new ValidacionesExceptions("Por favor, ingresa un número válido para el costo de la multa.");
+        }
+
+        
+        // Agregar Espacios
+        try {
+    
+            if (!inpAgregarDesde.getText().isEmpty() && !inpAgregarHasta.getText().isEmpty()) {
+                int agregarDesde = Integer.parseInt(inpAgregarDesde.getText());
+                int agregarHasta = Integer.parseInt(inpAgregarHasta.getText());
+
+        
+                if (agregarDesde < agregarHasta) {
+                    parqueo.agregarGrupoEspacios(agregarDesde, agregarHasta);
+                } else {
+                    throw new ValidacionesExceptions("El valor 'Desde' debe ser menor que 'Hasta'.");
+                }
+            } else {
+            System.out.println("No se agregó ningún espacio porque los campos están vacíos.");
+        }
+        } catch (NumberFormatException e) {
+            throw new ValidacionesExceptions("Por favor ingresa números válidos para los espacios.");
+        } catch (Exception e) {
+            throw new ValidacionesExceptions("Ocurrió un error inesperado: " + e.getMessage());
+        }
+
+        // Eliminar Espacios
+        try {
+            
+            if (!inpEliminarDesde.getText().isEmpty() && !inpEliminarHasta.getText().isEmpty()) {
+                int eliminarDesde = Integer.parseInt(inpEliminarDesde.getText());
+                int eliminarHasta = Integer.parseInt(inpEliminarHasta.getText());
+
+        
+                if (eliminarDesde < eliminarHasta) {
+                    parqueo.agregarGrupoEspacios(eliminarDesde, eliminarHasta);
+                } else {
+                    throw new ValidacionesExceptions("El valor 'Desde' debe ser menor que 'Hasta'.");
+                }
+            } else {
+            
+            System.out.println("No se elimino ningún espacio porque los campos están vacíos.");
+        }
+        } catch (NumberFormatException e) {
+            throw new ValidacionesExceptions("Por favor ingresa números válidos para los espacios.");
+        } catch (Exception e) {
+            throw new ValidacionesExceptions("Ocurrió un error inesperado: " + e.getMessage());
+        }
+        
+        MenuAdministrador pantalla = new MenuAdministrador(admin, parqueo);
+        pantalla.setVisible(true);
+        this.setVisible(false);
         
     }//GEN-LAST:event_btnAceptarActionPerformed
 
@@ -463,7 +545,7 @@ public class MenuConfigurarParqueo extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new MenuConfigurarParqueo(admin).setVisible(true);
+                new MenuConfigurarParqueo(admin, parqueo).setVisible(true);
             }
         });
     }

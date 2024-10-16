@@ -92,8 +92,8 @@ public class Cliente extends Usuario {
         }
 
         // Validar que la cantidad de tiempo sea un múltiplo del precio por hora
-        if (cantidad % parqueo.getPrecioHora() != 0) {
-            throw new ValidacionesExceptions("El tiempo comprado debe ser un múltiplo del precio por hora.");
+        if (cantidad % parqueo.getTiempoMinimo() != 0) {
+            throw new ValidacionesExceptions("El tiempo comprado debe ser un múltiplo del tiempo minimo que se puede comprar.");
         }
 
         // Verificar que el espacio esté ocupado y que el carro en el espacio sea del cliente

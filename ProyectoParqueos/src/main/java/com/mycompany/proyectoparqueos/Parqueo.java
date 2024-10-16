@@ -3,17 +3,20 @@ package com.mycompany.proyectoparqueos;
 
 import java.util.ArrayList;
 import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+
 
 public class Parqueo {
     private String codigoTerminal;
     private int tiempoMinimo;
     private int precioHora;
-    private int abre;
-    private int cierra;
+    private LocalTime abre;
+    private LocalTime cierra;
     private int costoMulta;
     private ArrayList<EspacioDeParqueo> espaciosParqueo;
     
-    public Parqueo(String pCodigoTerminal, int pTiempoMinimo, int pPrecioHora, int pAbre, int pCierra, int pCostoMulta){
+    public Parqueo(String pCodigoTerminal, int pTiempoMinimo, int pPrecioHora, String pAbre, String pCierra, int pCostoMulta){
         setCodigoTerminal(pCodigoTerminal);
         setTiempoMinimo(pTiempoMinimo);
         setPrecioHora(pPrecioHora);
@@ -50,19 +53,29 @@ public class Parqueo {
         }
     }
 
+    private static final DateTimeFormatter TIME_FORMATTER = DateTimeFormatter.ofPattern("H:mm");
     
-    public void setAbre(int pAbre) {
-        LocalTime horaApertura = LocalTime.of(pAbre / 100, pAbre % 100); // pAbre está en formato HHMM (por ejemplo, 830 para 08:30)
-        this.abre = pAbre;
+    public void setAbre(String pAbre) {
+        try {
+            this.abre = LocalTime.parse(pAbre, TIME_FORMATTER);
+            System.out.println("Horario de apertura establecido: " + this.abre);
+        } catch (DateTimeParseException e) {
+            System.out.println("Formato de hora de apertura inválido. Por favor, ingrese en formato HH:mm");
+        }
     }
     
-    public void setCierra(int pCierra) {
-        LocalTime horaCierre = LocalTime.of(pCierra / 100, pCierra % 100); // pCierra está en formato HHMM (por ejemplo, 1630 para 16:30)
-        if (horaCierre.isAfter(LocalTime.of(abre / 100, abre % 100))) {
-            this.cierra = pCierra;
-        } 
-        else {
-            throw new ValidacionesExceptions("La hora de cierre debe ser posterior a la hora de apertura.");
+    public void setCierra(String pCierra) {
+        try {
+            LocalTime horaCierre = LocalTime.parse(pCierra, TIME_FORMATTER);
+            
+            if (horaCierre.isAfter(abre)) {
+                this.cierra = horaCierre;
+                System.out.println("Horario de cierre establecido: " + this.cierra);
+            } else {
+                System.out.println("La hora de cierre debe ser posterior a la hora de apertura.");
+            }
+        } catch (DateTimeParseException e) {
+            System.out.println("Formato de hora de cierre inválido. Por favor, ingrese en formato HH:mm");
         }
     }
     
@@ -91,11 +104,11 @@ public class Parqueo {
         return precioHora;
     }
     
-    public int getAbre(){
+    public LocalTime getAbre(){
         return abre;
     }
     
-    public int getCierra(){
+    public LocalTime getCierra(){
         return cierra;
     }
     

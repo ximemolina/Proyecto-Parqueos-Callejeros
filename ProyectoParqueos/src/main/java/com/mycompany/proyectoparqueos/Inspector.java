@@ -179,4 +179,8 @@ public class Inspector extends Usuario{
         return codigoTerminal;
     }
     
+    public void multar(EspacioDeParqueo espacio){
+        
+    }
+    
 }

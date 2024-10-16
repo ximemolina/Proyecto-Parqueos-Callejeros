@@ -11,9 +11,9 @@ public class MenuAdministrador extends javax.swing.JFrame {
      * Creates new form ScrAccionesAdministrador
      */
     public MenuAdministrador(Administrador pAdmin, Parqueo parqueo) {
+        initComponents();
         setAdmin(pAdmin);
         setParqueo(parqueo);
-        initComponents();
     }
     
     public void setParqueo(Parqueo parqueo){
@@ -235,7 +235,9 @@ public class MenuAdministrador extends javax.swing.JFrame {
     }//GEN-LAST:event_btnGenerarReporteActionPerformed
 
     private void btnConfigurarParqueo1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfigurarParqueo1ActionPerformed
-
+           MenuConfigurarParqueo pantalla = new MenuConfigurarParqueo(admin, parqueo);
+           pantalla.setVisible(true);
+           this.setVisible(false);
     }//GEN-LAST:event_btnConfigurarParqueo1ActionPerformed
 
     private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed

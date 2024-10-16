@@ -11,7 +11,7 @@ public class ProyectoParqueos {
 
     public static void main(String[] args) {
         //crear ventana de menu inicial
-        Parqueo parqueo = new Parqueo("T00123", 30, 10, 6, 22, 50);
+        Parqueo parqueo = new Parqueo("T00123", 30, 10, "6", "22", 50);
         Administrador admin = new Administrador("Juan", "Pérez", "12345678", "juan@example.com", "Dirección Ficticia", LocalDate.now(), "1234", "ID12345");
         MenuInicial menuInicial = new MenuInicial(parqueo);
         menuInicial.setVisible(true); //permite que menu inicial sea visible
