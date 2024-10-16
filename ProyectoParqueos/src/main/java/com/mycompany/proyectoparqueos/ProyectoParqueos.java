@@ -40,17 +40,6 @@ public class ProyectoParqueos {
         for (EspacioDeParqueo espacio : parqueo.getEspaciosParqueo()) {
             System.out.println(espacio);
         }
-
-        // Prueba: Marcar un espacio como ocupado
-        System.out.println("\nOcupando el espacio #3...");
-        EspacioDeParqueo espacio3 = parqueo.getEspaciosParqueo().get(2); // Obtener el espacio #3 (índice 2 en la lista)
-        espacio3.setDisponible(false);
-
-        // Mostrar el estado actualizado de los espacios
-        System.out.println("\nEstado de los espacios después de ocupar el espacio #3:");
-        for (EspacioDeParqueo espacio : parqueo.getEspaciosParqueo()) {
-            System.out.println(espacio);
-        }
         
         
         try{

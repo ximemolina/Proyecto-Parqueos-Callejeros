@@ -39,6 +39,22 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="inpTiempoMinimo1ActionPerformed"/>
       </Events>
     </Component>
+    <Component class="javax.swing.JTextField" name="inpAgregarDesde2">
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="inpAgregarDesde2ActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblNombre10">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Segoe UI Variable" size="18" style="0"/>
+        </Property>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="ff" green="ff" red="ff" type="rgb"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Abre:"/>
+      </Properties>
+    </Component>
   </NonVisualComponents>
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="3"/>
@@ -101,58 +117,76 @@
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
                           <Component id="jLabel9" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="0" attributes="0">
-                                  <Component id="lblNombre4" min="-2" pref="186" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                                      <Group type="102" alignment="1" attributes="0">
-                                          <EmptySpace min="-2" pref="71" max="-2" attributes="0"/>
-                                          <Component id="lblNombre8" min="-2" pref="51" max="-2" attributes="0"/>
-                                          <EmptySpace min="-2" pref="44" max="-2" attributes="0"/>
-                                          <Component id="lblNombre6" min="-2" pref="51" max="-2" attributes="0"/>
-                                          <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
-                                      </Group>
-                                      <Group type="102" alignment="1" attributes="0">
-                                          <EmptySpace max="-2" attributes="0"/>
-                                          <Component id="inpHorarioAbre" min="-2" pref="109" max="-2" attributes="0"/>
-                                          <EmptySpace max="32767" attributes="0"/>
-                                          <Component id="inpHorarioCierra" min="-2" pref="109" max="-2" attributes="0"/>
-                                      </Group>
-                                  </Group>
+                                  <EmptySpace min="-2" pref="245" max="-2" attributes="0"/>
+                                  <Component id="lblNombre11" min="-2" pref="51" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="68" max="-2" attributes="0"/>
+                                  <Component id="lblNombre6" min="-2" pref="51" max="-2" attributes="0"/>
                               </Group>
-                              <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
-                                  <Group type="102" attributes="0">
-                                      <EmptySpace min="-2" pref="3" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Group type="102" attributes="0">
-                                              <Group type="103" groupAlignment="1" attributes="0">
-                                                  <Component id="lblNombre1" min="-2" pref="186" max="-2" attributes="0"/>
-                                                  <Component id="lblNombre2" alignment="1" min="-2" pref="186" max="-2" attributes="0"/>
-                                                  <Component id="lblNombre3" alignment="1" min="-2" pref="186" max="-2" attributes="0"/>
-                                              </Group>
-                                              <EmptySpace max="32767" attributes="0"/>
-                                              <Group type="103" groupAlignment="0" attributes="0">
-                                                  <Component id="inpTiempoMinimo" min="-2" pref="109" max="-2" attributes="0"/>
-                                                  <Component id="inpCostoMulta" min="-2" pref="109" max="-2" attributes="0"/>
-                                              </Group>
-                                          </Group>
-                                          <Group type="102" alignment="1" attributes="0">
-                                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                                              <Component id="btnAceptar" min="-2" pref="78" max="-2" attributes="0"/>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Group type="102" alignment="0" attributes="0">
+                                          <Component id="lblNombre7" min="-2" pref="186" max="-2" attributes="0"/>
+                                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                          <Component id="inpEliminarDesde" min="-2" pref="109" max="-2" attributes="0"/>
+                                          <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
+                                          <Group type="103" groupAlignment="0" attributes="0">
+                                              <Component id="inpEliminarHasta" min="-2" pref="109" max="-2" attributes="0"/>
+                                              <Component id="inpHorarioCierra" min="-2" pref="109" max="-2" attributes="0"/>
+                                              <Component id="inpAgregarHasta" min="-2" pref="109" max="-2" attributes="0"/>
                                           </Group>
                                       </Group>
-                                  </Group>
-                                  <Group type="102" attributes="0">
-                                      <Component id="lblNombre" min="-2" pref="186" max="-2" attributes="0"/>
-                                      <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="inpPrecioPorHora" min="-2" pref="109" max="-2" attributes="0"/>
+                                      <Group type="102" alignment="0" attributes="0">
+                                          <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                                              <Group type="103" alignment="0" groupAlignment="1" attributes="0">
+                                                  <Group type="102" attributes="0">
+                                                      <Component id="lblNombre4" min="-2" pref="186" max="-2" attributes="0"/>
+                                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                                      <Component id="inpHorarioAbre" min="-2" pref="109" max="-2" attributes="0"/>
+                                                  </Group>
+                                                  <Group type="102" attributes="0">
+                                                      <Component id="lblNombre3" min="-2" pref="186" max="-2" attributes="0"/>
+                                                      <EmptySpace min="-2" pref="115" max="-2" attributes="0"/>
+                                                  </Group>
+                                              </Group>
+                                              <Group type="102" alignment="0" attributes="0">
+                                                  <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
+                                                  <Group type="103" groupAlignment="1" attributes="0">
+                                                      <Component id="lblNombre1" min="-2" pref="186" max="-2" attributes="0"/>
+                                                      <Component id="lblNombre" min="-2" pref="186" max="-2" attributes="0"/>
+                                                      <Component id="lblNombre2" alignment="1" min="-2" pref="186" max="-2" attributes="0"/>
+                                                  </Group>
+                                                  <EmptySpace max="32767" attributes="0"/>
+                                                  <Group type="103" groupAlignment="0" attributes="0">
+                                                      <Component id="inpPrecioPorHora" alignment="1" min="-2" pref="109" max="-2" attributes="0"/>
+                                                      <Component id="inpTiempoMinimo" alignment="1" min="-2" pref="109" max="-2" attributes="0"/>
+                                                      <Component id="inpCostoMulta" min="-2" pref="109" max="-2" attributes="0"/>
+                                                  </Group>
+                                              </Group>
+                                              <Group type="102" alignment="0" attributes="0">
+                                                  <Component id="lblNombre5" min="-2" pref="186" max="-2" attributes="0"/>
+                                                  <EmptySpace max="32767" attributes="0"/>
+                                                  <Component id="inpAgregarDesde" min="-2" pref="109" max="-2" attributes="0"/>
+                                              </Group>
+                                          </Group>
+                                          <EmptySpace pref="163" max="32767" attributes="0"/>
+                                          <Component id="btnAceptar" min="-2" pref="78" max="-2" attributes="0"/>
+                                      </Group>
                                   </Group>
                               </Group>
                           </Group>
                       </Group>
                   </Group>
-                  <EmptySpace pref="146" max="32767" attributes="0"/>
+                  <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
+              </Group>
+              <Group type="102" alignment="0" attributes="0">
+                  <EmptySpace min="-2" pref="251" max="-2" attributes="0"/>
+                  <Component id="lblNombre8" min="-2" pref="72" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="58" max="-2" attributes="0"/>
+                  <Component id="lblNombre9" min="-2" pref="59" max="-2" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -173,41 +207,59 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="1" attributes="0">
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="lblNombre6" alignment="0" min="-2" pref="32" max="-2" attributes="0"/>
-                              <Component id="lblNombre8" min="-2" pref="32" max="-2" attributes="0"/>
+                              <Component id="lblNombre6" min="-2" pref="32" max="-2" attributes="0"/>
+                              <Component id="lblNombre11" min="-2" pref="32" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="lblNombre4" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
-                              <Component id="inpHorarioCierra" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="inpHorarioAbre" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="inpHorarioCierra" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="lblNombre4" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="lblNombre" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
                               <Component id="inpPrecioPorHora" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="3" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="lblNombre1" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
+                              <Component id="inpTiempoMinimo" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="lblNombre2" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
+                              <Component id="inpCostoMulta" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="lblNombre8" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
+                              <Component id="lblNombre9" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="lblNombre5" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
+                              <Component id="inpAgregarDesde" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="inpAgregarHasta" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" attributes="0">
                           <Component id="jLabel9" min="-2" pref="32" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="82" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="154" max="-2" attributes="0"/>
                       </Group>
                   </Group>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="lblNombre1" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
-                      <Component id="inpTiempoMinimo" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="lblNombre3" min="-2" pref="32" max="-2" attributes="0"/>
+                      <Component id="btnAceptar" min="-2" pref="35" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="lblNombre2" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
-                      <Component id="inpCostoMulta" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="lblNombre7" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
+                      <Component id="inpEliminarHasta" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="inpEliminarDesde" alignment="1" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                  <Component id="lblNombre3" min="-2" pref="32" max="-2" attributes="0"/>
-                  <EmptySpace pref="71" max="32767" attributes="0"/>
-                  <Component id="btnAceptar" min="-2" pref="35" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
+                  <EmptySpace pref="44" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -328,7 +380,7 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Abre:"/>
+            <Property name="text" type="java.lang.String" value="Desde:"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="inpHorarioAbre">
@@ -361,6 +413,70 @@
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAceptarActionPerformed"/>
           </Events>
+        </Component>
+        <Component class="javax.swing.JLabel" name="lblNombre5">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Segoe UI Variable" size="18" style="0"/>
+            </Property>
+            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="ff" green="ff" red="ff" type="rgb"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Agregar Espacios:"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="inpAgregarDesde">
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="inpAgregarDesdeActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JTextField" name="inpAgregarHasta">
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="inpAgregarHastaActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JLabel" name="lblNombre7">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Segoe UI Variable" size="18" style="0"/>
+            </Property>
+            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="ff" green="ff" red="ff" type="rgb"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Eliminar Espacios:"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="inpEliminarHasta">
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="inpEliminarHastaActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JTextField" name="inpEliminarDesde">
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="inpEliminarDesdeActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JLabel" name="lblNombre9">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Segoe UI Variable" size="18" style="0"/>
+            </Property>
+            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="ff" green="ff" red="ff" type="rgb"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Hasta:"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="lblNombre11">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Segoe UI Variable" size="18" style="0"/>
+            </Property>
+            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="ff" green="ff" red="ff" type="rgb"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Abre:"/>
+          </Properties>
         </Component>
       </SubComponents>
     </Container>
