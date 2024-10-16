@@ -1,5 +1,5 @@
 package com.mycompany.proyectoparqueos;
-
+import javax.swing.JOptionPane;
 
 public class MenuCliente extends javax.swing.JFrame {
 
@@ -225,11 +225,36 @@ public class MenuCliente extends javax.swing.JFrame {
     }//GEN-LAST:event_btnConsultarActionPerformed
 
     private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
-        // TODO add your handling code here:
+        ModificarCliente menu = new ModificarCliente(cliente, parqueo);
+        menu.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_btnModificarActionPerformed
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
-        // TODO add your handling code here:
+        //mostrar mensaje de confirmacion
+        int opcion = JOptionPane.showConfirmDialog(null, "¿Está seguro de que desea eliminar el usuario?", "CONFIRMACION", JOptionPane.YES_NO_CANCEL_OPTION);
+
+        if (opcion == JOptionPane.YES_OPTION) {
+            
+            try{
+                
+            
+                cliente.eliminarCliente(cliente.toString());
+                cliente = null;
+                MenuInicial menu = new MenuInicial(parqueo);
+                menu.setVisible(true);
+                
+                this.setVisible(false);
+            }
+            catch(ValidacionesExceptions e){
+                JOptionPane.showMessageDialog(this, e.getMessage());
+            }
+            
+        } else if (opcion == JOptionPane.NO_OPTION) { 
+            JOptionPane.showMessageDialog(null, "Se cancela la eliminación. "); 
+        }
+                                                    
+
     }//GEN-LAST:event_btnEliminarActionPerformed
 
     /**

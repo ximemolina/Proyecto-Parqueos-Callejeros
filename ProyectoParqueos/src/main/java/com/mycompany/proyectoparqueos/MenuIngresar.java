@@ -148,7 +148,9 @@ public class MenuIngresar extends javax.swing.JFrame {
     }//GEN-LAST:event_btnIngresarAdministradorActionPerformed
 
     private void btnIngresarInspectorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresarInspectorActionPerformed
-        // TODO add your handling code here:
+        IngresarInspector ingresarInspector = new IngresarInspector(parqueo);
+        ingresarInspector.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_btnIngresarInspectorActionPerformed
 
     private void btnIngresarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresarClienteActionPerformed
