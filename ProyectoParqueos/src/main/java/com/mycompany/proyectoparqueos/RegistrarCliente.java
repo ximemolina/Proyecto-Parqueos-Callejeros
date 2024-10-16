@@ -430,7 +430,7 @@ public class RegistrarCliente extends javax.swing.JFrame {
             int mes = Integer.parseInt(inpMes.getText());
             int año = Integer.parseInt(inpAño.getText());
             int codigoValid = Integer.parseInt(inpCodValidacion.getText());
-            Cliente cliente = new Cliente(inpNombre.getText(), inpApellidos.getText(), inpTelefono.getText(), inpCorreo.getText(), inpDireccion.getText(),fecha ,inpPIN.getText(), inpIdentificacion.getText(),codigo, mes, año,  codigoValid);
+            Cliente cliente = new Cliente(inpNombre.getText(), inpApellidos.getText(), inpTelefono.getText(), inpCorreo.getText(), inpDireccion.getText(),fecha ,inpPIN.getText(), inpIdentificacion.getText(),codigo, mes, año,  codigoValid,0);
             AñadirCarroCliente pantalla = new AñadirCarroCliente(cliente, parqueo);
             pantalla.setVisible(true);
             this.setVisible(false);

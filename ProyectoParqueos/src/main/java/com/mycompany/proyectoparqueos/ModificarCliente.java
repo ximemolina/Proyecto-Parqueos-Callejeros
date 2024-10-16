@@ -436,7 +436,7 @@ public class ModificarCliente extends javax.swing.JFrame {
             int mes = Integer.parseInt(inpMes.getText());
             int año = Integer.parseInt(inpAño.getText());
             int codigoValid = Integer.parseInt(inpCodValidacion.getText());
-            Cliente cliente2 = new Cliente(inpNombre.getText(), inpApellido.getText(), inpTelefono.getText(), inpCorreo.getText(), inpDireccion.getText(),cliente.getFechaIngreso() ,cliente.getPin(), inpIdentificacion.getText(), codigo, mes, año, codigoValid);
+            Cliente cliente2 = new Cliente(inpNombre.getText(), inpApellido.getText(), inpTelefono.getText(), inpCorreo.getText(), inpDireccion.getText(),cliente.getFechaIngreso() ,cliente.getPin(), inpIdentificacion.getText(), codigo, mes, año, codigoValid, cliente.getMinsNoUtilizados());
             
             for (Carro auto : cliente.getCarros()){ //llenar string con informacion de carros
                 cliente2.agregarCarro(auto.getPlaca(),auto.getMarca(), auto.getModelo());

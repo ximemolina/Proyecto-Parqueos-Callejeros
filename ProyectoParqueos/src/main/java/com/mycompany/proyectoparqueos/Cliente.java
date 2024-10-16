@@ -14,16 +14,27 @@ import java.time.*;
 public class Cliente extends Usuario { 
     private ArrayList<Carro> carros;  // Lista de carros asociados al cliente
     private Tarjeta tarjeta;
+    private int minsNoUtilizados;
     // Constructor
-    public Cliente(String pNombre, String pApellido, String pTelefono, String pCorreo, String pDireccionFisica, LocalDate pFechaIngreso,String pPin, String pIdentificacionUsuario,long pNumTarjeta,int pMes, int pAño, int pCodValidacion) {
+    public Cliente(String pNombre, String pApellido, String pTelefono, String pCorreo, String pDireccionFisica, LocalDate pFechaIngreso,String pPin, String pIdentificacionUsuario,long pNumTarjeta,int pMes, int pAño, int pCodValidacion, int minNoUtilizado) {
         super(pNombre, pApellido, pTelefono, pCorreo, pDireccionFisica,pFechaIngreso, pPin, pIdentificacionUsuario);
         this.carros = new ArrayList<>();
         
         YearMonth fechaEspecifica = YearMonth.of(pAño, pMes);
         Tarjeta tarjetaNueva = new Tarjeta(pNumTarjeta,fechaEspecifica, pCodValidacion);
         setTarjeta(tarjetaNueva);
+        setMinsNoUtilizados(minNoUtilizado);
     }
 
+    public int getMinsNoUtilizados() {
+        return minsNoUtilizados;
+    }
+    
+    
+    public void setMinsNoUtilizados(int minsNoUtilizados) {
+        this.minsNoUtilizados = minsNoUtilizados;
+    }
+    
     public ArrayList<Carro> getCarros() {
         return carros;
     }
@@ -55,7 +66,7 @@ public class Cliente extends Usuario {
             } else if(auto.getMarca() != null && auto.getModelo() == null)
                 listaCarros = listaCarros + "," + auto.getPlaca() + "," + auto.getMarca()+ "," + " ";
         } 
-        return super.toString() + ","+ tarjeta.getNumeroTarjeta() + "," + tarjeta.getFechaVencimiento() + "," + tarjeta.getCodigoValidacion() + listaCarros;
+        return super.toString() + ","+ tarjeta.getNumeroTarjeta() + "," + tarjeta.getFechaVencimiento() + "," + tarjeta.getCodigoValidacion() +","+minsNoUtilizados+ listaCarros;
     }
     
     public boolean parquear(Carro carro, EspacioDeParqueo espacioSeleccionado) {

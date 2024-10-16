@@ -224,15 +224,16 @@ public class IngresarCliente extends javax.swing.JFrame {
                     if(lista[0].equals(id) && lista[1].equals(pin)){
 
                         LocalDate fecha = LocalDate.parse(lista[7], DateTimeFormatter.ofPattern("yyyy/MM/dd"));
-  
+                        
+                        int min = Integer.parseInt(lista[11]);
                         long num = Long.parseLong(lista[8]);
                         String[] añoMes = lista[9].split("-");
                         int año = Integer.parseInt(añoMes[0]);
                         int mes = Integer.parseInt(añoMes[1]);
                         int cod = Integer.parseInt(lista[10]);
                         //crea objeto Cliente con atributos respectivos para poder pasarselos a pantalla de acciones de admin
-                        Cliente cliente = new Cliente(lista[2], lista[3],lista[4], lista[5], lista[6], fecha, lista[1], lista[0],num,mes,año,cod);
-                        int contador = 11;
+                        Cliente cliente = new Cliente(lista[2], lista[3],lista[4], lista[5], lista[6], fecha, lista[1], lista[0],num,mes,año,cod,min);
+                        int contador = 12;
                         while(contador < lista.length){
                             cliente.agregarCarro(lista[contador], lista[contador+1], lista[contador+2]);
                             contador = contador +3;

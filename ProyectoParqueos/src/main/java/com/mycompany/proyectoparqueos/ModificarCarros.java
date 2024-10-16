@@ -199,7 +199,7 @@ public class ModificarCarros extends javax.swing.JFrame {
             String mes1 = String.valueOf(fecha.getMonthValue());
             int mes = Integer.parseInt(mes1);
             String telefono = String.valueOf(cliente.getTelefono());
-            Cliente cliente2 = new Cliente(cliente.getNombre(), cliente.getApellido(), telefono, cliente.getCorreo(), cliente.getDireccionFisica(),cliente.getFechaIngreso() ,cliente.getPin(),cliente.getIdentificacionUsuario() ,cliente.getTarjeta().getNumeroTarjeta(), mes, año, cliente.getTarjeta().getCodigoValidacion());
+            Cliente cliente2 = new Cliente(cliente.getNombre(), cliente.getApellido(), telefono, cliente.getCorreo(), cliente.getDireccionFisica(),cliente.getFechaIngreso() ,cliente.getPin(),cliente.getIdentificacionUsuario() ,cliente.getTarjeta().getNumeroTarjeta(), mes, año, cliente.getTarjeta().getCodigoValidacion(),cliente.getMinsNoUtilizados());
             //se hace split para obtener todas las placas,marcas y modelos. Se utiliza \\ ya que | es un caracter especial y puede dar errores
             String [] placas = inpPlaca.getText().trim().split("\\|");
             String [] marcas = inpMarca.getText().trim().split("\\|"); 
