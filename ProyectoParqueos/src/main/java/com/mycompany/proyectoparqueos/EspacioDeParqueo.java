@@ -7,7 +7,6 @@ public class EspacioDeParqueo {
     private int tiempoComprado;
     private Carro carro;
     private boolean disponible;
-    private boolean estadoPago;
     private LocalDateTime horaInicioParqueo;
 
     // Constructor
@@ -16,7 +15,6 @@ public class EspacioDeParqueo {
         tiempoComprado = 0;
         carro = null;
         disponible = true;
-        estadoPago = false;
         horaInicioParqueo = null;  // Inicializa en null hasta que el carro se parquea
     }
     
@@ -45,10 +43,6 @@ public class EspacioDeParqueo {
 
     public void setDisponible(boolean disponible){
         this.disponible = disponible;
-    }
-    
-    public void setEstadoPago(boolean estadoPago){
-        this.estadoPago = estadoPago;
     }
     
     public void setHoraInicioParqueo(LocalDateTime horaInicioParqueo){
@@ -92,7 +86,7 @@ public class EspacioDeParqueo {
         return minutosParqueo;
     }
 
-    public double calcularMontoAPagar(EspacioDeParqueo espacio, Parqueo parqueo, Cliente cliente) {
+    public double calcularMontoAPagar(EspacioDeParqueo espacio, Parqueo parqueo) {
         // Calcular el tiempo de parqueo en minutos
         long minutosParqueo = calcularTiempoParqueo(espacio);
 
@@ -108,30 +102,11 @@ public class EspacioDeParqueo {
         // Obtener el precio por hora desde el parqueo
         int precioPorHora = parqueo.getPrecioHora();
 
-        // Calcular el monto total antes de restar los minutos no utilizados
+        // Calcular el monto total
         double montoTotal = horasFacturables * precioPorHora;
-
-        // Restar los minutos no utilizados del cliente
-        if (cliente.getMinsNoUtilizados() > 0) {
-            // Convertir los minutos no utilizados en horas y restarlos del monto total
-            double horasNoUtilizadas = cliente.getMinsNoUtilizados() / 60.0;
-            montoTotal -= horasNoUtilizadas * precioPorHora;
-        }
-
-        // Asegurarse de que el monto no sea negativo
-        if (montoTotal < 0) {
-            montoTotal = 0;
-        }
-
-        // Resetear los minutos no utilizados del cliente después de calcular el monto
-        cliente.setMinsNoUtilizados(0);
 
         return montoTotal;
     }
-
-
-
-    @Override
 
     public String toString(){
         try{
