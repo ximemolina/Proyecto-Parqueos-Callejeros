@@ -266,9 +266,9 @@ public class MenuPagar extends javax.swing.JFrame {
     }//GEN-LAST:event_btnVolver1ActionPerformed
 
     private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
-<<<<<<< HEAD
+
         // TODO add your handling code here:
-=======
+
         try {
         // Obtener el código de validación ingresado desde el text field
         int codigoValidacionIngresado = Integer.parseInt(inpCodigoValidacion.getText());
@@ -312,7 +312,7 @@ public class MenuPagar extends javax.swing.JFrame {
         MenuCliente pantalla = new MenuCliente(cliente, parqueo);
         pantalla.setVisible(true);
         this.setVisible(false);
->>>>>>> bdda2a1711b27a5189b7407245833ac11b8b89e1
+
     }//GEN-LAST:event_btnAceptarActionPerformed
 
     /**
