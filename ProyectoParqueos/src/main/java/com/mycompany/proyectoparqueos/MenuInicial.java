@@ -4,11 +4,19 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+
 import java.time.*;
 import javax.swing.JOptionPane;
 
 public class MenuInicial extends javax.swing.JFrame {
                                                   
+
+import javax.swing.JOptionPane;
+
+public class MenuInicial extends javax.swing.JFrame {///FALTA AÑADIR PARA QUE SE ACTUALICE ARCHIVO DE PARQUEOS CUANDO ALGUIEN PARA O DESPARCA 
+                                                    ///VERIFICAR QUE SE REINICIE AJUSTES DE PARQUEO Y NO OCURRA ERROR CON LOS ESPACIOS DE PARQUEO
+                                                    ///ARCHIVO HISTORIALPARQUEO QUE TRAIGA INFO SOBRE TIEMPO EN DONDE SE PARQUEO AUTO. DE AHI SE SACA SABER SI EL CARRO ESTÁ PAGADO
+
     Parqueo parqueo;
     /**
      * Creates new form MenuInicial
@@ -206,6 +214,7 @@ public class MenuInicial extends javax.swing.JFrame {
                         lista = contenido.split(",");
                         EspacioDeParqueo espacio = new EspacioDeParqueo(Integer.parseInt(lista[0]));
                         espacio.setTiempoComprado(Integer.parseInt(lista[1]));
+
                         if(!lista[2].equals("null"))
                             espacio.setHoraInicioParqueo(LocalDateTime.parse(lista[2]));
                         if(lista[3]!= ""){
@@ -214,6 +223,14 @@ public class MenuInicial extends javax.swing.JFrame {
                         }
                         
                         espacio.setDisponible(Boolean.parseBoolean(lista[6]));
+
+                        if(lista[2]!= ""){
+                            Carro carro = new Carro(lista[2], lista[3], lista[4]);
+                            espacio.setCarro(carro);
+                        }
+                        
+                        espacio.setDisponible(Boolean.parseBoolean(lista[5]));
+
                         //System.out.println(espacio.toString());
                         parqueo.agregarEspacioParqueo(espacio);
                     }
