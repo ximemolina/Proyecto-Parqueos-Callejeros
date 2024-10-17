@@ -10,8 +10,8 @@ import java.time.format.DateTimeFormatter;
 
 public class ConsultarInspector extends javax.swing.JFrame {
 
-    Inspector inspector;
-    Parqueo parqueo;
+    private Inspector inspector;
+    private Parqueo parqueo;
     
     public ConsultarInspector(Inspector inspector, Parqueo parqueo) {
         initComponents();

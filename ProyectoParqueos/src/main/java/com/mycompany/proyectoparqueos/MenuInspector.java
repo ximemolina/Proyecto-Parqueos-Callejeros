@@ -5,8 +5,8 @@ import javax.swing.JOptionPane;
 
 public class MenuInspector extends javax.swing.JFrame {
 
-    Inspector inspector;
-    Parqueo parqueo;
+    private Inspector inspector;
+    private Parqueo parqueo;
     
     public MenuInspector(Inspector inspector, Parqueo parqueo) {
         initComponents();
@@ -189,7 +189,9 @@ public class MenuInspector extends javax.swing.JFrame {
     }//GEN-LAST:event_btnEliminarInspectorActionPerformed
 
     private void btnModificarInspectorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarInspectorActionPerformed
-
+        ModificarInspector pantalla = new ModificarInspector(inspector, parqueo);
+        pantalla.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_btnModificarInspectorActionPerformed
 
     private void btnGenerarInspectorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGenerarInspectorActionPerformed

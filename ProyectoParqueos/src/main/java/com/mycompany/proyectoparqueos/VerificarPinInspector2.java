@@ -1,18 +1,19 @@
 
 package com.mycompany.proyectoparqueos;
 
+import java.io.File;
 import javax.swing.JOptionPane;
+public class VerificarPinInspector2 extends javax.swing.JFrame {
 
-public class VerificarPinAdmin extends javax.swing.JFrame {
-
-    Administrador admin;
-    Parqueo parqueo;
-    String pin;
-    public VerificarPinAdmin(Administrador admin, Parqueo parqueo, String pin) {
+    private Inspector inspector;
+    private Parqueo parqueo;
+    private String pin; 
+    
+    public VerificarPinInspector2(Inspector inspector, Parqueo parqueo, String pin) {
         initComponents();
-        setAdmin(admin);
-        setParqueo(parqueo);
         setPin(pin);
+        setInspector(inspector);
+        setParqueo(parqueo);        
     }
 
     /**
@@ -81,7 +82,7 @@ public class VerificarPinAdmin extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(0, 85, Short.MAX_VALUE)
+                .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(lblPin, javax.swing.GroupLayout.PREFERRED_SIZE, 462, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(73, 73, 73))
             .addGroup(jPanel1Layout.createSequentialGroup()
@@ -111,7 +112,7 @@ public class VerificarPinAdmin extends javax.swing.JFrame {
                 .addComponent(inpPinUnico, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(34, 34, 34)
                 .addComponent(btnAceptar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(lblPin1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(inpPinNuevo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -136,11 +137,10 @@ public class VerificarPinAdmin extends javax.swing.JFrame {
 
     private void inpPinUnicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inpPinUnicoActionPerformed
 
-        
     }//GEN-LAST:event_inpPinUnicoActionPerformed
 
     private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
-        
+
         if((inpPinUnico.getText()).equals(pin)){ //si el pin ingresado es el mismo que el pin mandado al correo
             inpPinUnico.setEnabled(false);
             btnAceptar.setEnabled(false);
@@ -149,8 +149,6 @@ public class VerificarPinAdmin extends javax.swing.JFrame {
         }else{
             JOptionPane.showMessageDialog(this, "Error: Se ha ingresado un pin incorrecto");
         }
-        
-        
     }//GEN-LAST:event_btnAceptarActionPerformed
 
     private void inpPinNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inpPinNuevoActionPerformed
@@ -160,16 +158,16 @@ public class VerificarPinAdmin extends javax.swing.JFrame {
     private void btnAceptar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptar1ActionPerformed
         //se actualizan datos de objeto y de los archivos
         try{
-            admin.setPin(inpPinNuevo.getText());
-            String info = admin.toString();
-            admin.modificarDatosAdmin(info);
-            MenuAdministrador pantalla = new MenuAdministrador(admin, parqueo);
+            inspector.setPin(inpPinNuevo.getText());
+            String informacion = inspector.toString();
+            inspector.modificarDatosInspector(informacion);
+            MenuInspector pantalla = new MenuInspector(inspector, parqueo);
             pantalla.setVisible(true);
             this.setVisible(false);
+
         }catch(ValidacionesExceptions e){
             JOptionPane.showMessageDialog(this, e.getMessage());
         }
-            
     }//GEN-LAST:event_btnAceptar1ActionPerformed
 
     /**
@@ -189,38 +187,35 @@ public class VerificarPinAdmin extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(VerificarPinAdmin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VerificarPinInspector2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(VerificarPinAdmin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VerificarPinInspector2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(VerificarPinAdmin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VerificarPinInspector2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(VerificarPinAdmin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VerificarPinInspector2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new VerificarPinAdmin( admin,  parqueo, pin).setVisible(true);
+                new VerificarPinInspector2(inspector,  parqueo, pin).setVisible(true);
             }
         });
     }
-
-    public void setAdmin(Administrador admin) {
-        this.admin = admin;
+    //setters 
+    public void setInspector(Inspector inspector) {
+        this.inspector = inspector;
     }
 
     public void setParqueo(Parqueo parqueo) {
         this.parqueo = parqueo;
     }
 
-
     public void setPin(String pin) {
         this.pin = pin;
     }
-
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAceptar;

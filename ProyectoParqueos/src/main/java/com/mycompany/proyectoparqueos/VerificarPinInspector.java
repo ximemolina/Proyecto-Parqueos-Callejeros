@@ -5,9 +5,9 @@ import java.io.File;
 import javax.swing.JOptionPane;
 public class VerificarPinInspector extends javax.swing.JFrame {
 
-    Inspector inspector;
-    Parqueo parqueo;
-    String pin; 
+    private Inspector inspector;
+    private Parqueo parqueo;
+    private String pin; 
     public VerificarPinInspector(Inspector inspector, Parqueo parqueo, String pin) {
         initComponents();
         setPin(pin);
@@ -165,9 +165,6 @@ public class VerificarPinInspector extends javax.swing.JFrame {
             pantalla.setVisible(true);
             this.setVisible(false);
 
-            //MenuInspector pantalla = new MenuInspector(inspector, parqueo);
-            //pantalla.setVisible(true);
-            this.setVisible(false);
         }catch(ValidacionesExceptions e){
             JOptionPane.showMessageDialog(this, e.getMessage());
         }
