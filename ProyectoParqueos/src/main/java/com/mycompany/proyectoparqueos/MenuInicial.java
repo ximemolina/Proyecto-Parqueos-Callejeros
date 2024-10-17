@@ -1,12 +1,40 @@
 package com.mycompany.proyectoparqueos;
 
-public class MenuInicial extends javax.swing.JFrame {
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
+import javax.swing.JOptionPane;
+
+public class MenuInicial extends javax.swing.JFrame {///FALTA AÑADIR PARA QUE SE ACTUALICE ARCHIVO DE PARQUEOS CUANDO ALGUIEN PARA O DESPARCA 
+                                                    ///VERIFICAR QUE SE REINICIE AJUSTES DE PARQUEO Y NO OCURRA ERROR CON LOS ESPACIOS DE PARQUEO
+                                                    ///ARCHIVO HISTORIALPARQUEO QUE TRAIGA INFO SOBRE TIEMPO EN DONDE SE PARQUEO AUTO. DE AHI SE SACA SABER SI EL CARRO ESTÁ PAGADO
     Parqueo parqueo;
     /**
      * Creates new form MenuInicial
      */
     public MenuInicial(Parqueo parqueo) {
-        initComponents();
+        initComponents();        
+        try{
+            File archivoParqueo = new File("Parqueo.txt");
+            if(!archivoParqueo.exists())
+                archivoParqueo.createNewFile();
+            else if(archivoParqueo.length()!= 0){
+                try{
+                    leerArchivo(parqueo);
+                    //System.out.println(parqueo.toString());
+                }catch(Exception e){
+                    
+                }
+            }
+            else 
+                setParqueo(parqueo);
+        }
+        
+        catch(Exception e){
+            
+            e.getMessage();
+        }
         setParqueo(parqueo);
     }
     
@@ -100,6 +128,8 @@ public class MenuInicial extends javax.swing.JFrame {
 
     private void btnIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresarActionPerformed
         //se crea ventana para ingresar y se pone visible
+        if (parqueo == null) 
+                System.out.println("El objeto parqueo es null");
         MenuIngresar menuIngresar = new MenuIngresar(parqueo);
         menuIngresar.setVisible(true);
         this.setVisible(false); //menu inicial desaparece    
@@ -148,7 +178,56 @@ public class MenuInicial extends javax.swing.JFrame {
             }
         });
     }
-    
+    //lee el archivo y verifica si el usuario ingresado existe
+    public void leerArchivo(Parqueo parqueo){
+        String contenido;
+        int contador = 0;
+        try{
+            FileReader leer = new FileReader("Parqueo.txt");
+            BufferedReader lectura = new BufferedReader(leer);
+            contenido = lectura.readLine(); //lee una línea del archivo
+            String [] lista;
+            while(contenido != null){
+                
+                try{
+                    if(contador == 0)
+                        parqueo.setCodigoTerminal(contenido);
+                    if(contador ==1)
+                        parqueo.setTiempoMinimo(Integer.parseInt(contenido));
+                    if(contador ==2)
+                        parqueo.setPrecioHora(Integer.parseInt(contenido));
+                    if(contador ==3)
+                        parqueo.setAbre(contenido);
+                    if(contador ==4)
+                        parqueo.setCierra(contenido);
+                    if(contador == 5)
+                        parqueo.setCostoMulta(Integer.parseInt(contenido));
+                    if(contador >=6){
+                        lista = contenido.split(",");
+                        EspacioDeParqueo espacio = new EspacioDeParqueo(Integer.parseInt(lista[0]));
+                        espacio.setTiempoComprado(Integer.parseInt(lista[1]));
+                        if(lista[2]!= ""){
+                            Carro carro = new Carro(lista[2], lista[3], lista[4]);
+                            espacio.setCarro(carro);
+                        }
+                        
+                        espacio.setDisponible(Boolean.parseBoolean(lista[5]));
+                        //System.out.println(espacio.toString());
+                        parqueo.agregarEspacioParqueo(espacio);
+                    }
+                    
+                    contenido = lectura.readLine();
+                }catch(Exception e){
+                    e.printStackTrace();
+                    contenido = lectura.readLine();
+                }
+                contador ++;
+            }
+            
+        } catch(IOException exception){
+            exception.printStackTrace();
+        }
+    } 
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnIngresar;

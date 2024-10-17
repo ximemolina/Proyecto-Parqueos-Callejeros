@@ -350,7 +350,7 @@ public class ModificarAdmin extends javax.swing.JFrame {
                 System.out.println(infoACambiar);
             
                 administrador2.modificarDatosAdmin(infoACambiar);
-                MenuAdministrador pantalla = new MenuAdministrador(admin,parqueo);
+                MenuAdministrador pantalla = new MenuAdministrador(administrador2,parqueo);
                 pantalla.setVisible(true);
                 this.setVisible(false);
             }
@@ -377,7 +377,7 @@ public class ModificarAdmin extends javax.swing.JFrame {
         String pin = sb.toString();
         //******************************************aqui faltaría agregar mandar Pin por correo***************************************///
         System.out.println(pin);
-        VerificarPinAdmin pantalla = new VerificarPinAdmin(admin,parqueo,correo,pin);
+        VerificarPinAdmin pantalla = new VerificarPinAdmin(admin,parqueo,pin);
         pantalla.setVisible(true);
         this.setVisible(false);
         
