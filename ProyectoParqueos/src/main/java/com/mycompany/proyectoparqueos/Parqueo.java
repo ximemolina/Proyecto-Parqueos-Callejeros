@@ -1,10 +1,14 @@
 
 package com.mycompany.proyectoparqueos;
 
+
+import java.io.File;
+import java.io.FileWriter;
 import java.util.ArrayList;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+import javax.swing.JOptionPane;
 
 
 public class Parqueo {
@@ -26,6 +30,16 @@ public class Parqueo {
         espaciosParqueo = new ArrayList<>();
     }
     
+    //retorna toda la informacion del parqueo en un String
+    public String toString(){
+        String info = "";
+        for(EspacioDeParqueo espacio : espaciosParqueo){ //agarra toda la información almacenada en el array
+            info= info + espacio.toString();
+        }
+        return getCodigoTerminal()+"\n"+getTiempoMinimo()+"\n"+getPrecioHora()+"\n"+ getAbre()+"\n"+getCierra()+"\n"+getCostoMulta()+"\n"+info;
+    
+    }
+    //setters
     public void setCodigoTerminal(String codigoTerminal) {
         if (codigoTerminal != null && codigoTerminal.length() == 6) {
             this.codigoTerminal = codigoTerminal;
@@ -199,5 +213,15 @@ public class Parqueo {
             }
         }
     }
-
+    //guarda información en archivo
+   public void guardarParqueo(File nombreArchivo){
+       try{
+            FileWriter escribir = new FileWriter(nombreArchivo); //permite escribir en diferentes ocasiones en archivos
+            escribir.write(toString()); //escribe informarion de usuario
+            escribir.close(); //cierra escritor
+       } catch(Exception e){
+           System.out.print(e.getMessage());
+       }
+   } 
+   
 }

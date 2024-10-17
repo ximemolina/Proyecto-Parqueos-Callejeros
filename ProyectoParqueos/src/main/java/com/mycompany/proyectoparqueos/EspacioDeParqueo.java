@@ -108,9 +108,11 @@ public class EspacioDeParqueo {
         return montoTotal;
     }
 
-    @Override
     public String toString(){
-        return "Numero de espacio: "+ getNumeroEspacio() +" Tiempo Comprado: " + getTiempoComprado() +
-        " Carro: " + getCarro() + " Disponible: " + getDisponible();
+        try{
+            return getNumeroEspacio() +","+ getTiempoComprado() + "," + getCarro().getPlaca()+","+getCarro().getMarca()+","+getCarro().getModelo() + "," + getDisponible() +"\n";
+        }catch(NullPointerException e){
+            return getNumeroEspacio() +","+ getTiempoComprado() + "," +","+"," + "," + getDisponible() +"\n";
+        }
     }
 }

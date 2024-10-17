@@ -1,11 +1,7 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package com.mycompany.proyectoparqueos;
-import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeParseException;
+
+import java.io.File;
+
 /**
  *
  * @author Admin
@@ -248,7 +244,8 @@ public class MenuConfigurarParqueo extends javax.swing.JFrame {
                                 .addGap(245, 245, 245)
                                 .addComponent(lblNombre11, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(68, 68, 68)
-                                .addComponent(lblNombre6, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(lblNombre6, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(15, 15, 15)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -380,7 +377,7 @@ public class MenuConfigurarParqueo extends javax.swing.JFrame {
         this.setVisible(false);
         
     }//GEN-LAST:event_btnVolverActionPerformed
-
+// <editor-fold defaultstate="collapsed" desc="Inputs">   
     private void btnConfigurarParqueo1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfigurarParqueo1ActionPerformed
 
     }//GEN-LAST:event_btnConfigurarParqueo1ActionPerformed
@@ -412,7 +409,7 @@ public class MenuConfigurarParqueo extends javax.swing.JFrame {
     private void inpCostoMultaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inpCostoMultaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_inpCostoMultaActionPerformed
-
+// </editor-fold >  
     private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
         String abreText = inpHorarioAbre.getText();
         String cierraText = inpHorarioCierra.getText();
@@ -488,13 +485,16 @@ public class MenuConfigurarParqueo extends javax.swing.JFrame {
         } catch (Exception e) {
             throw new ValidacionesExceptions("Ocurrió un error inesperado: " + e.getMessage());
         }
+        //guardar informacion en archivo de Parqueo
+        File archivoParqueo = new File("Parqueo.txt");
+        parqueo.guardarParqueo(archivoParqueo);
         
         MenuAdministrador pantalla = new MenuAdministrador(admin, parqueo);
         pantalla.setVisible(true);
         this.setVisible(false);
         
     }//GEN-LAST:event_btnAceptarActionPerformed
-
+// <editor-fold defaultstate="collapsed" desc="Inputs"> 
     private void inpAgregarDesdeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inpAgregarDesdeActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_inpAgregarDesdeActionPerformed
@@ -514,7 +514,7 @@ public class MenuConfigurarParqueo extends javax.swing.JFrame {
     private void inpEliminarDesdeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inpEliminarDesdeActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_inpEliminarDesdeActionPerformed
-
+// </editor-fold > 
     /**
      * @param args the command line arguments
      */
