@@ -137,6 +137,14 @@ public class MenuPagar extends javax.swing.JFrame {
             }
         });
 
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAceptarActionPerformed(evt);
+            }
+        });
+        jLabelTiempoGuardado.setFont(new java.awt.Font("Segoe UI Variable", 1, 18)); // NOI18N
+        jLabelTiempoGuardado.setForeground(new java.awt.Color(255, 255, 255));
+        jLabelTiempoGuardado.setText("Tiempo  guardado:");
+
         btnAceptar.setText("ACEPTAR");
         btnAceptar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -177,6 +185,13 @@ public class MenuPagar extends javax.swing.JFrame {
                         .addGap(259, 259, 259)
                         .addComponent(btnAceptar, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(202, Short.MAX_VALUE))
+                                .addComponent(comboBoxEspaciosOcupados, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel4)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(238, 238, 238)
+                        .addComponent(btnAceptar, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(98, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel1Layout.createSequentialGroup()
                     .addGap(272, 272, 272)
@@ -235,6 +250,49 @@ public class MenuPagar extends javax.swing.JFrame {
 
     private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
         // TODO add your handling code here:
+
+        try {
+        // Obtener el código de validación ingresado desde el text field
+        int codigoValidacionIngresado = Integer.parseInt(inpCodigoValidacion.getText());
+
+        // Obtener la tarjeta del cliente
+        // Obtener el espacio seleccionado en el comboBox
+        String espacioSeleccionadoStr = (String) comboBoxEspaciosOcupados.getSelectedItem();
+        if (espacioSeleccionadoStr != null && !espacioSeleccionadoStr.equals("No hay espacios ocupados")) {
+            int numeroEspacioSeleccionado = Integer.parseInt(espacioSeleccionadoStr);
+
+            // Encontrar el espacio de parqueo correspondiente
+            EspacioDeParqueo espacioSeleccionado = null;
+            for (EspacioDeParqueo espacio : parqueo.getEspaciosParqueo()) {
+                if (espacio.getNumeroEspacio() == numeroEspacioSeleccionado) {
+                    espacioSeleccionado = espacio;
+                    break;
+                }
+            }
+
+            // Verificar que el espacio seleccionado no sea nulo
+            if (espacioSeleccionado != null) {
+                // Llamar al método pagar del cliente
+                cliente.pagar(parqueo, espacioSeleccionado, tarjetaCliente, codigoValidacionIngresado);
+
+                // Actualizar la interfaz gráfica después del pago
+                jLabelMontoAPagar.setText("0"); // Resetear el monto después del pago
+                jLabelTiempoGuardado.setText("0"); // Resetear el tiempo guardado después del pago
+
+                System.out.println("Pago procesado con éxito.");
+            } else {
+                System.out.println("Error: Espacio seleccionado no encontrado.");
+            }
+        } else {
+            System.out.println("Error: No se ha seleccionado un espacio.");
+        }
+    } catch (NumberFormatException e) {
+        System.out.println("Error: Ingrese un código de validación numérico válido.");
+    }
+        MenuCliente pantalla = new MenuCliente(cliente, parqueo);
+        pantalla.setVisible(true);
+        this.setVisible(false);
+
     }//GEN-LAST:event_btnAceptarActionPerformed
 
     /**
