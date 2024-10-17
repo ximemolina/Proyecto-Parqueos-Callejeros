@@ -4,6 +4,7 @@ package com.mycompany.proyectoparqueos;
 import java.util.ArrayList;
 import javax.swing.*;
 import java.awt.*;
+import java.io.File;
 
 public class MenuParquear extends javax.swing.JFrame {
     Cliente cliente;
@@ -349,7 +350,8 @@ public class MenuParquear extends javax.swing.JFrame {
                     break;  // Salir después de encontrar y mostrar el espacio 1
                 }
             }
-
+            File archivoParqueo = new File("Parqueo.txt");
+            parqueo.guardarParqueo(archivoParqueo); //actualizar el archivo 
             actualizarComboBoxCarros();  // Actualizar el ComboBox de los carros no parqueados
             llenarComboBoxEspaciosDeParqueo();  // Actualizar el ComboBox de los espacios disponibles
         } else {

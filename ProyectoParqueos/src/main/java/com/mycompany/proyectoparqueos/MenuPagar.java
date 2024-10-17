@@ -138,6 +138,11 @@ public class MenuPagar extends javax.swing.JFrame {
         });
 
         btnAceptar.setText("ACEPTAR");
+        btnAceptar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAceptarActionPerformed(evt);
+            }
+        });
 
         jLabel7.setFont(new java.awt.Font("Segoe UI Variable", 1, 18)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
@@ -153,9 +158,6 @@ public class MenuPagar extends javax.swing.JFrame {
                         .addContainerGap()
                         .addComponent(btnVolver1))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(259, 259, 259)
-                        .addComponent(btnAceptar, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(32, 32, 32)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
@@ -170,7 +172,10 @@ public class MenuPagar extends javax.swing.JFrame {
                                         .addComponent(jLabelMonto))
                                     .addComponent(jLabel2))
                                 .addGap(18, 18, 18)
-                                .addComponent(comboBoxEspaciosOcupados, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addComponent(comboBoxEspaciosOcupados, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(259, 259, 259)
+                        .addComponent(btnAceptar, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(202, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel1Layout.createSequentialGroup()
@@ -227,6 +232,10 @@ public class MenuPagar extends javax.swing.JFrame {
         pantalla.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_btnVolver1ActionPerformed
+
+    private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnAceptarActionPerformed
 
     /**
      * @param args the command line arguments

@@ -110,9 +110,9 @@ public class EspacioDeParqueo {
 
     public String toString(){
         try{
-            return getNumeroEspacio() +","+ getTiempoComprado() + "," + getCarro().getPlaca()+","+getCarro().getMarca()+","+getCarro().getModelo() + "," + getDisponible() +"\n";
+            return getNumeroEspacio() +","+ getTiempoComprado() +","+getHoraInicioParqueo()+ "," + getCarro().getPlaca()+","+getCarro().getMarca()+","+getCarro().getModelo() + "," + getDisponible() +"\n";
         }catch(NullPointerException e){
-            return getNumeroEspacio() +","+ getTiempoComprado() + "," +","+"," + "," + getDisponible() +"\n";
+            return getNumeroEspacio() +","+ getTiempoComprado() +","+getHoraInicioParqueo()+ "," +","+"," + "," + getDisponible() +"\n";
         }
     }
 }
