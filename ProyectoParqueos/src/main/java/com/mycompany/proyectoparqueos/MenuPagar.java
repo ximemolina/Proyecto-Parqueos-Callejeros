@@ -137,6 +137,8 @@ public class MenuPagar extends javax.swing.JFrame {
             }
         });
 
+        btnAceptar.setText("ACEPTAR");
+        btnAceptar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAceptarActionPerformed(evt);
             }
@@ -188,6 +190,8 @@ public class MenuPagar extends javax.swing.JFrame {
                                 .addComponent(comboBoxEspaciosOcupados, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel4)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(inpCodigoValidacion, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(238, 238, 238)
                         .addComponent(btnAceptar, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -256,6 +260,8 @@ public class MenuPagar extends javax.swing.JFrame {
         int codigoValidacionIngresado = Integer.parseInt(inpCodigoValidacion.getText());
 
         // Obtener la tarjeta del cliente
+        Tarjeta tarjetaCliente = cliente.getTarjeta();
+
         // Obtener el espacio seleccionado en el comboBox
         String espacioSeleccionadoStr = (String) comboBoxEspaciosOcupados.getSelectedItem();
         if (espacioSeleccionadoStr != null && !espacioSeleccionadoStr.equals("No hay espacios ocupados")) {
