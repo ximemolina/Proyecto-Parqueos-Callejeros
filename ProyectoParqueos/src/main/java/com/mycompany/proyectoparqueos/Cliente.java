@@ -240,6 +240,29 @@ public class Cliente extends Usuario {
         leer.close();
         return arreglo;
     }
+    
+    public void pagar(Parqueo parqueo, EspacioDeParqueo espacioSeleccionado, Tarjeta tarjeta, int codigoValidacionIngresado) {
+        // Verificar tarjeta y código de validación (igual que antes)
+        YearMonth fechaActual = YearMonth.now();
+        if (tarjeta.getFechaVencimiento().isBefore(fechaActual)) {
+            System.out.println("Error: La tarjeta está vencida.");
+            return;
+        }
+
+        if (tarjeta.getCodigoValidacion() != codigoValidacionIngresado) {
+            System.out.println("Error: Código de validación incorrecto.");
+            return;
+        }
+
+        // Calcular el monto total utilizando el método que incluye los minutos no utilizados
+        double montoTotal = espacioSeleccionado.calcularMontoAPagar(espacioSeleccionado, parqueo, this);
+        espacioSeleccionado.setEstadoPago(true);
+
+        // Realizar el pago
+        System.out.println("Pago realizado con éxito. Monto pagado: " + montoTotal + " colones.");
+    }
+
+
 
 }
        

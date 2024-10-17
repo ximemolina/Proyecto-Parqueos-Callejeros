@@ -74,8 +74,9 @@ public class MenuPagar extends javax.swing.JFrame {
 
                 // Calcular y mostrar el monto a pagar
                 if (espacioSeleccionado != null) {
-                    double monto = espacioSeleccionado.calcularMontoAPagar(espacioSeleccionado, parqueo);
+                    double monto = espacioSeleccionado.calcularMontoAPagar(espacioSeleccionado, parqueo,cliente);
                     jLabelMontoAPagar.setText(String.valueOf(monto));
+                    jLabelTiempoGuardado.setText("Tiempo guardado: "+String.valueOf(cliente.getMinsNoUtilizados()));
                 }
             }
         }
@@ -101,8 +102,10 @@ public class MenuPagar extends javax.swing.JFrame {
         jLabelMontoAPagar = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         btnVolver1 = new javax.swing.JButton();
+        jLabelTiempoGuardado = new javax.swing.JLabel();
         btnAceptar = new javax.swing.JButton();
-        jLabel7 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        inpCodigoValidacion = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -137,11 +140,20 @@ public class MenuPagar extends javax.swing.JFrame {
             }
         });
 
-        btnAceptar.setText("ACEPTAR");
+        jLabelTiempoGuardado.setFont(new java.awt.Font("Segoe UI Variable", 1, 18)); // NOI18N
+        jLabelTiempoGuardado.setForeground(new java.awt.Color(255, 255, 255));
+        jLabelTiempoGuardado.setText("Tiempo  guardado:");
 
-        jLabel7.setFont(new java.awt.Font("Segoe UI Variable", 1, 18)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel7.setText("Tiempo  guardado:");
+        btnAceptar.setText("ACEPTAR");
+        btnAceptar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAceptarActionPerformed(evt);
+            }
+        });
+
+        jLabel4.setFont(new java.awt.Font("Segoe UI Variable", 1, 18)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel4.setText("Ingrese el código de validación de la tarjeta:");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -153,9 +165,6 @@ public class MenuPagar extends javax.swing.JFrame {
                         .addContainerGap()
                         .addComponent(btnVolver1))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(259, 259, 259)
-                        .addComponent(btnAceptar, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(32, 32, 32)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
@@ -165,13 +174,20 @@ public class MenuPagar extends javax.swing.JFrame {
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                     .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(jLabel7)
+                                        .addComponent(jLabelTiempoGuardado)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addComponent(jLabelMonto))
                                     .addComponent(jLabel2))
                                 .addGap(18, 18, 18)
-                                .addComponent(comboBoxEspaciosOcupados, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(202, Short.MAX_VALUE))
+                                .addComponent(comboBoxEspaciosOcupados, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel4)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(inpCodigoValidacion, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(238, 238, 238)
+                        .addComponent(btnAceptar, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(98, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel1Layout.createSequentialGroup()
                     .addGap(272, 272, 272)
@@ -193,14 +209,18 @@ public class MenuPagar extends javax.swing.JFrame {
                         .addComponent(jLabelMonto, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(25, 25, 25))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabelTiempoGuardado, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabelMontoAPagar, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 82, Short.MAX_VALUE)
-                .addComponent(btnAceptar, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(100, 100, 100))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(inpCodigoValidacion, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 67, Short.MAX_VALUE)
+                .addComponent(btnAceptar, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(58, 58, 58))
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel1Layout.createSequentialGroup()
                     .addGap(32, 32, 32)
@@ -227,6 +247,52 @@ public class MenuPagar extends javax.swing.JFrame {
         pantalla.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_btnVolver1ActionPerformed
+
+    private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
+        try {
+        // Obtener el código de validación ingresado desde el text field
+        int codigoValidacionIngresado = Integer.parseInt(inpCodigoValidacion.getText());
+
+        // Obtener la tarjeta del cliente
+        Tarjeta tarjetaCliente = cliente.getTarjeta();
+
+        // Obtener el espacio seleccionado en el comboBox
+        String espacioSeleccionadoStr = (String) comboBoxEspaciosOcupados.getSelectedItem();
+        if (espacioSeleccionadoStr != null && !espacioSeleccionadoStr.equals("No hay espacios ocupados")) {
+            int numeroEspacioSeleccionado = Integer.parseInt(espacioSeleccionadoStr);
+
+            // Encontrar el espacio de parqueo correspondiente
+            EspacioDeParqueo espacioSeleccionado = null;
+            for (EspacioDeParqueo espacio : parqueo.getEspaciosParqueo()) {
+                if (espacio.getNumeroEspacio() == numeroEspacioSeleccionado) {
+                    espacioSeleccionado = espacio;
+                    break;
+                }
+            }
+
+            // Verificar que el espacio seleccionado no sea nulo
+            if (espacioSeleccionado != null) {
+                // Llamar al método pagar del cliente
+                cliente.pagar(parqueo, espacioSeleccionado, tarjetaCliente, codigoValidacionIngresado);
+
+                // Actualizar la interfaz gráfica después del pago
+                jLabelMontoAPagar.setText("0"); // Resetear el monto después del pago
+                jLabelTiempoGuardado.setText("0"); // Resetear el tiempo guardado después del pago
+
+                System.out.println("Pago procesado con éxito.");
+            } else {
+                System.out.println("Error: Espacio seleccionado no encontrado.");
+            }
+        } else {
+            System.out.println("Error: No se ha seleccionado un espacio.");
+        }
+    } catch (NumberFormatException e) {
+        System.out.println("Error: Ingrese un código de validación numérico válido.");
+    }
+        MenuCliente pantalla = new MenuCliente(cliente, parqueo);
+        pantalla.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_btnAceptarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -267,12 +333,14 @@ public class MenuPagar extends javax.swing.JFrame {
     private javax.swing.JButton btnAceptar;
     private javax.swing.JButton btnVolver1;
     private javax.swing.JComboBox<String> comboBoxEspaciosOcupados;
+    private javax.swing.JTextField inpCodigoValidacion;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabelMonto;
     private javax.swing.JLabel jLabelMontoAPagar;
+    private javax.swing.JLabel jLabelTiempoGuardado;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }
