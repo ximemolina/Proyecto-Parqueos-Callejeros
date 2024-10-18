@@ -15,6 +15,7 @@ public class MenuAdministrador extends javax.swing.JFrame {
         initComponents();
         setAdmin(pAdmin);
         setParqueo(parqueo);
+        revisarEspaciosParqueo();
     }
     
     public void setParqueo(Parqueo parqueo){
@@ -25,6 +26,22 @@ public class MenuAdministrador extends javax.swing.JFrame {
     public void setAdmin(Administrador administrador){
         admin = administrador;
     }
+    
+    private void revisarEspaciosParqueo() {
+        boolean todosEspaciosVacios = true;
+
+        // Recorrer los espacios del parqueo para verificar si alguno está ocupado
+        for (EspacioDeParqueo espacio : parqueo.getEspaciosParqueo()) {
+            if (!espacio.getDisponible()) {  // Si el espacio está ocupado, cambiamos el flag
+                todosEspaciosVacios = false;
+                break;
+            }
+        }
+
+        // Si todos los espacios están vacíos, habilitamos el botón
+        btnConfigurarParqueo1.setEnabled(todosEspaciosVacios);
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -236,9 +253,11 @@ public class MenuAdministrador extends javax.swing.JFrame {
     }//GEN-LAST:event_btnGenerarReporteActionPerformed
 
     private void btnConfigurarParqueo1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfigurarParqueo1ActionPerformed
+        
            MenuConfigurarParqueo pantalla = new MenuConfigurarParqueo(admin, parqueo);
            pantalla.setVisible(true);
            this.setVisible(false);
+        
     }//GEN-LAST:event_btnConfigurarParqueo1ActionPerformed
 
     private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
