@@ -19,7 +19,7 @@ public class MenuParquear extends javax.swing.JFrame {
         setCliente(cliente);
         setParqueo(parqueo);
         llenarComboBoxEspaciosDeParqueo();
-        llenarComboBoxCarros();
+        actualizarComboBoxCarros();
     }
     
     public void setCliente(Cliente cliente){
@@ -217,18 +217,7 @@ public class MenuParquear extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-    
-    private void llenarComboBoxCarros() {
-        comboBoxCarros.removeAllItems();  // Limpiar ComboBox antes de llenarlo
 
-        // Obtener la lista de carros del cliente
-        ArrayList<Carro> carrosDelCliente = cliente.getCarros();  // Suponiendo que tienes un método getCarros() en Cliente
-
-        // Llenar ComboBox con las placas de los carros
-        for (Carro carro : carrosDelCliente) {
-            comboBoxCarros.addItem(carro.getPlaca());  // Agregar la placa de cada carro al ComboBox
-        }
-    }
 
     private void comboBoxCarrosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboBoxCarrosActionPerformed
         if (comboBoxCarros.getSelectedItem() != null) {
@@ -267,9 +256,6 @@ public class MenuParquear extends javax.swing.JFrame {
         // Obtener la lista de carros del cliente
         ArrayList<Carro> carrosDelCliente = cliente.getCarros();
 
-        // Lista para almacenar los carros no parqueados
-        ArrayList<Carro> carrosNoParqueados = new ArrayList<>();
-
         // Recorrer todos los carros del cliente
         for (Carro carro : carrosDelCliente) {
             boolean estaParqueado = false;
@@ -278,27 +264,25 @@ public class MenuParquear extends javax.swing.JFrame {
             for (EspacioDeParqueo espacio : parqueo.getEspaciosParqueo()) {
                 if (espacio.getCarro() != null && espacio.getCarro().equals(carro)) {
                     estaParqueado = true;  // Si el carro está parqueado, lo marcamos
-                    break;  // No hace falta seguir buscando si ya encontramos que está parqueado
+                    break;  // Salimos del bucle si ya sabemos que está parqueado
                 }
             }
 
-            // Si el carro no está parqueado, lo agregamos a la lista de carros no parqueados
+            // Si el carro no está parqueado, lo agregamos al ComboBox
             if (!estaParqueado) {
-                carrosNoParqueados.add(carro);
+                comboBoxCarros.addItem(carro.getPlaca());  // Agregar la placa del carro no parqueado al ComboBox
+                System.out.println("Carro no parqueado agregado: " + carro.getPlaca());
+            } else {
+                System.out.println("Carro ya está parqueado: " + carro.getPlaca());
             }
         }
 
-        // Ahora llenamos el ComboBox solo con los carros que no están parqueados
-        for (Carro carro : carrosNoParqueados) {
-            comboBoxCarros.addItem(carro.getPlaca());  // Agregar la placa del carro no parqueado al ComboBox
-        }
-
         // Si no quedan carros disponibles, agregar un mensaje
-        if (carrosNoParqueados.isEmpty()) {
+        if (comboBoxCarros.getItemCount() == 0) {
             comboBoxCarros.addItem("No hay carros disponibles para parquear");
         }
     }
-    
+
     
 
     
@@ -331,11 +315,11 @@ public class MenuParquear extends javax.swing.JFrame {
     }//GEN-LAST:event_comboBoxEspaciosDeParqueoActionPerformed
 
     private void BtnAceptarParquearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAceptarParquearActionPerformed
-       if (carroSeleccionado == null || espacioSeleccionado == null) {
-            JOptionPane.showMessageDialog(null, "Error: Selecciona un carro y un espacio.", "Error", JOptionPane.ERROR_MESSAGE);
-            return;
-        }
-
+       if (comboBoxCarros.getSelectedItem() == null || comboBoxCarros.getSelectedItem().equals("No hay carros disponibles para parquear")) {
+            JOptionPane.showMessageDialog(null, "Error: No hay carros disponibles para parquear.", "Error", JOptionPane.ERROR_MESSAGE);
+            return; // Salir de la función si no hay carros disponibles
+}
+       
         if (espacioSeleccionado != null) {
             try {
                 int tiempoAgregar = Integer.parseInt(inpTiempoComprado.getText());
