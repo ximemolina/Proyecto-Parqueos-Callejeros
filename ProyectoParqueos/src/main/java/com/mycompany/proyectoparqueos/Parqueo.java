@@ -23,6 +23,8 @@ public class Parqueo {
     private LocalTime cierra;
     private int costoMulta;
     private ArrayList<EspacioDeParqueo> espaciosParqueo;
+    private HistorialMultas historialMultas;
+    private HistorialParqueo historialParqueo;
     
     public Parqueo(String pCodigoTerminal, int pTiempoMinimo, int pPrecioHora, String pAbre, String pCierra, int pCostoMulta){
         setCodigoTerminal(pCodigoTerminal);
@@ -33,8 +35,22 @@ public class Parqueo {
         setCostoMulta(pCostoMulta);
         espaciosParqueo = new ArrayList<>();
     }
-    
-    
+
+    public void setHistorialMultas(HistorialMultas historialMultas) {
+        this.historialMultas = historialMultas;
+    }
+
+    public void setHistorialParqueo(HistorialParqueo historialParqueo) {
+        this.historialParqueo = historialParqueo;
+    }
+
+    public HistorialMultas getHistorialMultas() {
+        return historialMultas;
+    }
+
+    public HistorialParqueo getHistorialParqueo() {
+        return historialParqueo;
+    }
     
     //retorna toda la informacion del parqueo en un String
     public String toString(){
