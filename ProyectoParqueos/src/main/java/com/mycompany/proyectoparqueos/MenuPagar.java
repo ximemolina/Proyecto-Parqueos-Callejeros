@@ -150,12 +150,6 @@ public class MenuPagar extends javax.swing.JFrame {
                 btnAceptarActionPerformed(evt);
             }
         });
-        btnAceptar.setText("ACEPTAR");
-        btnAceptar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAceptarActionPerformed(evt);
-            }
-        });
 
         jLabel4.setFont(new java.awt.Font("Segoe UI Variable", 1, 18)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
@@ -185,13 +179,15 @@ public class MenuPagar extends javax.swing.JFrame {
                                         .addComponent(jLabelMonto))
                                     .addComponent(jLabel2))
                                 .addGap(18, 18, 18)
-
-                                .addComponent(comboBoxEspaciosOcupados, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addComponent(comboBoxEspaciosOcupados, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel4)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(inpCodigoValidacion, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(259, 259, 259)
-                        .addComponent(btnAceptar, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(202, Short.MAX_VALUE))
-
+                        .addGap(238, 238, 238)
+                        .addComponent(btnAceptar, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(98, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel1Layout.createSequentialGroup()
                     .addGap(272, 272, 272)
@@ -253,7 +249,6 @@ public class MenuPagar extends javax.swing.JFrame {
     }//GEN-LAST:event_btnVolver1ActionPerformed
 
     private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
-
         try {
         // Obtener el código de validación ingresado desde el text field
         int codigoValidacionIngresado = Integer.parseInt(inpCodigoValidacion.getText());
@@ -297,8 +292,6 @@ public class MenuPagar extends javax.swing.JFrame {
         MenuCliente pantalla = new MenuCliente(cliente, parqueo);
         pantalla.setVisible(true);
         this.setVisible(false);
-
-
     }//GEN-LAST:event_btnAceptarActionPerformed
 
     /**
