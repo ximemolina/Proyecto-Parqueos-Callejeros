@@ -16,6 +16,10 @@ public class Multa {
         this.estadoPago = false;
     }
     
+    public String toString(){
+        return carro.getPlaca()+"," + carro.getModelo()+","+carro.getMarca()+","+getCostoMulta()+","+ getFechaMulta();
+    }
+    
     public void setCarro(Carro carro){
         this.carro = carro;
     }
