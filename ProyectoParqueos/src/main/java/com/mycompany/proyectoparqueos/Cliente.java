@@ -91,7 +91,7 @@ public class Cliente extends Usuario {
                 System.out.println("El carro con placa " + carro.getPlaca() + " ha sido desaparcado.");
                 return true;  // Desaparcar con éxito
             }
-        }           
+        }
         System.out.println("El carro con placa " + carro.getPlaca() + " no está estacionado en este parqueo.");
         return false;  // No se encontró el carro en el parqueo
         }

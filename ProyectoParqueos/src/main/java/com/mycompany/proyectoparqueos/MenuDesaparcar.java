@@ -4,7 +4,6 @@
  */
 package com.mycompany.proyectoparqueos;
 
-import java.io.*;
 import java.util.ArrayList;
 /**
  *
@@ -202,8 +201,6 @@ public class MenuDesaparcar extends javax.swing.JFrame {
         if (resultado) {
             System.out.println("El carro con placa " + carroSeleccionado.getPlaca() + " ha sido desaparcado.");
             parqueo.mostrarEspaciosYCarros();
-            File archivoParqueo = new File("Parqueo.txt"); 
-            parqueo.guardarParqueo(archivoParqueo); //actualiza archivos
             llenarComboBoxCarrosAparcados();  // Actualizar el comboBox después de desaparcar
         } else {
             System.out.println("Error al desaparcar el carro.");
