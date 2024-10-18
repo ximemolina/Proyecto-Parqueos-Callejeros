@@ -8,6 +8,7 @@ public class EspacioDeParqueo {
     private Carro carro;
     private boolean disponible;
     private LocalDateTime horaInicioParqueo;
+    private LocalDateTime horaFinParqueo;
 
     // Constructor
     public EspacioDeParqueo(int pNumeroEspacio){
@@ -15,7 +16,9 @@ public class EspacioDeParqueo {
         tiempoComprado = 0;
         carro = null;
         disponible = true;
-        horaInicioParqueo = null;  // Inicializa en null hasta que el carro se parquea
+        estadoPago = false;
+        horaInicioParqueo = null;
+        horaInicioParqueo = null;
     }
     
     public void setNumeroEspacio(int pNumeroEspacio) {   
@@ -51,6 +54,12 @@ public class EspacioDeParqueo {
         }
     }
     
+    public void setHoraFinParqueo(LocalDateTime horaFinParqueo){
+        if (horaFinParqueo != null){
+            this.horaFinParqueo = horaFinParqueo;
+        }
+    }
+    
     public int getNumeroEspacio(){
         return numeroEspacio;
     }
@@ -61,6 +70,10 @@ public class EspacioDeParqueo {
     
     public Carro getCarro(){
         return carro;
+    }
+    
+    public boolean getEstadoPago(){
+        return estadoPago;
     }
     
     public boolean getDisponible(){

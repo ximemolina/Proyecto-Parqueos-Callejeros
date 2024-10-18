@@ -172,6 +172,7 @@ public class AñadirCarroCliente extends javax.swing.JFrame {
             String placa = inpPlaca.getText();
             String marca = inpMarca.getText();
             String modelo = inpModelo.getText();
+            Cliente propietario = cliente;
             cliente.agregarCarro(placa, marca, modelo);
             inpPlaca.setText("");
             inpMarca.setText("");

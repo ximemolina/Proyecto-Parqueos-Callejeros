@@ -4,7 +4,10 @@
  */
 package com.mycompany.proyectoparqueos;
 
+import java.io.File;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Admin
@@ -182,9 +185,9 @@ public class MenuDesaparcar extends javax.swing.JFrame {
     }//GEN-LAST:event_btnVolverActionPerformed
 
     private void btnAceptarDesaparcarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarDesaparcarActionPerformed
-         String placaSeleccionada = (String) comboBoxCarrosAparcados.getSelectedItem();
+        String placaSeleccionada = (String) comboBoxCarrosAparcados.getSelectedItem();
         if (placaSeleccionada == null || placaSeleccionada.equals("No hay carros aparcados")) {
-            System.out.println("No hay carros seleccionados para desaparcar.");
+            JOptionPane.showMessageDialog(null, "No hay carros seleccionados para desaparcar.", "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
 
@@ -197,14 +200,16 @@ public class MenuDesaparcar extends javax.swing.JFrame {
         }
 
         // Llamar al método desaparcar del cliente
-        boolean resultado = cliente.desaparcar(carroSeleccionado, parqueo);
+        File archivoParqueo = new File("Parqueo.txt");
+        boolean resultado = cliente.desaparcar(carroSeleccionado, parqueo, archivoParqueo);
         if (resultado) {
-            System.out.println("El carro con placa " + carroSeleccionado.getPlaca() + " ha sido desaparcado.");
+            JOptionPane.showMessageDialog(null, "El carro con placa " + carroSeleccionado.getPlaca() + " ha sido desaparcado.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
             parqueo.mostrarEspaciosYCarros();
             llenarComboBoxCarrosAparcados();  // Actualizar el comboBox después de desaparcar
         } else {
-            System.out.println("Error al desaparcar el carro.");
+            JOptionPane.showMessageDialog(null, "Error al desaparcar el carro.", "Error", JOptionPane.ERROR_MESSAGE);
         }
+
     }//GEN-LAST:event_btnAceptarDesaparcarActionPerformed
     
     

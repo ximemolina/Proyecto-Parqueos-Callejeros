@@ -10,11 +10,13 @@ import java.io.PrintWriter;
 
 import java.util.ArrayList;
 import java.time.*;
+import java.util.HashSet;
 
 public class Cliente extends Usuario { 
     private ArrayList<Carro> carros;  // Lista de carros asociados al cliente
     private Tarjeta tarjeta;
     private int minsNoUtilizados;
+    
     // Constructor
     public Cliente(String pNombre, String pApellido, String pTelefono, String pCorreo, String pDireccionFisica, LocalDate pFechaIngreso,String pPin, String pIdentificacionUsuario,long pNumTarjeta,int pMes, int pAño, int pCodValidacion, int minNoUtilizado) {
         super(pNombre, pApellido, pTelefono, pCorreo, pDireccionFisica,pFechaIngreso, pPin, pIdentificacionUsuario);
@@ -69,11 +71,15 @@ public class Cliente extends Usuario {
         return super.toString() + ","+ tarjeta.getNumeroTarjeta() + "," + tarjeta.getFechaVencimiento() + "," + tarjeta.getCodigoValidacion() +","+minsNoUtilizados+ listaCarros;
     }
     
-    public boolean parquear(Carro carro, EspacioDeParqueo espacioSeleccionado) {
+    public boolean parquear(Carro carro, EspacioDeParqueo espacioSeleccionado, Parqueo parqueo, File archivoParqueo) {
         
         if (espacioSeleccionado.getDisponible()) { 
             espacioSeleccionado.setCarro(carro);  
-            espacioSeleccionado.setDisponible(false); 
+            espacioSeleccionado.setDisponible(false);
+            LocalDateTime horaInicioParqueo = LocalDateTime.now();
+            espacioSeleccionado.setHoraInicioParqueo(horaInicioParqueo);
+            parqueo.guardarParqueo(archivoParqueo);
+            
 
             System.out.println("Carro parqueado en el espacio: " + espacioSeleccionado.getNumeroEspacio());
             return true;  
@@ -83,11 +89,17 @@ public class Cliente extends Usuario {
             return false;  
         }
         
-    public boolean desaparcar(Carro carro, Parqueo parqueo) {
+    public boolean desaparcar(Carro carro, Parqueo parqueo, File archivoParqueo) {
         // Buscar en la lista de espacios del parqueo el carro a desaparcar
         for (EspacioDeParqueo espacio : parqueo.getEspaciosParqueo()) {
             if (espacio.getCarro() != null && espacio.getCarro().equals(carro)) {
+                espacio.setTiempoComprado(0);
                 espacio.setCarro(null);  // Liberar el espacio
+                espacio.setDisponible(true);
+                LocalDateTime horaFinParqueo = LocalDateTime.now();
+                espacio.setHoraFinParqueo(horaFinParqueo);
+                // PRIMERO SE DEBE GUARDAR EN HISTORIAL
+                parqueo.guardarParqueo(archivoParqueo);
                 System.out.println("El carro con placa " + carro.getPlaca() + " ha sido desaparcado.");
                 return true;  // Desaparcar con éxito
             }
