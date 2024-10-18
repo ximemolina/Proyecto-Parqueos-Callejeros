@@ -9,6 +9,10 @@ import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import javax.swing.JOptionPane;
+import java.time.Duration;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 
 
 public class Parqueo {
@@ -28,7 +32,11 @@ public class Parqueo {
         setCierra(pCierra);
         setCostoMulta(pCostoMulta);
         espaciosParqueo = new ArrayList<>();
+        ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
+        scheduler.scheduleAtFixedRate(() -> verificarEspacios(), 0, 1, TimeUnit.MINUTES);
     }
+    
+    
     
     //retorna toda la informacion del parqueo en un String
     public String toString(){
@@ -39,6 +47,22 @@ public class Parqueo {
         return getCodigoTerminal()+"\n"+getTiempoMinimo()+"\n"+getPrecioHora()+"\n"+ getAbre()+"\n"+getCierra()+"\n"+getCostoMulta()+"\n"+info;
     
     }
+    
+    public void verificarEspacios() {
+        for (EspacioDeParqueo espacio : espaciosParqueo) {
+            if (!espacio.getDisponible()) {
+                long minutosRestantes = espacio.calcularTiempoRestante();
+                if (minutosRestantes <= 0) {
+                    // Liberar el espacio automáticamente si el tiempo ha expirado
+                    espacio.setCarro(null);  // Remover el carro del espacio
+                    espacio.setDisponible(true);  // Marcar el espacio como disponible
+                    espacio.setTiempoComprado(0);  // Resetear el tiempo comprado
+                    System.out.println("El espacio " + espacio.getNumeroEspacio() + " ha quedado disponible automáticamente.");
+                }
+            }
+        }
+    }
+        
     //setters
     public void setCodigoTerminal(String codigoTerminal) {
         if (codigoTerminal != null && codigoTerminal.length() == 6) {
