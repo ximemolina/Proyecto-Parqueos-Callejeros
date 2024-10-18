@@ -32,8 +32,6 @@ public class Parqueo {
         setCierra(pCierra);
         setCostoMulta(pCostoMulta);
         espaciosParqueo = new ArrayList<>();
-        ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
-        scheduler.scheduleAtFixedRate(() -> verificarEspacios(), 0, 1, TimeUnit.MINUTES);
     }
     
     
@@ -48,20 +46,6 @@ public class Parqueo {
     
     }
     
-    public void verificarEspacios() {
-        for (EspacioDeParqueo espacio : espaciosParqueo) {
-            if (!espacio.getDisponible()) {
-                long minutosRestantes = espacio.calcularTiempoRestante();
-                if (minutosRestantes <= 0) {
-                    // Liberar el espacio automáticamente si el tiempo ha expirado
-                    espacio.setCarro(null);  // Remover el carro del espacio
-                    espacio.setDisponible(true);  // Marcar el espacio como disponible
-                    espacio.setTiempoComprado(0);  // Resetear el tiempo comprado
-                    System.out.println("El espacio " + espacio.getNumeroEspacio() + " ha quedado disponible automáticamente.");
-                }
-            }
-        }
-    }
         
     //setters
     public void setCodigoTerminal(String codigoTerminal) {
