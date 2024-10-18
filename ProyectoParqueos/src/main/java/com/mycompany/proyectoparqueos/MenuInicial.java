@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.time.*;
 import javax.swing.JOptionPane;
 
 public class MenuInicial extends javax.swing.JFrame {///FALTA AÑADIR PARA QUE SE ACTUALICE ARCHIVO DE PARQUEOS CUANDO ALGUIEN PARA O DESPARCA 
@@ -24,11 +25,10 @@ public class MenuInicial extends javax.swing.JFrame {///FALTA AÑADIR PARA QUE S
                     leerArchivo(parqueo);
                     //System.out.println(parqueo.toString());
                 }catch(Exception e){
-                    
+                    e.printStackTrace();
                 }
-            }
-            else 
-                setParqueo(parqueo);
+            } 
+            setParqueo(parqueo);
         }
         
         catch(Exception e){
@@ -206,9 +206,11 @@ public class MenuInicial extends javax.swing.JFrame {///FALTA AÑADIR PARA QUE S
                             Carro carro = new Carro(lista[2], lista[3], lista[4]);
                             espacio.setCarro(carro);
                         }
-                        
-                        espacio.setDisponible(Boolean.parseBoolean(lista[5]));
-                        //System.out.println(espacio.toString());
+                        if(!String.valueOf(lista[5]).equals("null")){
+                            espacio.setHoraInicioParqueo(LocalDateTime.parse(lista[5]));}
+                        if(!String.valueOf(lista[6]).equals("null")){
+                            espacio.setHoraFinParqueo(LocalDateTime.parse(lista[6]));}
+                        espacio.setDisponible(Boolean.parseBoolean(lista[7]));
                         parqueo.agregarEspacioParqueo(espacio);
                     }
                     
