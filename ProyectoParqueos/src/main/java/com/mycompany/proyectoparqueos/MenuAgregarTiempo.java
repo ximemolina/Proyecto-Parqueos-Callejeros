@@ -4,6 +4,8 @@
  */
 package com.mycompany.proyectoparqueos;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Admin
@@ -205,35 +207,38 @@ public class MenuAgregarTiempo extends javax.swing.JFrame {
 
     private void btnAceptarAgregarTiempoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarAgregarTiempoActionPerformed
         if (comboBoxEspaciosOcupados.getSelectedItem() != null) {
-        String espacioSeleccionadoStr = (String) comboBoxEspaciosOcupados.getSelectedItem();
-        int numeroEspacioSeleccionado = Integer.parseInt(espacioSeleccionadoStr);
+            String espacioSeleccionadoStr = (String) comboBoxEspaciosOcupados.getSelectedItem();
+            int numeroEspacioSeleccionado = Integer.parseInt(espacioSeleccionadoStr);
 
-        // Buscar el espacio correspondiente en el parqueo
-        EspacioDeParqueo espacioSeleccionado = null;
-        for (EspacioDeParqueo espacio : parqueo.getEspaciosParqueo()) {
-            if (espacio.getNumeroEspacio() == numeroEspacioSeleccionado) {
-                espacioSeleccionado = espacio;
-                break;
+            // Buscar el espacio correspondiente en el parqueo
+            EspacioDeParqueo espacioSeleccionado = null;
+            for (EspacioDeParqueo espacio : parqueo.getEspaciosParqueo()) {
+                if (espacio.getNumeroEspacio() == numeroEspacioSeleccionado) {
+                    espacioSeleccionado = espacio;
+                    break;
+                }
             }
-        }
 
-        // Verificar si se encontró el espacio y se ingresó una cantidad de tiempo
-        if (espacioSeleccionado != null) {
-            try {
-                int tiempoAgregar = Integer.parseInt(inpTiempoComprado.getText());
+            // Verificar si se encontró el espacio y se ingresó una cantidad de tiempo
+            if (espacioSeleccionado != null) {
+                try {
+                    int tiempoAgregar = Integer.parseInt(inpTiempoComprado.getText());
 
-                // Validar y actualizar el tiempo comprado
-                cliente.comprarTiempo(tiempoAgregar, espacioSeleccionado, parqueo);
-                
-                // Mensaje de éxito
-                System.out.println("Tiempo agregado exitosamente.");
-            } catch (NumberFormatException e) {
-                System.out.println("Error: Ingresa un número válido para el tiempo.");
+                    // Validar y actualizar el tiempo comprado
+                    cliente.comprarTiempo(tiempoAgregar, espacioSeleccionado, parqueo);
+
+                    // Mensaje de éxito
+                    System.out.println("Tiempo agregado exitosamente.");
+                } catch (NumberFormatException e) {
+                    JOptionPane.showMessageDialog(null, "Error: Ingresa un número válido para el tiempo.", "Error", JOptionPane.ERROR_MESSAGE);
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "Error: No se encontró el espacio seleccionado.", "Error", JOptionPane.ERROR_MESSAGE);
             }
         } else {
-            System.out.println("Error: No se encontró el espacio seleccionado.");
+            JOptionPane.showMessageDialog(null, "Error: No se ha seleccionado ningún espacio.", "Error", JOptionPane.ERROR_MESSAGE);
         }
-    }
+
     }//GEN-LAST:event_btnAceptarAgregarTiempoActionPerformed
 
     /**

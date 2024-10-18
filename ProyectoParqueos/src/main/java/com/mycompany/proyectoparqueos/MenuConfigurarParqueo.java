@@ -1,6 +1,7 @@
 package com.mycompany.proyectoparqueos;
 
 import java.io.File;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -411,17 +412,18 @@ public class MenuConfigurarParqueo extends javax.swing.JFrame {
     }//GEN-LAST:event_inpCostoMultaActionPerformed
 // </editor-fold >  
     private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
+                                    
         String abreText = inpHorarioAbre.getText();
         String cierraText = inpHorarioCierra.getText();
         parqueo.setAbre(abreText);
         parqueo.setCierra(cierraText);
-        
+
         try {
             int precioHora = Integer.parseInt(inpPrecioPorHora.getText());
             parqueo.setPrecioHora(precioHora);
         } 
         catch (NumberFormatException e) {
-            throw new ValidacionesExceptions("Por favor, ingresa un número válido para el precio por hora.");
+            JOptionPane.showMessageDialog(null, "Por favor, ingresa un número válido para el precio por hora.", "Error", JOptionPane.ERROR_MESSAGE);
         }
 
         try {
@@ -429,7 +431,7 @@ public class MenuConfigurarParqueo extends javax.swing.JFrame {
             parqueo.setTiempoMinimo(tiempoMinimo);
         } 
         catch (NumberFormatException e) {
-            throw new ValidacionesExceptions("Por favor, ingresa un número válido para el tiempo mínimo.");
+            JOptionPane.showMessageDialog(null, "Por favor, ingresa un número válido para el tiempo mínimo.", "Error", JOptionPane.ERROR_MESSAGE);
         }
 
         try {
@@ -437,61 +439,58 @@ public class MenuConfigurarParqueo extends javax.swing.JFrame {
             parqueo.setCostoMulta(costoMulta);
         } 
         catch (NumberFormatException e) {
-            throw new ValidacionesExceptions("Por favor, ingresa un número válido para el costo de la multa.");
+            JOptionPane.showMessageDialog(null, "Por favor, ingresa un número válido para el costo de la multa.", "Error", JOptionPane.ERROR_MESSAGE);
         }
 
-        
         // Agregar Espacios
         try {
-    
             if (!inpAgregarDesde.getText().isEmpty() && !inpAgregarHasta.getText().isEmpty()) {
                 int agregarDesde = Integer.parseInt(inpAgregarDesde.getText());
                 int agregarHasta = Integer.parseInt(inpAgregarHasta.getText());
 
-        
                 if (agregarDesde < agregarHasta) {
                     parqueo.agregarGrupoEspacios(agregarDesde, agregarHasta);
                 } else {
-                    throw new ValidacionesExceptions("El valor 'Desde' debe ser menor que 'Hasta'.");
+                    JOptionPane.showMessageDialog(null, "El valor 'Desde' debe ser menor que 'Hasta'.", "Error", JOptionPane.ERROR_MESSAGE);
                 }
             } else {
-            System.out.println("No se agregó ningún espacio porque los campos están vacíos.");
-        }
+                System.out.println("No se agregó ningún espacio porque los campos están vacíos.");
+            }
         } catch (NumberFormatException e) {
-            throw new ValidacionesExceptions("Por favor ingresa números válidos para los espacios.");
+            JOptionPane.showMessageDialog(null, "Por favor ingresa números válidos para los espacios.", "Error", JOptionPane.ERROR_MESSAGE);
         } catch (Exception e) {
-            throw new ValidacionesExceptions("Ocurrió un error inesperado: " + e.getMessage());
+            JOptionPane.showMessageDialog(null, "Ocurrió un error inesperado: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
 
         // Eliminar Espacios
         try {
-            
             if (!inpEliminarDesde.getText().isEmpty() && !inpEliminarHasta.getText().isEmpty()) {
                 int eliminarDesde = Integer.parseInt(inpEliminarDesde.getText());
                 int eliminarHasta = Integer.parseInt(inpEliminarHasta.getText());
 
-        
                 if (eliminarDesde < eliminarHasta) {
-                    parqueo.agregarGrupoEspacios(eliminarDesde, eliminarHasta);
+                    parqueo.eliminarGrupoEspacios(eliminarDesde, eliminarHasta);
                 } else {
-                    throw new ValidacionesExceptions("El valor 'Desde' debe ser menor que 'Hasta'.");
+                    JOptionPane.showMessageDialog(null, "El valor 'Desde' debe ser menor que 'Hasta'.", "Error", JOptionPane.ERROR_MESSAGE);
                 }
             } else {
-            
-            System.out.println("No se elimino ningún espacio porque los campos están vacíos.");
-        }
+                System.out.println("No se eliminó ningún espacio porque los campos están vacíos.");
+            }
         } catch (NumberFormatException e) {
-            throw new ValidacionesExceptions("Por favor ingresa números válidos para los espacios.");
+            JOptionPane.showMessageDialog(null, "Por favor ingresa números válidos para los espacios.", "Error", JOptionPane.ERROR_MESSAGE);
         } catch (Exception e) {
-            throw new ValidacionesExceptions("Ocurrió un error inesperado: " + e.getMessage());
+            JOptionPane.showMessageDialog(null, "Ocurrió un error inesperado: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
-        //guardar informacion en archivo de Parqueo
+
+        // Guardar información en archivo de Parqueo
         File archivoParqueo = new File("Parqueo.txt");
         parqueo.guardarParqueo(archivoParqueo);
-        
+
         MenuAdministrador pantalla = new MenuAdministrador(admin, parqueo);
         pantalla.setVisible(true);
         this.setVisible(false);
+
+
         
     }//GEN-LAST:event_btnAceptarActionPerformed
 // <editor-fold defaultstate="collapsed" desc="Inputs"> 

@@ -4,6 +4,8 @@ package com.mycompany.proyectoparqueos;
 import java.util.ArrayList;
 import javax.swing.*;
 import java.awt.*;
+import java.io.File;
+
 
 public class MenuParquear extends javax.swing.JFrame {
     Cliente cliente;
@@ -329,42 +331,43 @@ public class MenuParquear extends javax.swing.JFrame {
     }//GEN-LAST:event_comboBoxEspaciosDeParqueoActionPerformed
 
     private void BtnAceptarParquearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAceptarParquearActionPerformed
-                // Verificar si el carro y el espacio han sido seleccionados
-        if (carroSeleccionado == null || espacioSeleccionado == null) {
-            System.out.println("Error: Selecciona un carro y un espacio.");
+       if (carroSeleccionado == null || espacioSeleccionado == null) {
+            JOptionPane.showMessageDialog(null, "Error: Selecciona un carro y un espacio.", "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
+
         if (espacioSeleccionado != null) {
             try {
                 int tiempoAgregar = Integer.parseInt(inpTiempoComprado.getText());
 
                 // Validar y actualizar el tiempo comprado
                 cliente.comprarTiempo(tiempoAgregar, espacioSeleccionado, parqueo);
-                
+
                 // Mensaje de éxito
-                System.out.println("Tiempo agregado exitosamente.");
+                JOptionPane.showMessageDialog(null, "Tiempo agregado exitosamente.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
             } catch (NumberFormatException e) {
-                System.out.println("Error: Ingresa un número válido para el tiempo.");
+                JOptionPane.showMessageDialog(null, "Error: Ingresa un número válido para el tiempo.", "Error", JOptionPane.ERROR_MESSAGE);
             }
         } else {
-            System.out.println("Error: No se encontró el espacio seleccionado.");
+            JOptionPane.showMessageDialog(null, "Error: No se encontró el espacio seleccionado.", "Error", JOptionPane.ERROR_MESSAGE);
         }
-    
+
         // Intentar parquear el carro en el espacio
-        boolean parqueoExitoso = cliente.parquear(carroSeleccionado, espacioSeleccionado);
+        File archivoParqueo = new File("Parqueo.txt");
+        boolean parqueoExitoso = cliente.parquear(carroSeleccionado, espacioSeleccionado, parqueo, archivoParqueo);
 
         // Si el parqueo fue exitoso, actualizamos las listas
         if (parqueoExitoso) {
-            System.out.println("Estado del espacio 1 después de parquear:");
+            JOptionPane.showMessageDialog(null, "Carro parqueado exitosamente.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
 
             // Buscar el espacio 1 y mostrar su estado directamente
             for (EspacioDeParqueo espacio : parqueo.getEspaciosParqueo()) {
                 if (espacio.getNumeroEspacio() == 1) {  // Verifica si es el espacio 1
                     Carro carro = espacio.getCarro();
                     if (carro != null) {
-                        System.out.println("Espacio 1 - Ocupado por carro: " + carro.getPlaca());
+                        JOptionPane.showMessageDialog(null, "Espacio 1 - Ocupado por carro: " + carro.getPlaca(), "Información", JOptionPane.INFORMATION_MESSAGE);
                     } else {
-                        System.out.println("Espacio 1 - Libre");
+                        JOptionPane.showMessageDialog(null, "Espacio 1 - Libre", "Información", JOptionPane.INFORMATION_MESSAGE);
                     }
                     break;  // Salir después de encontrar y mostrar el espacio 1
                 }
@@ -373,8 +376,9 @@ public class MenuParquear extends javax.swing.JFrame {
             actualizarComboBoxCarros();  // Actualizar el ComboBox de los carros no parqueados
             llenarComboBoxEspaciosDeParqueo();  // Actualizar el ComboBox de los espacios disponibles
         } else {
-            System.out.println("No se pudo parquear el carro.");
-        }
+            JOptionPane.showMessageDialog(null, "No se pudo parquear el carro.", "Error", JOptionPane.ERROR_MESSAGE);
+}
+
     }//GEN-LAST:event_BtnAceptarParquearActionPerformed
 
     private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed

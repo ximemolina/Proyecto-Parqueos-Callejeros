@@ -45,6 +45,7 @@ public class Carro {
         return modelo;
     }
     
+    
     @Override
     public boolean equals(Object obj) {
         if (this == obj) {

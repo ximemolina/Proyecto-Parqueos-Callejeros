@@ -161,7 +161,9 @@ public class MenuInspector extends javax.swing.JFrame {
     }//GEN-LAST:event_btnVolverActionPerformed
 
     private void btnRevisarParqueoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRevisarParqueoActionPerformed
-
+        MenuRevisarParqueo pantalla = new MenuRevisarParqueo(inspector, parqueo);
+        pantalla.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_btnRevisarParqueoActionPerformed
 
     private void btnEliminarInspectorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarInspectorActionPerformed
