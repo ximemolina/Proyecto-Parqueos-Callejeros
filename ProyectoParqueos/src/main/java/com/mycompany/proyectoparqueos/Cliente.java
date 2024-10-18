@@ -10,7 +10,7 @@ import java.io.PrintWriter;
 
 import java.util.ArrayList;
 import java.time.*;
-import java.util.HashSet;
+
 
 public class Cliente extends Usuario { 
     private ArrayList<Carro> carros;  // Lista de carros asociados al cliente
@@ -76,6 +76,7 @@ public class Cliente extends Usuario {
         if (espacioSeleccionado.getDisponible()) { 
             espacioSeleccionado.setCarro(carro);  
             espacioSeleccionado.setDisponible(false);
+            espacioSeleccionado.setHoraFinParqueo(null);
             LocalDateTime horaInicioParqueo = LocalDateTime.now();
             espacioSeleccionado.setHoraInicioParqueo(horaInicioParqueo);
             parqueo.guardarParqueo(archivoParqueo);

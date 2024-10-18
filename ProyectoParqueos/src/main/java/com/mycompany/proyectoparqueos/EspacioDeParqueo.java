@@ -88,6 +88,10 @@ public class EspacioDeParqueo {
     public LocalDateTime getHoraInicioParqueo(){
         return horaInicioParqueo;
     }
+
+    public LocalDateTime getHoraFinParqueo() {
+        return horaFinParqueo;
+    }
     
     public long calcularTiempoParqueo(EspacioDeParqueo espacio) {
         LocalDateTime horaInicio = espacio.getHoraInicioParqueo();
@@ -167,9 +171,9 @@ public class EspacioDeParqueo {
 
     public String toString(){
         try{
-            return getNumeroEspacio() +","+ getTiempoComprado() + "," + getCarro().getPlaca()+","+getCarro().getMarca()+","+getCarro().getModelo() + "," + getDisponible() +"\n";
+            return getNumeroEspacio() +","+ getTiempoComprado() + "," + getCarro().getPlaca()+","+getCarro().getMarca()+","+getCarro().getModelo() +","+getHoraInicioParqueo()+","+getHoraFinParqueo()+ "," + getDisponible() +"\n";
         }catch(NullPointerException e){
-            return getNumeroEspacio() +","+ getTiempoComprado() + "," +","+"," + "," + getDisponible() +"\n";
+            return getNumeroEspacio() +","+ getTiempoComprado() + "," +","+"," + "," +getHoraInicioParqueo()+","+getHoraFinParqueo()+ ","+ getDisponible() +"\n";
         }
     }
 }
