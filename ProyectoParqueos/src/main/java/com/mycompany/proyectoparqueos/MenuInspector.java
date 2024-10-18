@@ -1,6 +1,7 @@
 
 package com.mycompany.proyectoparqueos;
 
+import java.io.File;
 import javax.swing.JOptionPane;
 
 public class MenuInspector extends javax.swing.JFrame {
@@ -155,7 +156,11 @@ public class MenuInspector extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
-        MenuInicial pantalla = new MenuInicial(parqueo);
+        //crear ventana de menu inicial
+        File archivoParqueo = new File("Parqueo.txt");
+        parqueo.guardarParqueo(archivoParqueo);
+        Parqueo parqueo2 = new Parqueo("000000", 0, 0, "00:00", "00:01", 0);
+        MenuInicial pantalla = new MenuInicial(parqueo2);
         pantalla.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_btnVolverActionPerformed
