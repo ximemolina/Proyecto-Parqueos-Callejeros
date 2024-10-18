@@ -108,7 +108,7 @@ public class MenuAdministrador extends javax.swing.JFrame {
         });
 
         btnVolver.setBackground(new java.awt.Color(204, 204, 204));
-        btnVolver.setText("Volver");
+        btnVolver.setText("Cerrar sesión");
         btnVolver.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnVolverActionPerformed(evt);

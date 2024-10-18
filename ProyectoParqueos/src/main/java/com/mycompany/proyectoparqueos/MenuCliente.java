@@ -3,8 +3,8 @@ import javax.swing.JOptionPane;
 
 public class MenuCliente extends javax.swing.JFrame {
 
-    Cliente cliente;
-    Parqueo parqueo;
+    private Cliente cliente;
+    private Parqueo parqueo;
     
     public MenuCliente(Cliente cliente, Parqueo parqueo) {
         initComponents();
@@ -46,7 +46,7 @@ public class MenuCliente extends javax.swing.JFrame {
         jLabel2.setText("CLIENTE");
 
         btnVolver.setBackground(new java.awt.Color(204, 204, 204));
-        btnVolver.setText("Volver");
+        btnVolver.setText("Cerrar sesión");
         btnVolver.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnVolverActionPerformed(evt);
