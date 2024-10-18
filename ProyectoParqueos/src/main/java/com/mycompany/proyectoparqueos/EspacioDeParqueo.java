@@ -108,6 +108,10 @@ public class EspacioDeParqueo {
         return montoTotal;
     }
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 6fe71d8 (Update EspacioDeParqueo.java)
     public String toString(){
         try{
             return getNumeroEspacio() +","+ getTiempoComprado() +","+getHoraInicioParqueo()+ "," + getCarro().getPlaca()+","+getCarro().getMarca()+","+getCarro().getModelo() + "," + getDisponible() +"\n";
