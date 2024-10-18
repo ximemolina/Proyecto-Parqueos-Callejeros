@@ -206,7 +206,7 @@ public class MenuAgregarTiempo extends javax.swing.JFrame {
     }//GEN-LAST:event_inpTiempoCompradoActionPerformed
 
     private void btnAceptarAgregarTiempoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarAgregarTiempoActionPerformed
-        if (comboBoxEspaciosOcupados.getSelectedItem() != null) {
+         if (comboBoxEspaciosOcupados.getSelectedItem() != null) {
             String espacioSeleccionadoStr = (String) comboBoxEspaciosOcupados.getSelectedItem();
             int numeroEspacioSeleccionado = Integer.parseInt(espacioSeleccionadoStr);
 
@@ -223,12 +223,22 @@ public class MenuAgregarTiempo extends javax.swing.JFrame {
             if (espacioSeleccionado != null) {
                 try {
                     int tiempoAgregar = Integer.parseInt(inpTiempoComprado.getText());
+                    int tiempoCompradoActual = espacioSeleccionado.getTiempoComprado(); // Obtener el tiempo ya comprado
+                    long minutosRestantes = espacioSeleccionado.calcularTiempoRestante(); // Método que calcula minutos restantes
 
-                    // Validar y actualizar el tiempo comprado
-                    cliente.comprarTiempo(tiempoAgregar, espacioSeleccionado, parqueo);
+                    // Verificar si el cliente aún tiene minutos no gastados y puede agregar más tiempo
+                    if (minutosRestantes > 0) {
+                        if (tiempoAgregar > 0) {
+                            // Validar y actualizar el tiempo comprado
+                            cliente.comprarTiempo(tiempoAgregar, espacioSeleccionado, parqueo);
+                            JOptionPane.showMessageDialog(null, "Tiempo agregado exitosamente.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+                        } else {
+                            JOptionPane.showMessageDialog(null, "Error: El tiempo a agregar debe ser mayor a 0.", "Error", JOptionPane.ERROR_MESSAGE);
+                        }
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Error: Ya has gastado todo el tiempo comprado. No puedes agregar más.", "Error", JOptionPane.ERROR_MESSAGE);
+                    }
 
-                    // Mensaje de éxito
-                    System.out.println("Tiempo agregado exitosamente.");
                 } catch (NumberFormatException e) {
                     JOptionPane.showMessageDialog(null, "Error: Ingresa un número válido para el tiempo.", "Error", JOptionPane.ERROR_MESSAGE);
                 }
@@ -238,7 +248,6 @@ public class MenuAgregarTiempo extends javax.swing.JFrame {
         } else {
             JOptionPane.showMessageDialog(null, "Error: No se ha seleccionado ningún espacio.", "Error", JOptionPane.ERROR_MESSAGE);
         }
-
     }//GEN-LAST:event_btnAceptarAgregarTiempoActionPerformed
 
     /**

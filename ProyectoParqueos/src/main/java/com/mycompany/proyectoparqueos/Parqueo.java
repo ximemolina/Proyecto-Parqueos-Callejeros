@@ -213,6 +213,12 @@ public class Parqueo {
             }
         }
     }
+    
+    public boolean estaDentroDeHorario() {
+        LocalTime horaActual = LocalTime.now();
+        return horaActual.isAfter(abre) && horaActual.isBefore(cierra);
+    }
+    
     //guarda información en archivo
    public void guardarParqueo(File nombreArchivo){
        try{
