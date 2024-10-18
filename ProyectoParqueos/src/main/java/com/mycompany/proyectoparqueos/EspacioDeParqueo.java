@@ -99,7 +99,13 @@ public class EspacioDeParqueo {
         return minutosParqueo;
     }
 
-    public double calcularMontoAPagar(EspacioDeParqueo espacio, Parqueo parqueo) {
+    public double calcularMontoAPagar(EspacioDeParqueo espacio, Parqueo parqueo, Cliente cliente) {
+        // Verificar si el parqueo está dentro del horario de operación
+        if (!parqueo.estaDentroDeHorario()) {
+            System.out.println("El parqueo está fuera de horario de operación. No se requiere pago.");
+            return 0;  // No se cobra si está fuera del horario de operación
+        }
+
         // Calcular el tiempo de parqueo en minutos
         long minutosParqueo = calcularTiempoParqueo(espacio);
 
@@ -108,6 +114,16 @@ public class EspacioDeParqueo {
 
         // Si el tiempo de parqueo es menor que el tiempo mínimo, se cobrará por el tiempo mínimo
         long minutosFacturables = Math.max(minutosParqueo, tiempoMinimo);
+
+        // Restar los minutos no utilizados del cliente
+        if (cliente.getMinsNoUtilizados() > 0) {
+            minutosFacturables -= cliente.getMinsNoUtilizados();  // Restar minutos no utilizados
+        }
+
+        // Asegurarse de que los minutos facturables no sean negativos
+        if (minutosFacturables < 0) {
+            minutosFacturables = 0;  // Evitar valores negativos
+        }
 
         // Calcular el número de horas a facturar, redondeando hacia arriba
         double horasFacturables = Math.ceil(minutosFacturables / 60.0);
@@ -118,13 +134,32 @@ public class EspacioDeParqueo {
         // Calcular el monto total
         double montoTotal = horasFacturables * precioPorHora;
 
+        // Asegurarse de que el monto total no sea negativo
+        if (montoTotal < 0) {
+            montoTotal = 0;
+        }
+
+        // Resetear los minutos no utilizados del cliente después de calcular el monto
+        cliente.setMinsNoUtilizados(0);
+
         return montoTotal;
     }
+    
+    public long calcularTiempoRestante() {
+        LocalDateTime horaInicio = this.getHoraInicioParqueo();
+        LocalDateTime horaActual = LocalDateTime.now();
 
-<<<<<<< HEAD
-=======
+        // Tiempo en minutos desde que el carro fue aparcado
+        long minutosParqueo = Duration.between(horaInicio, horaActual).toMinutes();
 
->>>>>>> 6fe71d8 (Update EspacioDeParqueo.java)
+        // Restar el tiempo ya utilizado del tiempo comprado
+        long minutosRestantes = this.tiempoComprado - minutosParqueo;
+
+        return minutosRestantes > 0 ? minutosRestantes : 0;  // Retornar solo los minutos restantes positivos
+    }
+
+
+
     public String toString(){
         try{
             return getNumeroEspacio() +","+ getTiempoComprado() + "," + getCarro().getPlaca()+","+getCarro().getMarca()+","+getCarro().getModelo() + "," + getDisponible() +"\n";
