@@ -129,11 +129,7 @@ public class EspacioDeParqueo {
         return montoTotal;
     }
 
-<<<<<<< HEAD
 
-    @Override
-=======
->>>>>>> 0b4d4ac42680cac84b7929be716d1507dd960999
     public String toString(){
         try{
             return getNumeroEspacio() +","+ getTiempoComprado() + "," + getCarro().getPlaca()+","+getCarro().getMarca()+","+getCarro().getModelo() + "," + getDisponible() +"\n";
