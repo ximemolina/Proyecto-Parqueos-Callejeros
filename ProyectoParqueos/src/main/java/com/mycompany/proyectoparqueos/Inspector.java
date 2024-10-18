@@ -179,8 +179,27 @@ public class Inspector extends Usuario{
         return codigoTerminal;
     }
     
-    public void multar(EspacioDeParqueo espacio){
-        
-    }
+    public void multar(Parqueo parqueo, EspacioDeParqueo espacio, String placaSeleccionada) {
+      // Verificar si el espacio tiene un carro estacionado
+      if (espacio.getCarro() != null && espacio.getCarro().getPlaca().equals(placaSeleccionada)) {
+          // Verificar si el espacio no ha sido pagado
+          if (!espacio.getEstadoPago()) {
+              // Crear una multa para el carro
+              Carro carro = espacio.getCarro();
+              Multa nuevaMulta = new Multa(carro, parqueo.getCostoMulta(), LocalDateTime.now(), false);  
+
+              // Asignar la multa al carro (suponiendo que la clase Carro tiene un método para agregar multas)
+              carro.agregarMulta(nuevaMulta);
+
+              // Mensaje de confirmación
+              System.out.println("Multa asignada al carro con placa: " + placaSeleccionada);
+          } else {
+              System.out.println("El espacio ya ha sido pagado. No se necesita una multa.");
+          }
+      } else {
+          System.out.println("No se encontró un carro con esa placa en el espacio seleccionado.");
+      }
+  }
+
     
 }

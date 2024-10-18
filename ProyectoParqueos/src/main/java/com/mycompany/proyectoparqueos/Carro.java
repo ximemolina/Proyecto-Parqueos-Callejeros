@@ -1,16 +1,21 @@
 
 package com.mycompany.proyectoparqueos;
 
+import java.util.ArrayList;
+
 public class Carro {
     private String placa;
     private String marca;
     private String modelo;
+    private ArrayList<Multa> multas;
     
-    public Carro(String pPlaca, String pMarca, String pModelo){
+    public Carro(String pPlaca, String pMarca, String pModelo) {
         setPlaca(pPlaca);
         setMarca(pMarca);
         setModelo(pModelo);
+        this.multas = new ArrayList<>();  // Inicializar la lista de multas
     }
+
     
     public void setPlaca(String pPlaca){
         if (String.valueOf(pPlaca).length() < 1 || String.valueOf(pPlaca).length() > 6){
@@ -44,6 +49,16 @@ public class Carro {
     public String getModelo(){
         return modelo;
     }
+    
+    public void agregarMulta(Multa multa) {
+        multas.add(multa);
+        System.out.println("Multa añadida al carro con placa: " + placa);
+    }
+    
+    public ArrayList<Multa> getMultas(){
+        return multas;
+    }
+
     
     
     @Override
