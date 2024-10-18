@@ -37,7 +37,7 @@ public class MenuInspector extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(153, 153, 153));
 
         btnVolver.setBackground(new java.awt.Color(204, 204, 204));
-        btnVolver.setText("Volver");
+        btnVolver.setText("Cerrar sesión");
         btnVolver.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnVolverActionPerformed(evt);
