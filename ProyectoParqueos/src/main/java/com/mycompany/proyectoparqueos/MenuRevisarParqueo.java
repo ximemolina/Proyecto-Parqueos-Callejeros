@@ -12,6 +12,8 @@ import java.util.ArrayList;
 public class MenuRevisarParqueo extends javax.swing.JFrame {
     Parqueo parqueo;
     Inspector inspector;
+    EspacioDeParqueo espacioSeleccionado;
+    private String placaSeleccionada;
     /**
      * Creates new form MenuRevisarParqueo
      */
@@ -19,6 +21,7 @@ public class MenuRevisarParqueo extends javax.swing.JFrame {
         initComponents();
         setInspector(inspector);
         setParqueo(parqueo);
+        llenarComboBoxEspaciosOcupados();
     }
     
     public void setParqueo(Parqueo parqueo){
@@ -27,6 +30,10 @@ public class MenuRevisarParqueo extends javax.swing.JFrame {
     
     public void setInspector(Inspector inspector){
         this.inspector = inspector;
+    }
+    
+    public void setEspacioSeleccionado(EspacioDeParqueo espacioSeleccionado){
+        this.espacioSeleccionado = espacioSeleccionado;
     }
     
     private void llenarComboBoxEspaciosOcupados() {
@@ -47,7 +54,8 @@ public class MenuRevisarParqueo extends javax.swing.JFrame {
             comboBoxEspaciosOcupados.addItem("No hay espacios ocupados");
         }
     }
-
+    
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -63,8 +71,9 @@ public class MenuRevisarParqueo extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabelEstadoPago = new javax.swing.JLabel();
-        jLabelCliente = new javax.swing.JLabel();
         comboBoxEspaciosOcupados = new javax.swing.JComboBox<>();
+        btnMultar = new javax.swing.JButton();
+        btnVolver = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -86,14 +95,25 @@ public class MenuRevisarParqueo extends javax.swing.JFrame {
         jLabelEstadoPago.setForeground(new java.awt.Color(255, 255, 255));
         jLabelEstadoPago.setText("Estado de pago del espacio:");
 
-        jLabelCliente.setFont(new java.awt.Font("Segoe UI Variable", 1, 18)); // NOI18N
-        jLabelCliente.setForeground(new java.awt.Color(255, 255, 255));
-        jLabelCliente.setText("Cliente:");
-
         comboBoxEspaciosOcupados.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         comboBoxEspaciosOcupados.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 comboBoxEspaciosOcupadosActionPerformed(evt);
+            }
+        });
+
+        btnMultar.setText("MULTAR");
+        btnMultar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMultarActionPerformed(evt);
+            }
+        });
+
+        btnVolver.setBackground(new java.awt.Color(204, 204, 204));
+        btnVolver.setText("Volver");
+        btnVolver.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVolverActionPerformed(evt);
             }
         });
 
@@ -106,13 +126,18 @@ public class MenuRevisarParqueo extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(37, 37, 37)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabelCliente)
                             .addComponent(jLabelEstadoPago)
                             .addComponent(jLabelCarro)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(220, 220, 220)
+                        .addGap(212, 212, 212)
+                        .addComponent(btnMultar, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(btnVolver))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(228, 228, 228)
                         .addComponent(comboBoxEspaciosOcupados, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(282, Short.MAX_VALUE))
+                .addContainerGap(242, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel1Layout.createSequentialGroup()
                     .addGap(218, 218, 218)
@@ -127,15 +152,17 @@ public class MenuRevisarParqueo extends javax.swing.JFrame {
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(108, 108, 108)
+                .addContainerGap()
+                .addComponent(btnVolver)
+                .addGap(72, 72, 72)
                 .addComponent(comboBoxEspaciosOcupados, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(25, 25, 25)
                 .addComponent(jLabelCarro, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jLabelCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabelEstadoPago, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(226, Short.MAX_VALUE))
+                .addGap(55, 55, 55)
+                .addComponent(btnMultar, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(181, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel1Layout.createSequentialGroup()
                     .addGap(29, 29, 29)
@@ -165,9 +192,76 @@ public class MenuRevisarParqueo extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void comboBoxEspaciosOcupadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboBoxEspaciosOcupadosActionPerformed
-                                                       
-        
+        String espacioSeleccionadoStr = (String) comboBoxEspaciosOcupados.getSelectedItem();
+    
+        // Verifica si se seleccionó un espacio válido
+        if (espacioSeleccionadoStr != null && !espacioSeleccionadoStr.equals("No hay espacios ocupados")) {
+            int numeroEspacioSeleccionado = Integer.parseInt(espacioSeleccionadoStr);
+
+            // Buscar el espacio correspondiente en el parqueo
+            espacioSeleccionado = null;  // Asegúrate de que el atributo espacioSeleccionado esté limpio
+            for (EspacioDeParqueo espacio : parqueo.getEspaciosParqueo()) {
+                if (espacio.getNumeroEspacio() == numeroEspacioSeleccionado) {
+                    espacioSeleccionado = espacio;  // Asignamos el valor al atributo
+                    break;
+                }
+            }
+
+            // Si se encuentra el espacio seleccionado
+            if (espacioSeleccionado != null) {
+                Carro carroEnEspacio = espacioSeleccionado.getCarro();
+
+                // Mostrar la información del carro en la etiqueta
+                if (carroEnEspacio != null) {
+                    placaSeleccionada = carroEnEspacio.getPlaca();  // Asignamos el valor al atributo
+                    jLabelCarro.setText("Placa: " + carroEnEspacio.getPlaca() +
+                                        ", Marca: " + carroEnEspacio.getMarca() +
+                                        ", Modelo: " + carroEnEspacio.getModelo());
+                } else {
+                    placaSeleccionada = null;  // No hay carro, la placa seleccionada se pone en null
+                    jLabelCarro.setText("Sin carro en el espacio");
+                }
+
+                // Mostrar el estado de pago del espacio
+                String estadoPago = espacioSeleccionado.getEstadoPago() ? "Pagado" : "No pagado";
+                jLabelEstadoPago.setText("Estado de pago del espacio: " + estadoPago);
+            }
+        }
     }//GEN-LAST:event_comboBoxEspaciosOcupadosActionPerformed
+
+    private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
+        MenuInspector pantalla = new MenuInspector(inspector, parqueo);
+        pantalla.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_btnVolverActionPerformed
+
+    private void btnMultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMultarActionPerformed
+        String espacioSeleccionadoStr = (String) comboBoxEspaciosOcupados.getSelectedItem();
+        if (espacioSeleccionadoStr != null && !espacioSeleccionadoStr.equals("No hay espacios ocupados")) {
+            int numeroEspacioSeleccionado = Integer.parseInt(espacioSeleccionadoStr);
+
+            // Buscar el espacio correspondiente
+            EspacioDeParqueo espacioSeleccionado = null;
+            for (EspacioDeParqueo espacio : parqueo.getEspaciosParqueo()) {
+                if (espacio.getNumeroEspacio() == numeroEspacioSeleccionado) {
+                    espacioSeleccionado = espacio;
+                    break;
+                }
+            }
+
+            // Si encontramos el espacio seleccionado
+            if (espacioSeleccionado != null) {
+                Carro carroEnEspacio = espacioSeleccionado.getCarro();
+                if (carroEnEspacio != null) {
+                    inspector.multar(parqueo, espacioSeleccionado, carroEnEspacio.getPlaca());
+                } else {
+                    System.out.println("No hay un carro en este espacio.");
+                }
+            }
+        } else {
+            System.out.println("Error: No se ha seleccionado un espacio válido.");
+        }
+    }//GEN-LAST:event_btnMultarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -205,11 +299,12 @@ public class MenuRevisarParqueo extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnMultar;
+    private javax.swing.JButton btnVolver;
     private javax.swing.JComboBox<String> comboBoxEspaciosOcupados;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabelCarro;
-    private javax.swing.JLabel jLabelCliente;
     private javax.swing.JLabel jLabelEstadoPago;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
