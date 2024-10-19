@@ -211,7 +211,7 @@ public class ModificarCarros extends javax.swing.JFrame {
             String infoACambiar = cliente2.toString();
 
             cliente2.modificarDatosCliente(infoACambiar);
-            MenuCliente pantalla = new MenuCliente(cliente, parqueo);
+            MenuCliente pantalla = new MenuCliente(cliente2, parqueo);
             pantalla.setVisible(true);
             this.setVisible(false);
         }

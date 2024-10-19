@@ -17,7 +17,7 @@ public class Multa {
     }
     
     public String toString(){
-        return carro.getPlaca()+"," + carro.getModelo()+","+carro.getMarca()+","+getCostoMulta()+","+ getFechaMulta();
+        return carro.getPlaca()+"," + carro.getMarca()+","+carro.getModelo()+","+getCostoMulta()+","+ getFechaMulta();
     }
     
     public void setCarro(Carro carro){
