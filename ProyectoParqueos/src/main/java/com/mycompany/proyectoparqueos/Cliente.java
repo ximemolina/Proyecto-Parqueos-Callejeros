@@ -94,20 +94,33 @@ public class Cliente extends Usuario {
         // Buscar en la lista de espacios del parqueo el carro a desaparcar
         for (EspacioDeParqueo espacio : parqueo.getEspaciosParqueo()) {
             if (espacio.getCarro() != null && espacio.getCarro().equals(carro)) {
+                // Registrar la hora en la que se está desaparcando el carro
+                LocalDateTime horaFinParqueo = LocalDateTime.now();
+                espacio.setHoraFinParqueo(horaFinParqueo);
+
+                // Guardar el archivo justo antes de resetear los valores
+                parqueo.guardarParqueo(archivoParqueo);
+
+                // Resetear valores del espacio de parqueo
                 espacio.setTiempoComprado(0);
                 espacio.setCarro(null);  // Liberar el espacio
                 espacio.setDisponible(true);
-                LocalDateTime horaFinParqueo = LocalDateTime.now();
-                espacio.setHoraFinParqueo(horaFinParqueo);
-                // PRIMERO SE DEBE GUARDAR EN HISTORIAL
+                espacio.setHoraFinParqueo(null);
+                espacio.setHoraInicioParqueo(null);
+
+                // Guardar el archivo nuevamente con los valores reseteados
                 parqueo.guardarParqueo(archivoParqueo);
+
                 System.out.println("El carro con placa " + carro.getPlaca() + " ha sido desaparcado.");
                 return true;  // Desaparcar con éxito
             }
         }
-        System.out.println("El carro con placa " + carro.getPlaca() + " no está estacionado en este parqueo.");
-        return false;  // No se encontró el carro en el parqueo
-        }
+
+    // Si no se encontró el carro en el parqueo
+    System.out.println("El carro con placa " + carro.getPlaca() + " no está estacionado en este parqueo.");
+    return false;  // No se encontró el carro en el parqueo
+}
+
     
     public void comprarTiempo(int cantidad, EspacioDeParqueo espacio, Parqueo parqueo) {
         // Validar que la cantidad sea positiva
