@@ -54,15 +54,12 @@ public class EspacioDeParqueo {
     }
     
     public void setHoraInicioParqueo(LocalDateTime horaInicioParqueo){
-        if (horaInicioParqueo != null) {
             this.horaInicioParqueo = horaInicioParqueo;
         }
-    }
+    
     
     public void setHoraFinParqueo(LocalDateTime horaFinParqueo){
-        if (horaFinParqueo != null){
             this.horaFinParqueo = horaFinParqueo;
-        }
     }
     
     public int getNumeroEspacio(){
@@ -169,11 +166,19 @@ public class EspacioDeParqueo {
 
 
 
-    public String toString(){
-        try{
-            return getNumeroEspacio() +","+ getTiempoComprado() + "," + getCarro().getPlaca()+","+getCarro().getMarca()+","+getCarro().getModelo() +","+getHoraInicioParqueo()+","+getHoraFinParqueo()+ "," + getDisponible() +"\n";
-        }catch(NullPointerException e){
-            return getNumeroEspacio() +","+ getTiempoComprado() + "," +","+"," + "," +getHoraInicioParqueo()+","+getHoraFinParqueo()+ ","+ getDisponible() +"\n";
+    public String toString() {
+        // Verificamos si horaInicioParqueo y horaFinParqueo son null
+        String horaInicioStr = (getHoraInicioParqueo() != null) ? getHoraInicioParqueo().toString() : "null";
+        String horaFinStr = (getHoraFinParqueo() != null) ? getHoraFinParqueo().toString() : "null";
+
+        try {
+            return getNumeroEspacio() + "," + getTiempoComprado() + "," + getCarro().getPlaca() + "," +
+                   getCarro().getMarca() + "," + getCarro().getModelo() + "," + horaInicioStr + "," + horaFinStr + "," + getDisponible() + "\n";
+        } catch (NullPointerException e) {
+            return getNumeroEspacio() + "," + getTiempoComprado() + ",," + "," + "," + horaInicioStr + "," + horaFinStr + "," + getDisponible() + "\n";
         }
     }
+
 }
+
+

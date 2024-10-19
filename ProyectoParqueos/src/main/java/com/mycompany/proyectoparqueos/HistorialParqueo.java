@@ -3,6 +3,7 @@ package com.mycompany.proyectoparqueos;
 import java.io.File;
 import java.io.FileWriter;
 import java.util.*;
+
 public class HistorialParqueo {
     //atributos
     private ArrayList<EspacioDeParqueo> listaParqueo;

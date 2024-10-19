@@ -247,6 +247,7 @@ public class Parqueo {
    public void guardarParqueo(File nombreArchivo){
        try{
             FileWriter escribir = new FileWriter(nombreArchivo); //permite escribir en diferentes ocasiones en archivos
+            System.out.println("Datos a guardar: " + toString());
             escribir.write(toString()); //escribe informarion de usuario
             escribir.close(); //cierra escritor
        } catch(Exception e){

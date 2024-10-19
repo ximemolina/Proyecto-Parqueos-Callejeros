@@ -4,9 +4,9 @@
 05:00
 18:00
 50
-1,0,,,,2024-10-18T18:31:18.723513800,2024-10-18T18:38:00.414883600,true
-2,0,,,,null,null,true
+1,0,PLACA,MARCA,MODELO,2024-10-19T15:19:57.535518800,null,false
+2,30,PLACA2,MARCA2,MODELO2,2024-10-19T15:28:31.054621,null,false
 3,0,,,,null,null,true
-4,0,,,,2024-10-18T18:31:35.476420300,2024-10-18T18:32:13.407090800,true
+4,0,,,,null,null,true
 5,0,,,,null,null,true
 6,0,,,,null,null,true

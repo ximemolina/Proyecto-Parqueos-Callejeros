@@ -106,8 +106,8 @@ public class Cliente extends Usuario {
                 espacio.setTiempoComprado(0);
                 espacio.setCarro(null);  // Liberar el espacio
                 espacio.setDisponible(true);
-                espacio.setHoraFinParqueo(null);
-                espacio.setHoraInicioParqueo(null);
+                espacio.setHoraFinParqueo(null);  // Aseguramos que se seteé a null
+                espacio.setHoraInicioParqueo(null);  // Aseguramos que se seteé a null
 
                 // Guardar el archivo nuevamente con los valores reseteados
                 parqueo.guardarParqueo(archivoParqueo);
@@ -120,6 +120,7 @@ public class Cliente extends Usuario {
     System.out.println("El carro con placa " + carro.getPlaca() + " no está estacionado en este parqueo.");
     return false;  // No se encontró el carro en el parqueo
 }
+
 
     
     public void comprarTiempo(int cantidad, EspacioDeParqueo espacio, Parqueo parqueo) {

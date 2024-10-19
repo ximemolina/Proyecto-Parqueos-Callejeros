@@ -8,6 +8,7 @@ public class Multa {
     private int costoMulta;
     private LocalDateTime fechaMulta;
     private boolean estadoPago;
+    private String descripcion = "Su vehículo se encuentra parqueado en un espacio de parqueo que no ha sido pagado.";
     
     public Multa(Carro carro, int costoMulta, LocalDateTime fechaMulta, boolean estadoPago){
         this.carro = carro;
@@ -17,7 +18,7 @@ public class Multa {
     }
     
     public String toString(){
-        return carro.getPlaca()+"," + carro.getMarca()+","+carro.getModelo()+","+getCostoMulta()+","+ getFechaMulta();
+        return carro.getPlaca()+"," + carro.getMarca()+","+carro.getModelo()+","+getCostoMulta()+","+ getFechaMulta()+","+getDescripcion();
     }
     
     public void setCarro(Carro carro){
@@ -54,6 +55,11 @@ public class Multa {
     
     public boolean getEstadoPago(){
         return estadoPago;
+        
+    }
+    
+    public String getDescripcion(){
+        return descripcion;
     }
     
     
