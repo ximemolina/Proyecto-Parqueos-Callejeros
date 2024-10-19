@@ -39,7 +39,7 @@ public class MenuAdministrador extends javax.swing.JFrame {
         }
 
         // Si todos los espacios están vacíos, habilitamos el botón
-        btnConfigurarParqueo1.setEnabled(todosEspaciosVacios);
+        btnConfigurarParqueo1.setEnabled(todosEspaciosVacios); 
     }
 
     /**
