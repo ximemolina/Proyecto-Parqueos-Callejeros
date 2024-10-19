@@ -14,7 +14,7 @@ public class ProyectoParqueos {
         File archivoInspector = new File("Inspector.txt");
         File archivoParqueo = new File("Parqueo.txt");
         File archivoHistorialMulta = new File("HistorialMulta.txt");
-        File archivoHistorialParqueo = new File("HistorialParqueo");
+        File archivoHistorialParqueo = new File("HistorialParqueo.txt");
         //se  crean archivos de las clases si no han sido creados                
         try{
             if(!archivoCliente.exists())
@@ -61,6 +61,10 @@ public class ProyectoParqueos {
 
         //crear ventana de menu inicial
         Parqueo parqueo = new Parqueo("000000", 0, 0, "00:00", "00:01", 0);
+        HistorialParqueo nuevo = new HistorialParqueo();
+        parqueo.setHistorialParqueo(nuevo);
+        HistorialMultas nuevo2 = new HistorialMultas();
+        parqueo.setHistorialMultas(nuevo2);
         MenuInicial menuInicial = new MenuInicial(parqueo);
         menuInicial.setVisible(true); //permite que menu inicial sea visible        
         /*

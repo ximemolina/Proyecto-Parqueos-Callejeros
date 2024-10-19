@@ -7,9 +7,7 @@ import java.io.IOException;
 import java.time.*;
 import javax.swing.JOptionPane;
 
-public class MenuInicial extends javax.swing.JFrame {///FALTA AÑADIR PARA QUE SE ACTUALICE ARCHIVO DE PARQUEOS CUANDO ALGUIEN PARA O DESPARCA 
-                                                    ///VERIFICAR QUE SE REINICIE AJUSTES DE PARQUEO Y NO OCURRA ERROR CON LOS ESPACIOS DE PARQUEO
-                                                    ///ARCHIVO HISTORIALPARQUEO QUE TRAIGA INFO SOBRE TIEMPO EN DONDE SE PARQUEO AUTO. DE AHI SE SACA SABER SI EL CARRO ESTÁ PAGADO
+public class MenuInicial extends javax.swing.JFrame {
     Parqueo parqueo;
     /**
      * Creates new form MenuInicial
@@ -174,11 +172,12 @@ public class MenuInicial extends javax.swing.JFrame {///FALTA AÑADIR PARA QUE S
             }
         });
     }
-    //lee el archivo y verifica si el usuario ingresado existe
+    //lee el archivo y actualiza datos
     public void leerArchivo(Parqueo parqueo){
         String contenido;
         int contador = 0;
         try{
+
             FileReader leer = new FileReader("Parqueo.txt");
             BufferedReader lectura = new BufferedReader(leer);
             contenido = lectura.readLine(); //lee una línea del archivo
@@ -221,6 +220,68 @@ public class MenuInicial extends javax.swing.JFrame {///FALTA AÑADIR PARA QUE S
                 }
                 contador ++;
             }
+            
+        } catch(IOException exception){
+            exception.printStackTrace();
+        }
+        //se actualiza historial de parqueo       
+        try{
+            HistorialParqueo nuevo = new HistorialParqueo();
+            FileReader leer = new FileReader("HistorialParqueo.txt"); //se lee el txt en donde están almaenados los datos
+            BufferedReader lectura = new BufferedReader(leer);
+            contenido = lectura.readLine(); //lee una línea del archivo
+            String [] lista;
+            while(contenido != null){  
+                try{
+                    lista = contenido.split("\\,"); //se realiza un split apartir de "," para que se puedan almacenar los distintos atributos en la lista
+                    EspacioDeParqueo espacio = new EspacioDeParqueo(Integer.parseInt(lista[0]));
+                    espacio.setTiempoComprado(Integer.parseInt(lista[1]));
+                    if(lista[2]!= ""){//se verifica que ese indice no esté vacío, ya que en caso de que lo esté, implica que no hay carro ahí
+                        Carro carro = new Carro(lista[2], lista[3], lista[4]);
+                        espacio.setCarro(carro);
+                    }
+                    if(!String.valueOf(lista[5]).equals("null")){//verificar que lista[5] no sea null para que no de error la conversión
+                        espacio.setHoraInicioParqueo(LocalDateTime.parse(lista[5]));
+                    }
+                    if(!String.valueOf(lista[6]).equals("null")){ //verificar que lista[6] no sea null para que no de error la conversión
+                       espacio.setHoraFinParqueo(LocalDateTime.parse(lista[6]));}
+                    espacio.setDisponible(Boolean.parseBoolean(lista[7]));
+                    nuevo.agregarHistorialParqueo(espacio); //agregar el espacio de parqueo al Historial
+                    contenido = lectura.readLine();//continua leyendo la otra linea del archivo
+                }catch(Exception e){
+                    //e.printStackTrace();
+                    contenido = lectura.readLine();
+                }
+                contador ++;
+            }
+            parqueo.setHistorialParqueo(nuevo);
+            
+        } catch(IOException exception){
+            exception.printStackTrace();
+        }
+        //se actualiza historial de parqueo       
+        try{
+            HistorialMultas otro = new HistorialMultas();
+            FileReader leer = new FileReader("HistorialMulta.txt"); //se lee el txt en donde están almaenados los datos
+            BufferedReader lectura = new BufferedReader(leer);
+            contenido = lectura.readLine(); //lee una línea del archivo
+            String [] lista;
+            while(contenido != null){  
+                try{
+                    lista = contenido.split("\\,"); //se realiza un split apartir de "," para que se puedan almacenar los distintos atributos en la lista
+                    Carro carro = new Carro(lista[0],lista[1],lista[2]);
+                    int costo = Integer.parseInt(lista[3]);
+                    LocalDateTime fecha = LocalDateTime.parse(lista[4]);
+                    Multa multa = new Multa(carro,costo,fecha,false);
+                    otro.agregarMulta(multa,lista[5]); //lista[5] sería el id del inspector que realizó la multa
+                    contenido = lectura.readLine();//continua leyendo la otra linea del archivo
+                }catch(Exception e){
+                    //e.printStackTrace();
+                    contenido = lectura.readLine();
+                }
+                contador ++;
+            }
+            parqueo.setHistorialMultas(otro);
             
         } catch(IOException exception){
             exception.printStackTrace();

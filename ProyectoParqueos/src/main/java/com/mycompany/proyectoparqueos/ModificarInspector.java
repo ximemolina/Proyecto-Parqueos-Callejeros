@@ -393,10 +393,7 @@ public class ModificarInspector extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAceptarActionPerformed
 
     private void btnModificarPinActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarPinActionPerformed
-        String correo = JOptionPane.showInputDialog("Digite su correo electrónico para mandarle pin único:");
-        if (correo == null) {
-            return;
-        }
+
         String caracteresPermitidos = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
         Random random = new Random();
         StringBuilder sb = new StringBuilder(4);
