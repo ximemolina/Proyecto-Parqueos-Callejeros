@@ -1,14 +1,7 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package com.mycompany.proyectoparqueos;
 
 import java.util.ArrayList;
-/**
- *
- * @author rosel
- */
+
 public class MenuRevisarParqueo extends javax.swing.JFrame {
     Parqueo parqueo;
     Inspector inspector;
@@ -254,6 +247,7 @@ public class MenuRevisarParqueo extends javax.swing.JFrame {
                 Carro carroEnEspacio = espacioSeleccionado.getCarro();
                 if (carroEnEspacio != null) {
                     inspector.multar(parqueo, espacioSeleccionado, carroEnEspacio.getPlaca());
+
                 } else {
                     System.out.println("No hay un carro en este espacio.");
                 }

@@ -80,7 +80,8 @@ public class Cliente extends Usuario {
             LocalDateTime horaInicioParqueo = LocalDateTime.now();
             espacioSeleccionado.setHoraInicioParqueo(horaInicioParqueo);
             parqueo.guardarParqueo(archivoParqueo);
-            
+            parqueo.getHistorialParqueo().agregarHistorialParqueo(espacioSeleccionado);
+            parqueo.getHistorialParqueo().guardarHistorialParqueo();
 
             System.out.println("Carro parqueado en el espacio: " + espacioSeleccionado.getNumeroEspacio());
             return true;  
@@ -101,6 +102,8 @@ public class Cliente extends Usuario {
                 espacio.setHoraFinParqueo(horaFinParqueo);
                 // PRIMERO SE DEBE GUARDAR EN HISTORIAL
                 parqueo.guardarParqueo(archivoParqueo);
+                parqueo.getHistorialParqueo().agregarHistorialParqueo(espacio);
+                parqueo.getHistorialParqueo().guardarHistorialParqueo();
                 System.out.println("El carro con placa " + carro.getPlaca() + " ha sido desaparcado.");
                 return true;  // Desaparcar con éxito
             }

@@ -170,7 +170,7 @@ public class IngresarInspector extends javax.swing.JFrame {
             while(contenido != null){
                 
                 try{
-                    lista = contenido.split(","); //divide la linea en cada atributo de administrador
+                    lista = contenido.split("\\,"); //divide la linea en cada atributo de administrador
                     if(lista[0].equals(id) && lista[1].equals(pin)){
                         LocalDate fecha = LocalDate.parse(lista[7], DateTimeFormatter.ofPattern("yyyy/MM/dd"));
                         //crea objeto Administrador con atributos respectivos para poder pasarselos a pantalla de acciones de admin

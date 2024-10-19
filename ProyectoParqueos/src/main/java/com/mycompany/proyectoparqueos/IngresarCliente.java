@@ -220,7 +220,7 @@ public class IngresarCliente extends javax.swing.JFrame {
             while(contenido != null){
                 
                 try{
-                    lista = contenido.split(","); //divide la linea en cada atributo de administrador
+                    lista = contenido.split("\\,"); //divide la linea en cada atributo de administrador
                     if(lista[0].equals(id) && lista[1].equals(pin)){
 
                         LocalDate fecha = LocalDate.parse(lista[7], DateTimeFormatter.ofPattern("yyyy/MM/dd"));
@@ -235,7 +235,23 @@ public class IngresarCliente extends javax.swing.JFrame {
                         Cliente cliente = new Cliente(lista[2], lista[3],lista[4], lista[5], lista[6], fecha, lista[1], lista[0],num,mes,año,cod,min);
                         int contador = 12;
                         while(contador < lista.length){
-                            cliente.agregarCarro(lista[contador], lista[contador+1], lista[contador+2]);
+                            try{
+                                if(" ".equals(String.valueOf(lista[contador+1]))){
+                                    if(lista[contador+2]== ""){
+                                        cliente.agregarCarro(lista[contador], "", "");}
+                                    else{
+                                        cliente.agregarCarro(lista[contador], "", lista[contador+2]);
+                                    }}
+                                else{
+                                    if(lista[contador+2]== ""){
+                                        cliente.agregarCarro(lista[contador], lista[contador+1], "");}
+                                    else{
+                                        cliente.agregarCarro(lista[contador], lista[contador+1], lista[contador+2]);}}
+                            }catch(ArrayIndexOutOfBoundsException e ){
+                                cliente.agregarCarro(lista[contador], "", "");
+                            }
+                                
+         
                             contador = contador +3;
                         }
                         MenuCliente pantalla = new MenuCliente(cliente, parqueo);

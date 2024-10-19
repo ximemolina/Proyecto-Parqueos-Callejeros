@@ -190,7 +190,8 @@ public class Inspector extends Usuario{
 
               // Asignar la multa al carro (suponiendo que la clase Carro tiene un método para agregar multas)
               carro.agregarMulta(nuevaMulta);
-
+              parqueo.getHistorialMultas().agregarMulta(nuevaMulta, getIdentificacionUsuario());
+              parqueo.getHistorialMultas().guardarHistorial();
               // Mensaje de confirmación
               System.out.println("Multa asignada al carro con placa: " + placaSeleccionada);
           } else {
