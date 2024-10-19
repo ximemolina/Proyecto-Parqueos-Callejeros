@@ -73,4 +73,38 @@ public class Correo {
             e.printStackTrace();
         }
     }
+    
+    public void enviarCorreo(String to, String asunto, String cuerpo) {
+        // Crear una sesión con autenticación
+        Session session = Session.getInstance(properties, new Authenticator() {
+            @Override
+            protected PasswordAuthentication getPasswordAuthentication() {
+                return new PasswordAuthentication(from, password);
+            }
+        });
+
+        try {
+            // Crear el mensaje de correo
+            MimeMessage message = new MimeMessage(session);
+            message.setFrom(new InternetAddress(from));
+            message.addRecipient(Message.RecipientType.TO, new InternetAddress(to));
+            message.setSubject(asunto);
+
+            // Establecer el contenido del correo (solo texto)
+            message.setText(cuerpo);
+
+            // Enviar el mensaje
+            Transport.send(message);
+            System.out.println("Correo enviado con éxito a: " + to);
+
+        } catch (MessagingException e) {
+            System.err.println("Error al enviar el mensaje de correo: " + e.getMessage());
+            e.printStackTrace();
+        }
+    }
+    
+    /*Correo correo = new Correo("tucorreo@gmail.com", "tucontraseña", "smtp.gmail.com");
+    correo.enviarCorreo("destinatario@gmail.com", "Asunto del correo", "Este es el cuerpo del correo.");
+    */
+
 }
