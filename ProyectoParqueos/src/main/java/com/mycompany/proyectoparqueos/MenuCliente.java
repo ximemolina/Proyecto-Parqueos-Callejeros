@@ -231,7 +231,42 @@ public class MenuCliente extends javax.swing.JFrame {
     }//GEN-LAST:event_btnDesaparcarActionPerformed
 
     private void btnReporteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReporteActionPerformed
-        // TODO add your handling code here:
+        try {
+             // Definir los archivos de historial y multas que serán utilizados
+             File archivoHistorial = new File("HistorialParqueo.txt");  // Asegúrate de que el archivo exista
+             File archivoMultas = new File("HistorialMulta.txt");       // Asegúrate de que el archivo exista
+
+             // Definir el precio por hora, si ya tienes un valor establecido en algún lugar de tu código
+             int precioPorHora = parqueo.getPrecioHora();  // O un valor fijo, por ejemplo, 500
+
+             // Ruta donde se generará el PDF
+             File archivoPDF = new File("reporteCliente.pdf");
+
+             // Llamar al método que genera el reporte para el cliente
+             ReporteCliente reporte = new ReporteCliente(cliente, parqueo);
+             reporte.generarReporteCliente(archivoHistorial, archivoMultas, precioPorHora, archivoPDF);
+
+             // Mostrar un mensaje de éxito cuando se haya generado el reporte
+             JOptionPane.showMessageDialog(null, "Reporte generado exitosamente en: " + archivoPDF.getAbsolutePath(), "Éxito", JOptionPane.INFORMATION_MESSAGE);
+         } catch (Exception e) {
+             // Mostrar un mensaje de error si ocurre un problema al generar el reporte
+             JOptionPane.showMessageDialog(null, "Error al generar el reporte: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+         }
+        
+        Correo correo = new Correo("juanpacamal08@gmail.com", "adqs eueu mrbs vngz", "smtp.gmail.com");
+        String rutaArchivoAdjunto = "reporteCliente.pdf";
+        File archivoAdjunto = new File(rutaArchivoAdjunto); // Convertir la ruta en un archivo
+
+        correo.enviarCorreoConAdjunto(
+        "juanpacamal08@gmail.com",  // Dirección de correo del destinatario correcta
+        "REPORTE CLIENTE",          // Asunto del correo
+        "Este es el reporte del cliente del servicio de parqueo utilizado.", // Cuerpo del correo
+        archivoAdjunto              // El archivo PDF adjunto
+    );
+
+
+
+
     }//GEN-LAST:event_btnReporteActionPerformed
 
     private void btnConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarActionPerformed
@@ -333,3 +368,4 @@ public class MenuCliente extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }
+
