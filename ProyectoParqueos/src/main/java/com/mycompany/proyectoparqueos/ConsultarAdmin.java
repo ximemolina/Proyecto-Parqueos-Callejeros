@@ -3,13 +3,17 @@ package com.mycompany.proyectoparqueos;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
-
+/**
+ *
+ * @author ximen
+ */
 public class ConsultarAdmin extends javax.swing.JFrame {
     
     Administrador admin;
     Parqueo parqueo;
     /**
      * Creates new form ScrConsultarAdmin
+     * @param pAdmin
      */
     public ConsultarAdmin(Administrador pAdmin) {
         initComponents();
@@ -17,6 +21,10 @@ public class ConsultarAdmin extends javax.swing.JFrame {
         mostrarInfoAdmin();
     }
     
+    /**
+     *
+     * @param administrador
+     */
     public void setAdmin(Administrador administrador){
         admin = administrador;
     }
@@ -196,6 +204,9 @@ public class ConsultarAdmin extends javax.swing.JFrame {
         });
     }
     
+    /**
+     *
+     */
     public void mostrarInfoAdmin(){
         lblNombre.setText("Nombre: " + admin.getNombre());
         lblApellidos.setText("Apellidos: " + admin.getApellido());

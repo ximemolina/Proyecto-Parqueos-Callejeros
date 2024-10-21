@@ -12,17 +12,28 @@ public class MenuConfigurarParqueo extends javax.swing.JFrame {
      Parqueo parqueo;
     /**
      * Creates new form MenuConfigurarParqueo
+     * @param admin
+     * @param parqueo
      */
     public MenuConfigurarParqueo(Administrador admin, Parqueo parqueo) {
         initComponents();
         setAdmin(admin);
         setParqueo(parqueo);
     }
-        public void setAdmin(Administrador administrador){
+
+    /**
+     *
+     * @param administrador
+     */
+    public void setAdmin(Administrador administrador){
         admin = administrador;
     }
         
-        public void setParqueo(Parqueo parqueo){
+    /**
+     *
+     * @param parqueo
+     */
+    public void setParqueo(Parqueo parqueo){
             this.parqueo = parqueo;
         }
     /**

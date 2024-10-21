@@ -5,11 +5,20 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import javax.swing.JOptionPane;
 
+/**
+ *
+ * @author ximen
+ */
 public class ModificarInspector extends javax.swing.JFrame {
 
     private Parqueo parqueo;
     private Inspector inspector;
     
+    /**
+     *
+     * @param inspector
+     * @param parqueo
+     */
     public ModificarInspector(Inspector inspector, Parqueo parqueo) {
         initComponents();
         setInspector(inspector);
@@ -413,6 +422,10 @@ public class ModificarInspector extends javax.swing.JFrame {
 
     }//GEN-LAST:event_btnModificarPinActionPerformed
 
+    /**
+     *
+     * @param args
+     */
     public void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -446,6 +459,10 @@ public class ModificarInspector extends javax.swing.JFrame {
     }
     
     //muestra atributos en la pantalla
+
+    /**
+     *
+     */
     public void setInformacion(){
         try{
             inpApellido.setText(inspector.getApellido());
@@ -468,10 +485,19 @@ public class ModificarInspector extends javax.swing.JFrame {
         }
     }    
     //setters
+
+    /**
+     *
+     * @param inspector
+     */
     public void setInspector(Inspector inspector) {
         this.inspector = inspector;
     }
 
+    /**
+     *
+     * @param parqueo
+     */
     public void setParqueo(Parqueo parqueo) {
         this.parqueo = parqueo;
     }

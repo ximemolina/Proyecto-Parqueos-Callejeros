@@ -9,6 +9,10 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
+/**
+ *
+ * @author ximena molina - juan pablo cambronero
+ */
 public class ReporteInspector{
     //atributos
     private Inspector inspector;
@@ -17,6 +21,15 @@ public class ReporteInspector{
     private LocalDateTime fechaInicio;
     private LocalDateTime fechaFinal;
     //constructor
+
+    /**
+     *
+     * @param parqueo
+     * @param fechaInicio
+     * @param fechaFinal
+     * @param index
+     * @param inspector
+     */
     public ReporteInspector(Parqueo parqueo, LocalDateTime fechaInicio, LocalDateTime fechaFinal, int index, Inspector inspector){
 
         setParqueo(parqueo);
@@ -28,27 +41,53 @@ public class ReporteInspector{
     }
     
     //setter
+
+    /**
+     *
+     * @param inspector
+     */
     public void setInspector(Inspector inspector) {
         this.inspector = inspector;
     }
 
+    /**
+     *
+     * @param parqueo
+     */
     public void setParqueo(Parqueo parqueo) {
         this.parqueo = parqueo;
     }
 
+    /**
+     *
+     * @param index
+     */
     public void setIndex(int index) {
         this.index = index;
     }
 
+    /**
+     *
+     * @param fechaInicio
+     */
     public void setFechaInicio(LocalDateTime fechaInicio) {
         this.fechaInicio = fechaInicio;
     }
 
+    /**
+     *
+     * @param fechaFinal
+     */
     public void setFechaFinal(LocalDateTime fechaFinal) {
         this.fechaFinal = fechaFinal;
     }
     
     //funcion para obtener la información sobre el estado actual de los espacios del parqueo
+
+    /**
+     *
+     * @return
+     */
     public String listaEspaciosActuales(){
         String info = "";
         if(index == 0){ //se deben mostrar todos los espacios
@@ -183,6 +222,10 @@ public class ReporteInspector{
         return info; //se retorna string con toda la información obtenida
     }
     
+    /**
+     *
+     * @return
+     */
     public String multasEnTiempo(){
         String info = "";
         int contador = 0;
@@ -271,6 +314,11 @@ public class ReporteInspector{
     }
     
     //generar el reporte de inspector
+
+    /**
+     *
+     * @param archivoPDF
+     */
     public void generarReporte(File archivoPDF){
        try {
 

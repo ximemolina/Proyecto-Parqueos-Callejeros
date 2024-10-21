@@ -3,12 +3,23 @@ package com.mycompany.proyectoparqueos;
 
 import java.io.File;
 import javax.swing.JOptionPane;
+
+/**
+ *
+ * @author ximen
+ */
 public class VerificarPinInspector2 extends javax.swing.JFrame {
 
     private Inspector inspector;
     private Parqueo parqueo;
     private String pin; 
     
+    /**
+     *
+     * @param inspector
+     * @param parqueo
+     * @param pin
+     */
     public VerificarPinInspector2(Inspector inspector, Parqueo parqueo, String pin) {
         initComponents();
         setPin(pin);
@@ -205,14 +216,27 @@ public class VerificarPinInspector2 extends javax.swing.JFrame {
         });
     }
     //setters 
+
+    /**
+     *
+     * @param inspector
+     */
     public void setInspector(Inspector inspector) {
         this.inspector = inspector;
     }
 
+    /**
+     *
+     * @param parqueo
+     */
     public void setParqueo(Parqueo parqueo) {
         this.parqueo = parqueo;
     }
 
+    /**
+     *
+     * @param pin
+     */
     public void setPin(String pin) {
         this.pin = pin;
     }

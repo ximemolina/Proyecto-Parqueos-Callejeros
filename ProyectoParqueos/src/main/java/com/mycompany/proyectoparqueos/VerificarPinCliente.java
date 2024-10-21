@@ -2,11 +2,23 @@
 package com.mycompany.proyectoparqueos;
 
 import javax.swing.JOptionPane;
+
+/**
+ *
+ * @author ximen
+ */
 public class VerificarPinCliente extends javax.swing.JFrame {
 
     Cliente cliente;
     Parqueo parqueo;
     String pin; 
+
+    /**
+     *
+     * @param cliente
+     * @param parqueo
+     * @param pin
+     */
     public VerificarPinCliente(Cliente cliente, Parqueo parqueo,String pin) {
         initComponents();
         setCliente(cliente);
@@ -207,13 +219,26 @@ public class VerificarPinCliente extends javax.swing.JFrame {
         });
     }
 
+    /**
+     *
+     * @param cliente
+     */
     public void setCliente(Cliente cliente) {
         this.cliente = cliente;
     }
 
+    /**
+     *
+     * @param parqueo
+     */
     public void setParqueo(Parqueo parqueo) {
         this.parqueo = parqueo;
     }
+
+    /**
+     *
+     * @param pin
+     */
     public void setPin(String pin) {
         this.pin = pin;
     }

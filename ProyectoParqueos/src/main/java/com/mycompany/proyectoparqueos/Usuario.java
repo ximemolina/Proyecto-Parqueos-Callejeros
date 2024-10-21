@@ -3,6 +3,10 @@ import java.time.format.DateTimeFormatter;
 import java.io.*;
 import java.time.*;
 
+/**
+ *
+ * @author ximen
+ */
 public class Usuario {
     //atributos
     private String nombre;
@@ -16,6 +20,18 @@ public class Usuario {
 
     
     //constructor
+
+    /**
+     *
+     * @param pNombre
+     * @param pApellido
+     * @param pTelefono
+     * @param pCorreo
+     * @param pDireccionFisica
+     * @param pFechaIngreso
+     * @param pPin
+     * @param pIdentificacionUsuario
+     */
     public Usuario(String pNombre, String pApellido, String pTelefono, String pCorreo, String pDireccionFisica, LocalDate pFechaIngreso,String pPin, String pIdentificacionUsuario) {
             setNombre(pNombre);
             setApellido(pApellido);
@@ -27,6 +43,11 @@ public class Usuario {
             setIdentificacionUsuario(pIdentificacionUsuario);
     }
     //guarda información en archivo
+
+    /**
+     *
+     * @param nombreArchivo
+     */
    public void guardarUsuario(File nombreArchivo){
        try{
             FileWriter escribir = new FileWriter(nombreArchivo, true); //permite escribir en diferentes ocasiones en archivos
@@ -37,6 +58,11 @@ public class Usuario {
        }
    } 
     //retornar String con informacion
+
+    /**
+     *
+     * @return
+     */
     public String toString(){
         LocalDate fecha = getFechaIngreso();
         DateTimeFormatter formato = DateTimeFormatter.ofPattern("yyyy/MM/dd");
@@ -45,6 +71,11 @@ public class Usuario {
         return "\n" + getIdentificacionUsuario() + "," + getPin() +"," + getNombre() +"," + getApellido()+","+getTelefono()+","+getCorreo()+","+getDireccionFisica()+","+ fechaEnTexto;
     }
     //setters
+
+    /**
+     *
+     * @param pNombre
+     */
     public void setNombre(String pNombre){
         if(pNombre.length()>= 2 && pNombre.length() <= 20){
             nombre = pNombre;
@@ -53,6 +84,10 @@ public class Usuario {
         }
     }
 
+    /**
+     *
+     * @param pApellido
+     */
     public void setApellido(String pApellido){
         if(pApellido.length()>= 1 && pApellido.length() <= 40){
             apellido = pApellido;
@@ -61,6 +96,10 @@ public class Usuario {
         }
     }
 
+    /**
+     *
+     * @param telefono
+     */
     public void setTelefono(String telefono){
         try{
             int num= Integer.parseInt(telefono);
@@ -73,6 +112,10 @@ public class Usuario {
         }
     }
 
+    /**
+     *
+     * @param pCorreo
+     */
     public void setCorreo(String pCorreo) {
         if(pCorreo.contains("@")){
             try{
@@ -90,6 +133,10 @@ public class Usuario {
 
     }
 
+    /**
+     *
+     * @param pDireccionFisica
+     */
     public void setDireccionFisica(String pDireccionFisica) {
         if(pDireccionFisica.length()>= 5 && pDireccionFisica.length() <= 60){
             direccionFisica = pDireccionFisica;
@@ -99,6 +146,10 @@ public class Usuario {
         
     }
 
+    /**
+     *
+     * @param pFechaIngreso
+     */
     public void setFechaIngreso(LocalDate pFechaIngreso) {
         LocalDate hoy = LocalDate.now();  
         if (pFechaIngreso.isBefore(hoy) || pFechaIngreso.isEqual(hoy)) {
@@ -109,6 +160,10 @@ public class Usuario {
         
     }
 
+    /**
+     *
+     * @param pPin
+     */
     public void setPin(String pPin) {
         
         if(pPin.length() == 4){
@@ -119,6 +174,10 @@ public class Usuario {
             throw new ValidacionesExceptions("Error: PIN debe tener 4 caracteres exactos");
     }
 
+    /**
+     *
+     * @param pIdentificacionUsuario
+     */
     public void setIdentificacionUsuario(String pIdentificacionUsuario) {
         if(pIdentificacionUsuario.length()>= 2 && pIdentificacionUsuario.length() <= 25){
             String contenido;
@@ -200,34 +259,67 @@ public class Usuario {
     }
     
     //getters
+
+    /**
+     *
+     * @return
+     */
     public String getNombre() {
         return nombre;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getApellido() {
         return apellido;
     }
 
+    /**
+     *
+     * @return
+     */
     public int getTelefono() {
         return telefono;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getCorreo() {
         return correo;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getDireccionFisica() {
         return direccionFisica;
     }
 
+    /**
+     *
+     * @return
+     */
     public LocalDate getFechaIngreso() {
         return fechaIngreso;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getPin() {
         return pin;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getIdentificacionUsuario() {
         return identificacionUsuario;
     }

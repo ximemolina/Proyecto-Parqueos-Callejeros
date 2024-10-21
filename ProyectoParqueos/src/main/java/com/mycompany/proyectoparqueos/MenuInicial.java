@@ -7,10 +7,15 @@ import java.io.IOException;
 import java.time.*;
 import javax.swing.JOptionPane;
 
+/**
+ *
+ * @author ximen
+ */
 public class MenuInicial extends javax.swing.JFrame {
     Parqueo parqueo;
     /**
      * Creates new form MenuInicial
+     * @param parqueo
      */
     public MenuInicial(Parqueo parqueo) {
         initComponents();        
@@ -36,6 +41,10 @@ public class MenuInicial extends javax.swing.JFrame {
         setParqueo(parqueo);
     }
     
+    /**
+     *
+     * @param parqueo
+     */
     public void setParqueo(Parqueo parqueo){
         this.parqueo = parqueo;
     }
@@ -136,9 +145,10 @@ public class MenuInicial extends javax.swing.JFrame {
         this.setVisible(false); //menu inicial desaparece
     }//GEN-LAST:event_btnRegistrarActionPerformed
 
-    
-    
-    
+    /**
+     *
+     * @param args
+     */
     public void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -173,6 +183,11 @@ public class MenuInicial extends javax.swing.JFrame {
         });
     }
     //lee el archivo y actualiza datos
+
+    /**
+     *
+     * @param parqueo
+     */
     public void leerArchivo(Parqueo parqueo){
         String contenido;
         int contador = 0;

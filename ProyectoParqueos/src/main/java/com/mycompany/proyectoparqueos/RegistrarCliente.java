@@ -4,16 +4,25 @@ package com.mycompany.proyectoparqueos;
 import javax.swing.JOptionPane;
 import java.time.*;
 
+/**
+ *
+ * @author ximen
+ */
 public class RegistrarCliente extends javax.swing.JFrame {
     Parqueo parqueo;
     /**
      * Creates new form RegistrarCliente
+     * @param parqueo
      */
     public RegistrarCliente(Parqueo parqueo) {
         initComponents();
         setParqueo(parqueo);
     }
     
+    /**
+     *
+     * @param parqueo
+     */
     public void setParqueo(Parqueo parqueo){
         this.parqueo = parqueo;
     }

@@ -2,13 +2,35 @@
 package com.mycompany.proyectoparqueos;
 import java.io.*;
 import java.time.*;
+
+/**
+ *
+ * @author ximena molina - juan pablo cambronero
+ */
 public class Administrador extends Usuario{//administrador hereda todo del Usuario
     //constructor
+
+    /**
+     *
+     * @param pNombre
+     * @param pApellido
+     * @param pTelefono
+     * @param pCorreo
+     * @param pDireccionFisica
+     * @param pFechaIngreso
+     * @param pPin
+     * @param pIdentificacionUsuario
+     */
     public Administrador(String pNombre, String pApellido, String pTelefono, String pCorreo, String pDireccionFisica, LocalDate pFechaIngreso,String pPin, String pIdentificacionUsuario){
         super(pNombre,pApellido,pTelefono,pCorreo,pDireccionFisica, pFechaIngreso,pPin,pIdentificacionUsuario);
     }
     
     //modificar los datos de un archivo del admin
+
+    /**
+     *
+     * @param informacion
+     */
     public void modificarDatosAdmin(String informacion){
         
         try{
@@ -31,6 +53,12 @@ public class Administrador extends Usuario{//administrador hereda todo del Usuar
     }
     
     //contar cantidad total de admins en el archivo
+
+    /**
+     *
+     * @param lector
+     * @return
+     */
     public int totalAdmins(BufferedReader lector){
         int numAdmins = 0;
         try{
@@ -46,6 +74,13 @@ public class Administrador extends Usuario{//administrador hereda todo del Usuar
     }
     
     //guarda la informacion del archivo en arreglo para utilizarla en modificarDatosAdmin
+
+    /**
+     *
+     * @param informacion
+     * @return
+     * @throws IOException
+     */
     public String[] guardarInfoAdmin(String informacion)throws IOException{
         FileReader leer = new FileReader("Administrador.txt");
         BufferedReader buffer = new BufferedReader(leer);
@@ -79,6 +114,11 @@ public class Administrador extends Usuario{//administrador hereda todo del Usuar
     }
      
     //elimina el administrador del archivo
+
+    /**
+     *
+     * @param informacion
+     */
     public void eliminarAdmin(String informacion){
             try{
             String [] info = guardarInfoAdmin2(informacion);
@@ -101,6 +141,13 @@ public class Administrador extends Usuario{//administrador hereda todo del Usuar
     }
     
     //guarda la informacion del archivo excepto por el usuario a eliminar
+
+    /**
+     *
+     * @param informacion
+     * @return
+     * @throws IOException
+     */
     public String[] guardarInfoAdmin2(String informacion)throws IOException{
         FileReader leer = new FileReader("Administrador.txt");
         BufferedReader buffer = new BufferedReader(leer);

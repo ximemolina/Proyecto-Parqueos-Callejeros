@@ -18,6 +18,8 @@ public class MenuDesaparcar extends javax.swing.JFrame {
     private Carro carroSeleccionado;
     /**
      * Creates new form MenuDesaparcar
+     * @param cliente
+     * @param parqueo
      */
     public MenuDesaparcar(Cliente cliente, Parqueo parqueo) {
         initComponents();
@@ -26,10 +28,18 @@ public class MenuDesaparcar extends javax.swing.JFrame {
         llenarComboBoxCarrosAparcados();
     }
     
+    /**
+     *
+     * @param parqueo
+     */
     public void setParqueo(Parqueo parqueo){
         this.parqueo = parqueo;
     }
     
+    /**
+     *
+     * @param cliente
+     */
     public void setCliente(Cliente cliente){
         this.cliente = cliente;
     }

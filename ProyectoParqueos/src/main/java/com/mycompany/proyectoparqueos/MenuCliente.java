@@ -2,17 +2,30 @@ package com.mycompany.proyectoparqueos;
 import java.io.File;
 import javax.swing.JOptionPane;
 
+/**
+ *
+ * @author ximen
+ */
 public class MenuCliente extends javax.swing.JFrame {
 
     private Cliente cliente;
     private Parqueo parqueo;
     
+    /**
+     *
+     * @param cliente
+     * @param parqueo
+     */
     public MenuCliente(Cliente cliente, Parqueo parqueo) {
         initComponents();
         setCliente(cliente);
         setParqueo(parqueo);
     }
     
+    /**
+     *
+     * @param parqueo
+     */
     public void setParqueo(Parqueo parqueo){
         this.parqueo = parqueo;
     }
@@ -342,6 +355,11 @@ public class MenuCliente extends javax.swing.JFrame {
     }
     
     //setter
+
+    /**
+     *
+     * @param pCliente
+     */
     public void setCliente(Cliente pCliente){
         cliente = pCliente;
     }

@@ -7,12 +7,20 @@ package com.mycompany.proyectoparqueos;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
-
+/**
+ *
+ * @author ximen
+ */
 public class ConsultarInspector extends javax.swing.JFrame {
 
     private Inspector inspector;
     private Parqueo parqueo;
     
+    /**
+     *
+     * @param inspector
+     * @param parqueo
+     */
     public ConsultarInspector(Inspector inspector, Parqueo parqueo) {
         initComponents();
         setInspector(inspector);
@@ -201,6 +209,10 @@ public class ConsultarInspector extends javax.swing.JFrame {
         });
     }
     //mostrar informacion de inspector
+
+    /**
+     *
+     */
     public void mostrarInfoInspector(){
         lblNombre.setText("Nombre: " + inspector.getNombre());
         lblApellidos.setText("Apellidos: " + inspector.getApellido());
@@ -217,10 +229,19 @@ public class ConsultarInspector extends javax.swing.JFrame {
         
     }
     //setters
+
+    /**
+     *
+     * @param inspector
+     */
     public void setInspector(Inspector inspector) {
         this.inspector = inspector;
     }
 
+    /**
+     *
+     * @param parqueo
+     */
     public void setParqueo(Parqueo parqueo) {
         this.parqueo = parqueo;
     }

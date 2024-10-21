@@ -12,6 +12,10 @@ import java.time.*;
 import java.time.format.DateTimeFormatter;
 import javax.swing.*;
 
+/**
+ *
+ * @author ximena molina - juan pablo cambronero
+ */
 public class ReporteAdmin {
     
     private Parqueo parqueo;
@@ -20,7 +24,14 @@ public class ReporteAdmin {
     private int index;
     private int index2;
 
-    
+    /**
+     *
+     * @param parqueo
+     * @param fechaInicio
+     * @param fechaFinal
+     * @param index
+     * @param index2
+     */
     public ReporteAdmin(Parqueo parqueo, LocalDateTime fechaInicio, LocalDateTime fechaFinal, int index, int index2){
         setParqueo(parqueo);
         setFechaInicio(fechaInicio);
@@ -29,14 +40,28 @@ public class ReporteAdmin {
         setIndex2(index2);
     }
     //getters
+
+    /**
+     *
+     * @return
+     */
     public LocalDateTime getFechaInicio() {
         return fechaInicio;
     }
 
+    /**
+     *
+     * @return
+     */
     public LocalDateTime getFechaFinal() {
         return fechaFinal;
     }
     //funcion para ingresos de dinero de estacionamiento en un periodo de tiempo
+
+    /**
+     *
+     * @return
+     */
     public int ingresosDinero(){
         int monto = 0;
         if(fechaInicio==null && fechaFinal == null){ //si ambos están en null, se calcula total ingresos
@@ -80,6 +105,11 @@ public class ReporteAdmin {
         }return monto;
     }
      //funcion de ingresos por multas
+
+    /**
+     *
+     * @return
+     */
     public int ingresosMultas(){
         int monto = 0;
         if(fechaInicio==null && fechaFinal == null){ //si ambos están en null, se calcula total ingresos
@@ -123,6 +153,11 @@ public class ReporteAdmin {
         }return monto;
     } 
     //funcion de lista de espacios de parqueos según su estado actual
+
+    /**
+     *
+     * @return
+     */
     public String listaEspaciosActuales(){
         String info = "";
         if(index == 0){ //se deben mostrar todos los espacios
@@ -258,6 +293,11 @@ public class ReporteAdmin {
     }
 
     //funcion de historial en un periodo de tiempo de los espacios usados
+
+    /**
+     *
+     * @return
+     */
     public String historialEspaciosUsados(){
         String info = "";
         for(EspacioDeParqueo espacio : parqueo.getHistorialParqueo().getListaParqueo()){ //se recorre todo el historial de parqueos
@@ -517,6 +557,11 @@ public class ReporteAdmin {
     }
     
     //funcion para generar historial de multas
+
+    /**
+     *
+     * @return String
+     */
     public String historialMultas(){
         String info = "";
         if(fechaInicio==null && fechaFinal == null){ //si ambas son null, se tomaran las multas de todo el tiempo
@@ -558,6 +603,12 @@ public class ReporteAdmin {
         return info;
     }
     //funcion para estadistica de un espacio en específico
+
+    /**
+     *
+     * @param numEspacio
+     * @return
+     */
     public String estadisticaEspacioUnico(int numEspacio){
         String info = "";
         for(EspacioDeParqueo espacio : parqueo.getHistorialParqueo().getListaParqueo()){ //se recorre todo el historial de parqueos
@@ -691,6 +742,13 @@ public class ReporteAdmin {
     }
     
     //funcion para estadistica desde un espacio hasta otro
+
+    /**
+     *
+     * @param espacioInicio
+     * @param espacioFinal
+     * @return
+     */
     public String estadisticaVariosEspacios(int espacioInicio, int espacioFinal){
         long horasUtilizadas = 0;
         long horasTotalesParqueo =0;
@@ -770,6 +828,11 @@ public class ReporteAdmin {
     }
     
     //funcion para estadistica de todos los espacios
+
+    /**
+     *
+     * @return
+     */
     public String estadisticaTodos(){
         String info = "";
         for(EspacioDeParqueo espacio : parqueo.getHistorialParqueo().getListaParqueo()){ //se recorre todo el historial de parqueos
@@ -853,6 +916,11 @@ public class ReporteAdmin {
     }
     
     //revisar de cuales espacios se quiere la estadística
+
+    /**
+     *
+     * @return
+     */
     public String revisarEspacioEstadistica(){
         if(index2 == 0){
             String respuesta = JOptionPane.showInputDialog(null, "¿De cuál espacio desea la estadística?", "Pregunta", JOptionPane.QUESTION_MESSAGE);
@@ -903,6 +971,11 @@ public class ReporteAdmin {
     }
     
     //generar el PDF con toda la información
+
+    /**
+     *
+     * @param archivoPDF
+     */
     public void generarReporte(File archivoPDF) {
         try {
             // Crear el PDF
@@ -954,22 +1027,43 @@ public class ReporteAdmin {
     7. agarrar de HistorialParqueo
     */
     // <editor-fold defaultstate="collapsed" desc="Setters"> 
+
+    /**
+     *
+     * @param parqueo
+     */
     public void setParqueo(Parqueo parqueo) {
         this.parqueo = parqueo;
     }
 
+    /**
+     *
+     * @param fechaInicio
+     */
     public void setFechaInicio(LocalDateTime fechaInicio) {
         this.fechaInicio = fechaInicio;
     }
 
+    /**
+     *
+     * @param fechaFinal
+     */
     public void setFechaFinal(LocalDateTime fechaFinal) {
         this.fechaFinal = fechaFinal;
     }
 
+    /**
+     *
+     * @param index
+     */
     public void setIndex(int index) {
         this.index = index;
     }
 
+    /**
+     *
+     * @param index2
+     */
     public void setIndex2(int index2) {
         this.index2 = index2;
     }

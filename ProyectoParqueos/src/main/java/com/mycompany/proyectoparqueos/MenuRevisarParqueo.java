@@ -13,6 +13,10 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 
+/**
+ *
+ * @author ximen
+ */
 public class MenuRevisarParqueo extends javax.swing.JFrame {
     Parqueo parqueo;
     Inspector inspector;
@@ -20,6 +24,8 @@ public class MenuRevisarParqueo extends javax.swing.JFrame {
     private String placaSeleccionada;
     /**
      * Creates new form MenuRevisarParqueo
+     * @param inspector
+     * @param parqueo
      */
     public MenuRevisarParqueo(Inspector inspector, Parqueo parqueo) {
         initComponents();
@@ -28,14 +34,26 @@ public class MenuRevisarParqueo extends javax.swing.JFrame {
         llenarComboBoxEspaciosOcupados();
     }
     
+    /**
+     *
+     * @param parqueo
+     */
     public void setParqueo(Parqueo parqueo){
         this.parqueo = parqueo;
     }
     
+    /**
+     *
+     * @param inspector
+     */
     public void setInspector(Inspector inspector){
         this.inspector = inspector;
     }
     
+    /**
+     *
+     * @param espacioSeleccionado
+     */
     public void setEspacioSeleccionado(EspacioDeParqueo espacioSeleccionado){
         this.espacioSeleccionado = espacioSeleccionado;
     }

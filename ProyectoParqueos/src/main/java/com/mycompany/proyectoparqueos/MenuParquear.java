@@ -6,14 +6,21 @@ import javax.swing.*;
 import java.awt.*;
 import java.io.File;
 
-
+/**
+ *
+ * @author ximen
+ */
 public class MenuParquear extends javax.swing.JFrame {
     Cliente cliente;
     Parqueo parqueo;
     private Carro carroSeleccionado;
     private EspacioDeParqueo espacioSeleccionado;
 
-    
+    /**
+     *
+     * @param cliente
+     * @param parqueo
+     */
     public MenuParquear(Cliente cliente, Parqueo parqueo) {
         initComponents();
         setCliente(cliente);
@@ -22,10 +29,18 @@ public class MenuParquear extends javax.swing.JFrame {
         actualizarComboBoxCarros();
     }
     
+    /**
+     *
+     * @param cliente
+     */
     public void setCliente(Cliente cliente){
         this.cliente = cliente;
     }
     
+    /**
+     *
+     * @param parqueo
+     */
     public void setParqueo(Parqueo parqueo){
         this.parqueo = parqueo;
     }
