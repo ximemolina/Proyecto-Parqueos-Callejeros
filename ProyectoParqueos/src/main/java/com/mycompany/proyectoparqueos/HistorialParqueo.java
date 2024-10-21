@@ -11,12 +11,6 @@ public class HistorialParqueo {
     public HistorialParqueo(){
         setListaParqueo();       
     }
-     /*
-    Esta clase sería para la parte de historial de parqueo en un intervalo de tiempo
-    Lista de Espacios de estado actual se hace con EspaciosParqueo
-    En los tiempos se debe poder agarrar meses, dias y horas
-    Lo unico que faltaría es costo pero la clase EspacioDeParqueo tiene una función de calcular costo
-    */
     //retornar string con informacion
     public String toString(){
         String info = "";
@@ -30,11 +24,9 @@ public class HistorialParqueo {
        try{
             File nombreArchivo = new File("HistorialParqueo.txt");
             String contenido = toString();
-            System.out.println("Contenido a guardar: " + contenido);
             FileWriter escribir = new FileWriter(nombreArchivo,true); //permite escribir en diferentes ocasiones en archivos
             escribir.write(toString()); //escribe informarion de usuario
             escribir.close(); //cierra escritor
-            System.out.println("Información guardada exitosamente."); 
        } catch(Exception e){
            System.out.print(e.getMessage());
        }
@@ -44,7 +36,7 @@ public class HistorialParqueo {
         listaParqueo.add(espacio);
     }
     //getter
-    public ArrayList<EspacioDeParqueo> getListaparqueo() {
+    public ArrayList<EspacioDeParqueo> getListaParqueo() {
         return listaParqueo;
     }
     //setter

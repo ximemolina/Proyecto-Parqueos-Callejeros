@@ -203,7 +203,9 @@ public class MenuInspector extends javax.swing.JFrame {
 
     private void btnGenerarInspectorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGenerarInspectorActionPerformed
 
-        
+        MenuReporteInspector menu = new MenuReporteInspector(inspector, parqueo);
+        menu.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_btnGenerarInspectorActionPerformed
 
     private void btnConsultarInspectorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarInspectorActionPerformed

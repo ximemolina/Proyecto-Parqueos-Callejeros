@@ -1,7 +1,6 @@
 
 package com.mycompany.proyectoparqueos;
 
-import java.io.File;
 import javax.swing.JOptionPane;
 import java.time.*;
 import java.util.Random;

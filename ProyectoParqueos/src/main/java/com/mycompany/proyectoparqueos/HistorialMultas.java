@@ -17,6 +17,11 @@ public class HistorialMultas {
     public ArrayList<Multa> getListaMultas() {
         return listaMultas;
     }
+
+    public ArrayList<String> getListaInspectores() {
+        return listaInspectores;
+    }
+    
     //setter
     public void setListaMultas() {
         listaMultas = new ArrayList<>();
@@ -32,17 +37,8 @@ public class HistorialMultas {
     //retorna toString
     public String toString(){
         String info="";
-        int contador = 0;
-        int cont;
         for(Multa multa : listaMultas){
-            info = multa.toString();
-            cont = 0;
-            for(String idInspector : listaInspectores){
-                if(cont == contador)
-                    info = info +","+ idInspector+"\n";
-                cont++;
-            }
-            contador ++;
+            info = multa.toString()+info;
         }
         return info;
     }

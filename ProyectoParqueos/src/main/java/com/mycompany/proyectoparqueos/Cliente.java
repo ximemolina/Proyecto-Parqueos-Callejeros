@@ -7,7 +7,6 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
-
 import java.util.ArrayList;
 import java.time.*;
 
@@ -101,7 +100,8 @@ public class Cliente extends Usuario {
 
                 // Guardar el archivo justo antes de resetear los valores
                 parqueo.guardarParqueo(archivoParqueo);
-
+                parqueo.getHistorialParqueo().agregarHistorialParqueo(espacio);
+                parqueo.getHistorialParqueo().guardarHistorialParqueo();
                 // Resetear valores del espacio de parqueo
                 espacio.setTiempoComprado(0);
                 espacio.setCarro(null);  // Liberar el espacio

@@ -17,12 +17,11 @@ public class MenuAdministrador extends javax.swing.JFrame {
         setParqueo(parqueo);
         revisarEspaciosParqueo();
     }
-    
+    //setters
     public void setParqueo(Parqueo parqueo){
         this.parqueo = parqueo;
     }
 
-    //setters
     public void setAdmin(Administrador administrador){
         admin = administrador;
     }
@@ -151,7 +150,7 @@ public class MenuAdministrador extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(btnVolver)
-                        .addGap(152, 152, 152)
+                        .addGap(121, 121, 121)
                         .addComponent(jLabel2))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(41, 41, 41)
@@ -171,12 +170,12 @@ public class MenuAdministrador extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(20, 20, 20)
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(btnVolver)))
-                .addGap(52, 52, 52)
+                        .addComponent(btnVolver))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(21, 21, 21)
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(51, 51, 51)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnConfigurarParqueo1, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnGenerarReporte, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -249,7 +248,9 @@ public class MenuAdministrador extends javax.swing.JFrame {
     }//GEN-LAST:event_btnConsultarAdminActionPerformed
 
     private void btnGenerarReporteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGenerarReporteActionPerformed
-        // TODO add your handling code here:
+        this.setVisible(false);
+        MenuReporteAdministrador menu = new MenuReporteAdministrador(parqueo, admin);
+        menu.setVisible(true);
     }//GEN-LAST:event_btnGenerarReporteActionPerformed
 
     private void btnConfigurarParqueo1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfigurarParqueo1ActionPerformed

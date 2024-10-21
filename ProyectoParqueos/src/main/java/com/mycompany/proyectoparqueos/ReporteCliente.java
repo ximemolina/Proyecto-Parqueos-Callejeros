@@ -1,14 +1,12 @@
 package com.mycompany.proyectoparqueos;
 
 import java.io.BufferedReader;
-import java.io.File;
 import java.io.FileReader;
 import java.time.Duration;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
-import java.util.List;
 import com.itextpdf.kernel.pdf.PdfDocument;
 import com.itextpdf.kernel.pdf.PdfWriter;
 import com.itextpdf.layout.Document;
@@ -22,11 +20,6 @@ public class ReporteCliente {
     
     private Cliente cliente;
     private Parqueo parqueo;
-    /*
-    1. agarrar de clase EspaciosDeParqueo
-    2. agarrar de HistorialParqueo, se tiene que comparar las placas del cliente con las placas de cada espacio
-    3. agarrar de HistorialMulta y se revisa igual que el anterior, apartir de las placas del cliente
-    */
     
     public ReporteCliente(Cliente cliente, Parqueo parqueo){
         this.cliente = cliente;
@@ -127,11 +120,10 @@ public class ReporteCliente {
                         String identificadorMulta = datos[5];
 
                         String registroMulta = String.format(
-                            "Placa: %s, Marca: %s, Modelo: %s, Fecha de la multa: %s, Costo: %d, ID Multa: %s",
+                            "Placa: %s, Marca: %s, Modelo: %s, Fecha de la multa: %s, Costo: %d",
                             placa, marca, modelo,
                             fechaMulta != null ? fechaMulta : "Fecha no registrada",
-                            costoMulta,
-                            identificadorMulta
+                            costoMulta
                         );
 
                         historialMultas.add(registroMulta);
