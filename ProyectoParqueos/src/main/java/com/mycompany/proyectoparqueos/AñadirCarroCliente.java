@@ -5,17 +5,31 @@
 package com.mycompany.proyectoparqueos;
 import javax.swing.JOptionPane;
 import java.io.File;
+
+/**
+ *
+ * @author ximen
+ */
 public class AñadirCarroCliente extends javax.swing.JFrame {
     
     Cliente cliente;
     Parqueo parqueo;
      
+    /**
+     *
+     * @param cliente
+     * @param parqueo
+     */
     public AñadirCarroCliente(Cliente cliente, Parqueo parqueo) {
         initComponents();
         setCliente(cliente);
         setParqueo(parqueo);
     }
     
+    /**
+     *
+     * @param parqueo
+     */
     public void setParqueo(Parqueo parqueo){
         this.parqueo = parqueo;
     }
@@ -255,6 +269,10 @@ public class AñadirCarroCliente extends javax.swing.JFrame {
         });
     }
     
+    /**
+     *
+     * @param pCliente
+     */
     public void setCliente(Cliente pCliente){
         cliente = pCliente;
     }

@@ -2,6 +2,10 @@ package com.mycompany.proyectoparqueos;
 
 import java.time.*;
 
+/**
+ *
+ * @author ximena molina - juan pablo cambronero
+ */
 public class EspacioDeParqueo {
     private int numeroEspacio;
     private int tiempoComprado;
@@ -12,6 +16,11 @@ public class EspacioDeParqueo {
     private LocalDateTime horaFinParqueo;
 
     // Constructor
+
+    /**
+     *
+     * @param pNumeroEspacio
+     */
     public EspacioDeParqueo(int pNumeroEspacio){
         setNumeroEspacio(pNumeroEspacio);
         tiempoComprado = 0;
@@ -22,6 +31,10 @@ public class EspacioDeParqueo {
         horaInicioParqueo = null;
     }
     
+    /**
+     *
+     * @param pNumeroEspacio
+     */
     public void setNumeroEspacio(int pNumeroEspacio) {   
         if (String.valueOf(pNumeroEspacio).length() < 1 || String.valueOf(pNumeroEspacio).length() > 5) {
             throw new ValidacionesExceptions("El número de espacio debe tener entre 1 y 5 dígitos.");
@@ -29,10 +42,18 @@ public class EspacioDeParqueo {
         this.numeroEspacio = pNumeroEspacio;
     }
     
+    /**
+     *
+     * @param pTiempoComprado
+     */
     public void setTiempoComprado(int pTiempoComprado) {
         this.tiempoComprado = pTiempoComprado; 
     }
     
+    /**
+     *
+     * @param carro
+     */
     public void setCarro(Carro carro){
         if (carro != null) {
             this.carro = carro;
@@ -45,51 +66,99 @@ public class EspacioDeParqueo {
         }
     }
 
+    /**
+     *
+     * @param disponible
+     */
     public void setDisponible(boolean disponible){
         this.disponible = disponible;
     }
     
+    /**
+     *
+     * @param estadoPago
+     */
     public void setEstadoPago(boolean estadoPago){
         this.estadoPago = estadoPago;
     }
     
+    /**
+     *
+     * @param horaInicioParqueo
+     */
     public void setHoraInicioParqueo(LocalDateTime horaInicioParqueo){
             this.horaInicioParqueo = horaInicioParqueo;
         }
     
-    
+    /**
+     *
+     * @param horaFinParqueo
+     */
     public void setHoraFinParqueo(LocalDateTime horaFinParqueo){
             this.horaFinParqueo = horaFinParqueo;
     }
     
+    /**
+     *
+     * @return
+     */
     public int getNumeroEspacio(){
         return numeroEspacio;
     }
     
+    /**
+     *
+     * @return
+     */
     public int getTiempoComprado(){
         return tiempoComprado;
     }
     
+    /**
+     *
+     * @return
+     */
     public Carro getCarro(){
         return carro;
     }
     
+    /**
+     *
+     * @return
+     */
     public boolean getEstadoPago(){
         return estadoPago;
     }
     
+    /**
+     *
+     * @return
+     */
     public boolean getDisponible(){
         return disponible;
     }
     
+    /**
+     *
+     * @return
+     */
     public LocalDateTime getHoraInicioParqueo(){
         return horaInicioParqueo;
     }
 
+    /**
+     *
+     * @return
+     */
     public LocalDateTime getHoraFinParqueo() {
         return horaFinParqueo;
     }
     
+    /**
+     *
+     * @param espacio
+     * @return
+     */
     public long calcularTiempoParqueo(EspacioDeParqueo espacio) {
         LocalDateTime horaInicio = espacio.getHoraInicioParqueo();
         LocalDateTime horaActual = LocalDateTime.now();
@@ -105,6 +174,13 @@ public class EspacioDeParqueo {
         return minutosParqueo;
     }
 
+    /**
+     *
+     * @param espacio
+     * @param parqueo
+     * @param cliente
+     * @return
+     */
     public double calcularMontoAPagar(EspacioDeParqueo espacio, Parqueo parqueo, Cliente cliente) {
         // Verificar si el parqueo está dentro del horario de operación
         if (!parqueo.estaDentroDeHorario()) {
@@ -151,6 +227,10 @@ public class EspacioDeParqueo {
         return montoTotal;
     }
     
+    /**
+     *
+     * @return
+     */
     public long calcularTiempoRestante() {
         LocalDateTime horaInicio = this.getHoraInicioParqueo();
         LocalDateTime horaActual = LocalDateTime.now();
@@ -164,8 +244,10 @@ public class EspacioDeParqueo {
         return minutosRestantes > 0 ? minutosRestantes : 0;  // Retornar solo los minutos restantes positivos
     }
 
-
-
+    /**
+     *
+     * @return
+     */
     public String toString() {
         // Verificamos si horaInicioParqueo y horaFinParqueo son null
         String horaInicioStr = (getHoraInicioParqueo() != null) ? getHoraInicioParqueo().toString() : "null";

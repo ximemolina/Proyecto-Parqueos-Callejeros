@@ -17,6 +17,8 @@ public class MenuPagar extends javax.swing.JFrame {
     EspacioDeParqueo espacioSeleccionado;
     /**
      * Creates new form MenuPagar
+     * @param cliente
+     * @param parqueo
      */
     public MenuPagar(Cliente cliente, Parqueo parqueo) {
         initComponents();
@@ -25,10 +27,18 @@ public class MenuPagar extends javax.swing.JFrame {
         llenarComboBoxEspaciosOcupados();
     }
     
+    /**
+     *
+     * @param parqueo
+     */
     public void setParqueo(Parqueo parqueo){
         this.parqueo = parqueo;
     }
     
+    /**
+     *
+     * @param cliente
+     */
     public void setCliente(Cliente cliente){
         this.cliente = cliente;
     }

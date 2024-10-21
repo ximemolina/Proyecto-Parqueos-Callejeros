@@ -3,11 +3,22 @@ package com.mycompany.proyectoparqueos;
 
 import javax.swing.JOptionPane;
 
+/**
+ *
+ * @author ximen
+ */
 public class VerificarPinAdmin extends javax.swing.JFrame {
 
     Administrador admin;
     Parqueo parqueo;
     String pin;
+
+    /**
+     *
+     * @param admin
+     * @param parqueo
+     * @param pin
+     */
     public VerificarPinAdmin(Administrador admin, Parqueo parqueo, String pin) {
         initComponents();
         setAdmin(admin);
@@ -208,15 +219,26 @@ public class VerificarPinAdmin extends javax.swing.JFrame {
         });
     }
 
+    /**
+     *
+     * @param admin
+     */
     public void setAdmin(Administrador admin) {
         this.admin = admin;
     }
 
+    /**
+     *
+     * @param parqueo
+     */
     public void setParqueo(Parqueo parqueo) {
         this.parqueo = parqueo;
     }
 
-
+    /**
+     *
+     * @param pin
+     */
     public void setPin(String pin) {
         this.pin = pin;
     }

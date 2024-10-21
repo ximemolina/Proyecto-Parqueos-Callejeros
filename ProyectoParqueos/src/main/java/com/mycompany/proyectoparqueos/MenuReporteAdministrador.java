@@ -5,11 +5,21 @@ import java.io.File;
 import java.time.*;
 import javax.swing.JOptionPane;
 
+/**
+ *
+ * @author ximen
+ */
 public class MenuReporteAdministrador extends javax.swing.JFrame {
 
     private Administrador administrador;
     private Parqueo parqueo;
     //constructor
+
+    /**
+     *
+     * @param parqueo
+     * @param admin
+     */
     public MenuReporteAdministrador(Parqueo parqueo, Administrador admin) {
         initComponents();
         setAdministrador(admin);
@@ -17,10 +27,19 @@ public class MenuReporteAdministrador extends javax.swing.JFrame {
     }
     
     //setters
+
+    /**
+     *
+     * @param parqueo
+     */
     public void setParqueo(Parqueo parqueo){
         this.parqueo = parqueo;
     }
 
+    /**
+     *
+     * @param pAdministrador
+     */
     public void setAdministrador(Administrador pAdministrador){
         administrador = pAdministrador;
     }
@@ -253,7 +272,10 @@ public class MenuReporteAdministrador extends javax.swing.JFrame {
         
     }//GEN-LAST:event_btnAceptar3ActionPerformed
    
-
+    /**
+     *
+     * @param args
+     */
     public void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">

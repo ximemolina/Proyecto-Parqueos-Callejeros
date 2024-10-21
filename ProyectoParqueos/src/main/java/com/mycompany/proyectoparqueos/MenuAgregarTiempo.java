@@ -15,6 +15,8 @@ public class MenuAgregarTiempo extends javax.swing.JFrame {
     Cliente cliente;
     /**
      * Creates new form MenuAgregarTiempo
+     * @param cliente
+     * @param parqueo
      */
     public MenuAgregarTiempo(Cliente cliente, Parqueo parqueo) {
         initComponents();
@@ -23,10 +25,18 @@ public class MenuAgregarTiempo extends javax.swing.JFrame {
         llenarComboBoxEspaciosOcupados();
     }
     
+    /**
+     *
+     * @param parqueo
+     */
     public void setParqueo(Parqueo parqueo){
         this.parqueo = parqueo;
     }
     
+    /**
+     *
+     * @param cliente
+     */
     public void setCliente(Cliente cliente){
         this.cliente = cliente;
     }

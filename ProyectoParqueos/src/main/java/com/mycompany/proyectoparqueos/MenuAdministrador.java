@@ -4,12 +4,18 @@ package com.mycompany.proyectoparqueos;
 import java.io.File;
 import javax.swing.JOptionPane;
 
+/**
+ *
+ * @author ximen
+ */
 public class MenuAdministrador extends javax.swing.JFrame {
      
     private Administrador admin;
     private Parqueo parqueo;
     /**
      * Creates new form ScrAccionesAdministrador
+     * @param pAdmin
+     * @param parqueo
      */
     public MenuAdministrador(Administrador pAdmin, Parqueo parqueo) {
         initComponents();
@@ -18,10 +24,19 @@ public class MenuAdministrador extends javax.swing.JFrame {
         revisarEspaciosParqueo();
     }
     //setters
+
+    /**
+     *
+     * @param parqueo
+     */
     public void setParqueo(Parqueo parqueo){
         this.parqueo = parqueo;
     }
 
+    /**
+     *
+     * @param administrador
+     */
     public void setAdmin(Administrador administrador){
         admin = administrador;
     }

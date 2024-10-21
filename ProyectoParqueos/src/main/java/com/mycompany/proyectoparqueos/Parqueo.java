@@ -9,7 +9,10 @@ import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
-
+/**
+ *
+ * @author ximena molina - juan pablo cambronero
+ */
 public class Parqueo {
     private String codigoTerminal;
     private int tiempoMinimo;
@@ -21,6 +24,15 @@ public class Parqueo {
     private HistorialMultas historialMultas;
     private HistorialParqueo historialParqueo;
     
+    /**
+     *
+     * @param pCodigoTerminal
+     * @param pTiempoMinimo
+     * @param pPrecioHora
+     * @param pAbre
+     * @param pCierra
+     * @param pCostoMulta
+     */
     public Parqueo(String pCodigoTerminal, int pTiempoMinimo, int pPrecioHora, String pAbre, String pCierra, int pCostoMulta){
         setCodigoTerminal(pCodigoTerminal);
         setTiempoMinimo(pTiempoMinimo);
@@ -31,24 +43,44 @@ public class Parqueo {
         espaciosParqueo = new ArrayList<>();
     }
 
-    
+    /**
+     *
+     * @param historialMultas
+     */
     public void setHistorialMultas(HistorialMultas historialMultas) {
         this.historialMultas = historialMultas;
     }
 
+    /**
+     *
+     * @param historialParqueo
+     */
     public void setHistorialParqueo(HistorialParqueo historialParqueo) {
         this.historialParqueo = historialParqueo;
     }
 
+    /**
+     *
+     * @return
+     */
     public HistorialMultas getHistorialMultas() {
         return historialMultas;
     }
 
+    /**
+     *
+     * @return
+     */
     public HistorialParqueo getHistorialParqueo() {
         return historialParqueo;
     }
     
     //retorna toda la informacion del parqueo en un String
+
+    /**
+     *
+     * @return
+     */
     public String toString(){
         String info = "";
         for(EspacioDeParqueo espacio : espaciosParqueo){ //agarra toda la información almacenada en el array
@@ -60,6 +92,11 @@ public class Parqueo {
     
         
     //setters
+
+    /**
+     *
+     * @param codigoTerminal
+     */
     public void setCodigoTerminal(String codigoTerminal) {
         if (codigoTerminal != null && codigoTerminal.length() == 6) {
             this.codigoTerminal = codigoTerminal;
@@ -69,6 +106,10 @@ public class Parqueo {
         }
     }
     
+    /**
+     *
+     * @param pTiempoMinimo
+     */
     public void setTiempoMinimo(int pTiempoMinimo) {
         if (pTiempoMinimo >= 0) { 
             this.tiempoMinimo = pTiempoMinimo;
@@ -78,6 +119,10 @@ public class Parqueo {
         }
     }
     
+    /**
+     *
+     * @param pPrecioHora
+     */
     public void setPrecioHora(int pPrecioHora) {
         if (pPrecioHora % 2 == 0) {
             this.precioHora = pPrecioHora;
@@ -89,6 +134,10 @@ public class Parqueo {
 
     private static final DateTimeFormatter TIME_FORMATTER = DateTimeFormatter.ofPattern("H:mm");
     
+    /**
+     *
+     * @param pAbre
+     */
     public void setAbre(String pAbre) {
         try {
             this.abre = LocalTime.parse(pAbre, TIME_FORMATTER);
@@ -98,6 +147,10 @@ public class Parqueo {
         }
     }
     
+    /**
+     *
+     * @param pCierra
+     */
     public void setCierra(String pCierra) {
         try {
             LocalTime horaCierre = LocalTime.parse(pCierra, TIME_FORMATTER);
@@ -113,6 +166,10 @@ public class Parqueo {
         }
     }
     
+    /**
+     *
+     * @param pCostoMulta
+     */
     public void setCostoMulta(int pCostoMulta) {
         if (pCostoMulta >= 0) {
             this.costoMulta = pCostoMulta;
@@ -122,38 +179,74 @@ public class Parqueo {
         }
     }
     
+    /**
+     *
+     * @param pEspaciosParqueo
+     */
     public void setEspaciosParqueo(ArrayList<EspacioDeParqueo> pEspaciosParqueo){
         espaciosParqueo = pEspaciosParqueo;
     }
     
+    /**
+     *
+     * @return
+     */
     public String getCodigoTerminal(){
         return codigoTerminal;
     }
     
+    /**
+     *
+     * @return
+     */
     public int getTiempoMinimo(){
         return tiempoMinimo;
     }
     
+    /**
+     *
+     * @return
+     */
     public int getPrecioHora(){
         return precioHora;
     }
     
+    /**
+     *
+     * @return
+     */
     public LocalTime getAbre(){
         return abre;
     }
     
+    /**
+     *
+     * @return
+     */
     public LocalTime getCierra(){
         return cierra;
     }
     
+    /**
+     *
+     * @return
+     */
     public int getCostoMulta(){
         return costoMulta;
     }
     
+    /**
+     *
+     * @return
+     */
     public ArrayList<EspacioDeParqueo> getEspaciosParqueo(){
         return espaciosParqueo;
     }
     
+    /**
+     *
+     * @return
+     */
     public ArrayList<EspacioDeParqueo> getEspaciosDisponibles() {
         ArrayList<EspacioDeParqueo> espaciosDisponibles = new ArrayList<>();
 
@@ -167,6 +260,10 @@ public class Parqueo {
         return espaciosDisponibles; // Retorna la lista de espacios disponibles
     }
     
+    /**
+     *
+     * @param espacio
+     */
     public void agregarEspacioParqueo(EspacioDeParqueo espacio) {
         if (!espacioExiste(espacio.getNumeroEspacio())) {
             espaciosParqueo.add(espacio);
@@ -184,6 +281,11 @@ public class Parqueo {
         return false;
     }
     
+    /**
+     *
+     * @param inicio
+     * @param fin
+     */
     public void agregarGrupoEspacios(int inicio, int fin) {
         if (inicio > fin) {
             throw new ValidacionesExceptions("El rango de inicio para agregar debe ser menor o igual que el final.");
@@ -208,6 +310,11 @@ public class Parqueo {
         }
     }
     
+    /**
+     *
+     * @param inicio
+     * @param fin
+     */
     public void eliminarGrupoEspacios(int inicio, int fin) {
         if (inicio > fin) {
             throw new ValidacionesExceptions("El rango de inicio debe ser menor o igual que el final.");
@@ -223,6 +330,9 @@ public class Parqueo {
         }
     }
     
+    /**
+     *
+     */
     public void mostrarEspaciosYCarros() {
         for (EspacioDeParqueo espacio : this.getEspaciosParqueo()) {
             Carro carro = espacio.getCarro();
@@ -234,12 +344,21 @@ public class Parqueo {
         }
     }
     
+    /**
+     *
+     * @return
+     */
     public boolean estaDentroDeHorario() {
         LocalTime horaActual = LocalTime.now();
         return horaActual.isAfter(abre) && horaActual.isBefore(cierra);
     }
     
     //guarda información en archivo
+
+    /**
+     *
+     * @param nombreArchivo
+     */
    public void guardarParqueo(File nombreArchivo){
        try{
             FileWriter escribir = new FileWriter(nombreArchivo); //permite escribir en diferentes ocasiones en archivos

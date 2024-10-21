@@ -12,12 +12,17 @@ public class MenuIngresar extends javax.swing.JFrame {
     Parqueo parqueo;
     /**
      * Creates new form MenuIngresar
+     * @param parqueo
      */
     public MenuIngresar(Parqueo parqueo) {
         initComponents();
         setParqueo(parqueo);
     }
     
+    /**
+     *
+     * @param parqueo
+     */
     public void setParqueo(Parqueo parqueo){
         this.parqueo = parqueo;
     }

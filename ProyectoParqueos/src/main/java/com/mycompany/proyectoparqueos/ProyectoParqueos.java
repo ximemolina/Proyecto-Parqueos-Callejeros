@@ -5,8 +5,16 @@ package com.mycompany.proyectoparqueos;
  */
 import java.io.File;//librería para utilizar archivos
 
+/**
+ *
+ * @author ximen
+ */
 public class ProyectoParqueos { 
     
+    /**
+     *
+     * @param args
+     */
     public static void main(String[] args) {   
         //inicializan archivos
         File archivoCliente = new File("Cliente.txt");
