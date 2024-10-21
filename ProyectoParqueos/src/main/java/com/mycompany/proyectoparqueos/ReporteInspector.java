@@ -231,7 +231,6 @@ public class ReporteInspector{
                         contador2 = 0;
                         for(String id : parqueo.getHistorialMultas().getListaInspectores()){
                             if(contador2 == contador){
-                                System.out.println(id +  "||||"+inspector.getIdentificacionUsuario());
                                 if(id.equals(inspector.getIdentificacionUsuario()+multa.getCarro().getPlaca())){
                                     info = "Placa: "+multa.getCarro().getPlaca()+" | Costo de multa: "+ multa.getCostoMulta()+" | Fecha de multa: "+multa.getFechaMulta()+" | Descripción de multa: "+multa.getDescripcion()+"\n"+"\n"+info;
                                 }

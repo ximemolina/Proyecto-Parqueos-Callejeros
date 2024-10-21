@@ -10,10 +10,8 @@ import java.time.format.DateTimeFormatter;
 
 
 public class IngresarCliente extends javax.swing.JFrame {
-    Parqueo parqueo;
-    /**
-     * Creates new form IngresarCliente
-     */
+    private Parqueo parqueo;
+
     public IngresarCliente(Parqueo parqueo) {
         initComponents();
         setParqueo(parqueo);
@@ -22,8 +20,7 @@ public class IngresarCliente extends javax.swing.JFrame {
     public void setParqueo(Parqueo parqueo){
         this.parqueo = parqueo;
     }
-
-
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {

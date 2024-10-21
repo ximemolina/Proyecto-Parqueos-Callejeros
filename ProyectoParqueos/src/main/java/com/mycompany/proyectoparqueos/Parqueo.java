@@ -8,11 +8,6 @@ import java.util.ArrayList;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
-import javax.swing.JOptionPane;
-import java.time.Duration;
-import java.util.concurrent.Executors;
-import java.util.concurrent.ScheduledExecutorService;
-import java.util.concurrent.TimeUnit;
 
 
 public class Parqueo {
@@ -36,6 +31,7 @@ public class Parqueo {
         espaciosParqueo = new ArrayList<>();
     }
 
+    
     public void setHistorialMultas(HistorialMultas historialMultas) {
         this.historialMultas = historialMultas;
     }

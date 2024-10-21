@@ -58,7 +58,7 @@ public class Administrador extends Usuario{//administrador hereda todo del Usuar
         String elemento2;
         String infoAdmin;
         String[] infoRecopilar;
-        //System.out.println(informacion);
+
         while((infoAdmin = buffer.readLine())!= null ){
             infoRecopilar = infoAdmin.split(",");
             elemento1 = infoRecopilar[0];
@@ -77,7 +77,8 @@ public class Administrador extends Usuario{//administrador hereda todo del Usuar
         leer.close();
         return arreglo;
     }
-        
+     
+    //elimina el administrador del archivo
     public void eliminarAdmin(String informacion){
             try{
             String [] info = guardarInfoAdmin2(informacion);
@@ -99,11 +100,7 @@ public class Administrador extends Usuario{//administrador hereda todo del Usuar
         }
     }
     
-    public void configuracionParqueo(){
-        // falta implementar la configuracion solo la puede usar el administrador
-    }
-    
-        //guarda la informacion del archivo excepto por el usuario a eliminar
+    //guarda la informacion del archivo excepto por el usuario a eliminar
     public String[] guardarInfoAdmin2(String informacion)throws IOException{
         FileReader leer = new FileReader("Administrador.txt");
         BufferedReader buffer = new BufferedReader(leer);
@@ -116,7 +113,7 @@ public class Administrador extends Usuario{//administrador hereda todo del Usuar
         String elemento2;
         String infoAdmin;
         String[] infoRecopilar;
-        //System.out.println(informacion);
+
         while((infoAdmin = buffer.readLine())!= null ){
             infoRecopilar = infoAdmin.split(",");
             elemento1 = infoRecopilar[0];

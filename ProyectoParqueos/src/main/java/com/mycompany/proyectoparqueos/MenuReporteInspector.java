@@ -201,7 +201,8 @@ public class MenuReporteInspector extends javax.swing.JFrame {
             else
             fechaFinal = null;
         }catch(ValidacionesExceptions e){
-        
+            JOptionPane.showMessageDialog(this, e.getMessage());
+            return;
         }
         int index = ComboBox1.getSelectedIndex();
 
@@ -210,10 +211,20 @@ public class MenuReporteInspector extends javax.swing.JFrame {
         try {
             // Ruta donde se generará el PDF
             File archivoPDF = new File("reporteInspector.pdf");
-            // Llamar al método que genera el reporte para el cliente
+            // Llamar al método que genera el reporte para el inspector
             reporte.generarReporte(archivoPDF);
             // Mostrar un mensaje de éxito cuando se haya generado el reporte
             JOptionPane.showMessageDialog(null, "Reporte generado exitosamente en: " + archivoPDF.getAbsolutePath(), "Éxito", JOptionPane.INFORMATION_MESSAGE);
+            
+            Correo correo = new Correo("juanpacamal08@gmail.com", "adqs eueu mrbs vngz", "smtp.gmail.com");
+            String rutaArchivoAdjunto = "reporteInspector.pdf";
+            File archivoAdjunto = new File(rutaArchivoAdjunto); // Convertir la ruta en un archivo
+
+            correo.enviarCorreoConAdjunto(
+            "juanpacamal08@gmail.com",  // Dirección de correo del destinatario correcta
+            "REPORTE CLIENTE",          // Asunto del correo
+            "Este es el reporte del cliente del servicio de parqueo utilizado.", // Cuerpo del correo
+            archivoAdjunto);              // El archivo PDF adjunto
         } catch (Exception e) {
             // Mostrar un mensaje de error si ocurre un problema al generar el reporte
             JOptionPane.showMessageDialog(null, "Error al generar el reporte: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
