@@ -3,20 +3,48 @@ package com.mycompany.proyectoparqueos;
 import java.io.*;
 import java.util.ArrayList;
 import java.time.*;
+
+/**
+ *
+ * @author ximena molina - juan pablo cambronero
+ */
 public class Inspector extends Usuario{
     private ArrayList<Multa> multas;
     private String codigoTerminal;
      //constructor
+
+    /**
+     *
+     * @param pNombre
+     * @param pApellido
+     * @param pTelefono
+     * @param pCorreo
+     * @param pDireccionFisica
+     * @param pFechaIngreso
+     * @param pPin
+     * @param pIdentificacionUsuario
+     * @param pCodigoTerminal
+     */
     public Inspector(String pNombre, String pApellido, String pTelefono, String pCorreo, String pDireccionFisica, LocalDate pFechaIngreso, String pPin, String pIdentificacionUsuario, String pCodigoTerminal){
         super(pNombre,pApellido,pTelefono,pCorreo,pDireccionFisica,pFechaIngreso,pPin,pIdentificacionUsuario);
         setCodigoTerminal(pCodigoTerminal);
         
     }   
     //retorna String con Informacion
+
+    /**
+     *
+     * @return
+     */
     public String toString(){
     return super.toString() + ","+ codigoTerminal;
     }
     //modificar los datos de un archivo del admin
+
+    /**
+     *
+     * @param informacion
+     */
     public void modificarDatosInspector(String informacion){
         
         try{
@@ -39,6 +67,12 @@ public class Inspector extends Usuario{
     }
     
     //contar cantidad total de admins en el archivo
+
+    /**
+     *
+     * @param lector
+     * @return
+     */
     public int totalInspectores(BufferedReader lector){
         int numAdmins = 0;
         try{
@@ -54,6 +88,13 @@ public class Inspector extends Usuario{
     }
     
     //guarda la informacion del archivo en arreglo para utilizarla en modificarDatosAdmin
+
+    /**
+     *
+     * @param informacion
+     * @return
+     * @throws IOException
+     */
     public String[] guardarInfoInspector(String informacion)throws IOException{
         FileReader leer = new FileReader("Inspector.txt");
         BufferedReader buffer = new BufferedReader(leer);
@@ -86,6 +127,10 @@ public class Inspector extends Usuario{
         return arreglo;
     }
         
+    /**
+     *
+     * @param informacion
+     */
     public void eliminarInspector(String informacion){
             try{
             String [] info = guardarInfoInspector2(informacion);
@@ -107,6 +152,13 @@ public class Inspector extends Usuario{
         }
     }    
         //guarda la informacion del archivo excepto por el usuario a eliminar
+
+    /**
+     *
+     * @param informacion
+     * @return
+     * @throws IOException
+     */
     public String[] guardarInfoInspector2(String informacion)throws IOException{
         FileReader leer = new FileReader("Inspector.txt");
         BufferedReader buffer = new BufferedReader(leer);
@@ -138,6 +190,11 @@ public class Inspector extends Usuario{
     }    
     
     //setter
+
+    /**
+     *
+     * @param pCodigoTerminal
+     */
     public void setCodigoTerminal(String pCodigoTerminal){
         if(pCodigoTerminal.length() ==6){ 
             String contenido;
@@ -171,14 +228,28 @@ public class Inspector extends Usuario{
             throw new ValidacionesExceptions("Error: Terminal de inspección debe de ser de 6 caracteres exactos");
     }
 
+    /**
+     *
+     * @return
+     */
     public ArrayList<Multa> getMultas() {
         return multas;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getCodigoTerminal() {
         return codigoTerminal;
     }
     
+    /**
+     *
+     * @param parqueo
+     * @param espacio
+     * @param placaSeleccionada
+     */
     public void multar(Parqueo parqueo, EspacioDeParqueo espacio, String placaSeleccionada) {
       // Verificar si el espacio tiene un carro estacionado
       if (espacio.getCarro() != null && espacio.getCarro().getPlaca().equals(placaSeleccionada)) {
