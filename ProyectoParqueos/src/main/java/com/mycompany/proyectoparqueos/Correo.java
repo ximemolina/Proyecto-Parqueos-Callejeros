@@ -126,8 +126,4 @@ public class Correo {
         }
     }
     
-    /*Correo correo = new Correo("tucorreo@gmail.com", "tucontraseña", "smtp.gmail.com");
-    correo.enviarCorreo("destinatario@gmail.com", "Asunto del correo", "Este es el cuerpo del correo.");
-    */
-
 }
