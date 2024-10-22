@@ -1,6 +1,17 @@
 package com.mycompany.proyectoparqueos;
 
 import java.util.ArrayList;
+import com.itextpdf.kernel.pdf.PdfDocument;
+import com.itextpdf.kernel.pdf.PdfWriter;
+import com.itextpdf.layout.Document;
+import com.itextpdf.layout.element.Paragraph;
+import java.io.File;
+import java.io.FileNotFoundException;
+import javax.swing.JOptionPane;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
 
 public class MenuRevisarParqueo extends javax.swing.JFrame {
     Parqueo parqueo;
@@ -248,6 +259,32 @@ public class MenuRevisarParqueo extends javax.swing.JFrame {
                 if (carroEnEspacio != null) {
                     inspector.multar(parqueo, espacioSeleccionado, carroEnEspacio.getPlaca());
 
+                    // Generar PDF con detalles de la multa
+                    try {
+                        File archivoPDF = new File("multa_" + carroEnEspacio.getPlaca() + ".pdf");
+                        generarPDFMulta(archivoPDF, espacioSeleccionado, carroEnEspacio);  // Llama a tu método para generar el PDF
+
+                        // Buscar el correo del cliente usando la placa del carro
+                        File archivoClientes = new File("Cliente.txt"); // Ruta al archivo de clientes
+                        String correoCliente = buscarCorreoPorPlaca(carroEnEspacio.getPlaca(), archivoClientes);
+
+                        if (correoCliente != null && !correoCliente.isEmpty()) {
+                            // Enviar el correo con el archivo adjunto
+                            Correo correo = new Correo("juanpacamal08@gmail.com", "adqs eueu mrbs vngz", "smtp.gmail.com");
+                            String asunto = "Detalles de la Multa";
+                            String cuerpo = "Se ha generado una multa para el vehículo con placa " + carroEnEspacio.getPlaca();
+                            correo.enviarCorreoConAdjunto(correoCliente, asunto, cuerpo, archivoPDF);
+
+                            JOptionPane.showMessageDialog(null, "Multa generada y enviada por correo.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+                        } else {
+                            JOptionPane.showMessageDialog(null, "Error: No se pudo encontrar el correo del cliente.", "Error", JOptionPane.ERROR_MESSAGE);
+                        }
+
+                    } catch (Exception e) {
+                        JOptionPane.showMessageDialog(null, "Error al generar el PDF o enviar el correo: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+                        e.printStackTrace();
+                    }
+
                 } else {
                     System.out.println("No hay un carro en este espacio.");
                 }
@@ -255,8 +292,52 @@ public class MenuRevisarParqueo extends javax.swing.JFrame {
         } else {
             System.out.println("Error: No se ha seleccionado un espacio válido.");
         }
+        MenuInspector pantalla = new MenuInspector(inspector, parqueo);
+        pantalla.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_btnMultarActionPerformed
+    
+    private void generarPDFMulta(File archivoPDF, EspacioDeParqueo espacio, Carro carro) throws FileNotFoundException {
+        // Inicializar el PDF Writer
+        PdfWriter writer = new PdfWriter(archivoPDF);
+        PdfDocument pdf = new PdfDocument(writer);
+        Document document = new Document(pdf);
 
+        // Agregar contenido al PDF
+        document.add(new Paragraph("Reporte de Multa"));
+        document.add(new Paragraph("Carro con placa: " + carro.getPlaca()));
+        document.add(new Paragraph("Marca: " + carro.getMarca()));
+        document.add(new Paragraph("Modelo: " + carro.getModelo()));
+        document.add(new Paragraph("Espacio: " + espacio.getNumeroEspacio()));
+        document.add(new Paragraph("Fecha de Multa: " + java.time.LocalDateTime.now()));
+        document.add(new Paragraph("Descripción de la Multa: Su vehículo se encuentra parqueado en un espacio que no ha sido pagado."));
+
+        // Cerrar el documento
+        document.close();
+    }
+    
+    public String buscarCorreoPorPlaca(String placa, File archivoClientes) {
+    try (BufferedReader reader = new BufferedReader(new FileReader(archivoClientes))) {
+        String linea;
+        while ((linea = reader.readLine()) != null) {
+            String[] datos = linea.split(",");
+
+            // Verificar si la línea contiene la placa
+            for (String dato : datos) {
+                if (dato.trim().equals(placa.trim())) {
+                    // Si se encuentra la placa, retornar el correo (asumiendo que el correo está en la posición 5)
+                    return datos[5].trim(); // Devuelve el correo en la posición 5
+                }
+            }
+        }
+    } catch (IOException e) {
+        e.printStackTrace();
+    }
+
+    // Si no se encuentra la placa, retornar null
+    return null;
+}
+    
     /**
      * @param args the command line arguments
      */

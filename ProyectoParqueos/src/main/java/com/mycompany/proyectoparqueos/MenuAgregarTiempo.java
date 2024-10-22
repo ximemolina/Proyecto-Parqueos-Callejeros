@@ -5,6 +5,7 @@
 package com.mycompany.proyectoparqueos;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
+import java.io.File;
 
 /**
  *
@@ -206,7 +207,7 @@ public class MenuAgregarTiempo extends javax.swing.JFrame {
     }//GEN-LAST:event_inpTiempoCompradoActionPerformed
 
     private void btnAceptarAgregarTiempoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarAgregarTiempoActionPerformed
-         if (comboBoxEspaciosOcupados.getSelectedItem() != null) {
+        if (comboBoxEspaciosOcupados.getSelectedItem() != null) {
             String espacioSeleccionadoStr = (String) comboBoxEspaciosOcupados.getSelectedItem();
             int numeroEspacioSeleccionado = Integer.parseInt(espacioSeleccionadoStr);
 
@@ -223,7 +224,6 @@ public class MenuAgregarTiempo extends javax.swing.JFrame {
             if (espacioSeleccionado != null) {
                 try {
                     int tiempoAgregar = Integer.parseInt(inpTiempoComprado.getText());
-                    int tiempoCompradoActual = espacioSeleccionado.getTiempoComprado(); // Obtener el tiempo ya comprado
                     long minutosRestantes = espacioSeleccionado.calcularTiempoRestante(); // Método que calcula minutos restantes
 
                     // Verificar si el cliente aún tiene minutos no gastados y puede agregar más tiempo
@@ -232,6 +232,30 @@ public class MenuAgregarTiempo extends javax.swing.JFrame {
                             // Validar y actualizar el tiempo comprado
                             cliente.comprarTiempo(tiempoAgregar, espacioSeleccionado, parqueo);
                             JOptionPane.showMessageDialog(null, "Tiempo agregado exitosamente.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+
+                            // Guardar cambios en el archivo después de agregar tiempo
+                            File archivoParqueo = new File("Parqueo.txt");
+                            parqueo.guardarParqueo(archivoParqueo);
+
+                            // Enviar un correo con los detalles del tiempo agregado
+                            Correo correo = new Correo("juanpacamal08@gmail.com", "adqs eueu mrbs vngz", "smtp.gmail.com");
+                            String destinatario = cliente.getCorreo();
+                            String asunto = "Detalles de tiempo agregado al parqueo";
+                            String cuerpo = String.format(
+                                "Detalles del tiempo agregado:\n" +
+                                "Carro: %s\n" +
+                                "Espacio: %d\n" +
+                                "Tiempo actual comprado: %d minutos\n" +
+                                "Tiempo agregado: %d minutos\n",
+                                espacioSeleccionado.getCarro().getPlaca(),
+                                espacioSeleccionado.getNumeroEspacio(),
+                                espacioSeleccionado.getTiempoComprado(),
+                                tiempoAgregar
+                            );
+                            correo.enviarCorreo(destinatario, asunto, cuerpo);
+
+                            JOptionPane.showMessageDialog(null, "Correo enviado con éxito.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+
                         } else {
                             JOptionPane.showMessageDialog(null, "Error: El tiempo a agregar debe ser mayor a 0.", "Error", JOptionPane.ERROR_MESSAGE);
                         }

@@ -9,6 +9,7 @@ public class EspacioDeParqueo {
     private boolean disponible;
     private LocalDateTime horaInicioParqueo;
     private LocalDateTime horaFinParqueo;
+    
 
     // Constructor
     public EspacioDeParqueo(int pNumeroEspacio){
@@ -18,7 +19,7 @@ public class EspacioDeParqueo {
         disponible = true;
         estadoPago = false;
         horaInicioParqueo = null;
-        horaInicioParqueo = null;
+        horaFinParqueo = null;
     }
     
     public void setNumeroEspacio(int pNumeroEspacio) {   
@@ -56,6 +57,8 @@ public class EspacioDeParqueo {
     public void setHoraFinParqueo(LocalDateTime horaFinParqueo){
             this.horaFinParqueo = horaFinParqueo;
     }
+    
+    
     
     public int getNumeroEspacio(){
         return numeroEspacio;

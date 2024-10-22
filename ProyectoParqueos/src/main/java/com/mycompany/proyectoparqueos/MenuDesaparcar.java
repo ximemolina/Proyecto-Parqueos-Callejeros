@@ -191,13 +191,16 @@ public class MenuDesaparcar extends javax.swing.JFrame {
             return;
         }
 
-        // Buscar el carro en la lista de carros del cliente
+    // Buscar el carro en la lista de carros del cliente
         for (Carro carro : cliente.getCarros()) {
             if (carro.getPlaca().equals(placaSeleccionada)) {
                 carroSeleccionado = carro;  // Selecciona el carro
                 break;
             }
         }
+
+        // Obtener el espacio en el que estaba el carro antes de desaparcar
+        EspacioDeParqueo espacioEnQueEstaba = parqueo.buscarEspacioPorCarro(carroSeleccionado);
 
         // Llamar al método desaparcar del cliente
         File archivoParqueo = new File("Parqueo.txt");
@@ -206,10 +209,19 @@ public class MenuDesaparcar extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "El carro con placa " + carroSeleccionado.getPlaca() + " ha sido desaparcado.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
             parqueo.mostrarEspaciosYCarros();
             llenarComboBoxCarrosAparcados();  // Actualizar el comboBox después de desaparcar
+
+            // Enviar correo con los detalles del carro desaparcado
+            Correo correo = new Correo("juanpacamal08@gmail.com", "adqs eueu mrbs vngz", "smtp.gmail.com");
+            String asunto = "Reporte de Desaparque";
+            String cuerpo = "El carro con placa " + carroSeleccionado.getPlaca() + " ha sido desaparcado.\n" +
+                            "Detalles del carro:\n" +
+                            "Marca: " + carroSeleccionado.getMarca() + "\n" +
+                            "Modelo: " + carroSeleccionado.getModelo() + "\n" +
+                            "Espacio en el que estaba: " + (espacioEnQueEstaba != null ? espacioEnQueEstaba.getNumeroEspacio() : "Desconocido");
+            correo.enviarCorreo(cliente.getCorreo(), asunto, cuerpo);
         } else {
             JOptionPane.showMessageDialog(null, "Error al desaparcar el carro.", "Error", JOptionPane.ERROR_MESSAGE);
         }
-
     }//GEN-LAST:event_btnAceptarDesaparcarActionPerformed
     
     
