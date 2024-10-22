@@ -188,6 +188,10 @@ public class AñadirCarroCliente extends javax.swing.JFrame {
             String modelo = inpModelo.getText();
             Cliente propietario = cliente;
             cliente.agregarCarro(placa, marca, modelo);
+            Correo correo = new Correo("juanpacamal08@gmail.com", "adqs eueu mrbs vngz", "smtp.gmail.com");
+            String asunto = "Creacion carros";
+            String cuerpo = "Se han agregado nuevos autos. A continuación se muestra datos ingresados: "+ placa+ ","+marca+ ","+modelo;
+            correo.enviarCorreo(cliente.getCorreo(), asunto, cuerpo);
             inpPlaca.setText("");
             inpMarca.setText("");
             inpModelo.setText("");
@@ -228,6 +232,10 @@ public class AñadirCarroCliente extends javax.swing.JFrame {
         catch(Exception e){
             JOptionPane.showMessageDialog(this, e.getMessage());
         }
+        Correo correo = new Correo("juanpacamal08@gmail.com", "adqs eueu mrbs vngz", "smtp.gmail.com");
+        String asunto = "Creacion carros";
+        String cuerpo = "Se han agregado nuevos autos. A continuación se muestra datos ingresados: "+ placa+ ","+marca+ ","+modelo;
+        correo.enviarCorreo(cliente.getCorreo(), asunto, cuerpo);
         MenuCliente pantalla = new MenuCliente(cliente, parqueo);
         pantalla.setVisible(true);
         this.setVisible(false);

@@ -392,6 +392,10 @@ public class ModificarInspector extends javax.swing.JFrame {
             String infoACambiar = inspector2.toString();
 
             inspector2.modificarDatosInspector(infoACambiar);
+            Correo correo = new Correo("juanpacamal08@gmail.com", "adqs eueu mrbs vngz", "smtp.gmail.com");
+            String asunto = "Modificación de datos";
+            String cuerpo = "Sus datos del programa de parqueos callejeros han sido cambiados. A continuación se muestran los datos ingresados: "+ inspector2.toString();
+            correo.enviarCorreo(inspector2.getCorreo(), asunto, cuerpo);
             MenuInspector pantalla = new MenuInspector(inspector2,parqueo);
             pantalla.setVisible(true);
             this.setVisible(false);
@@ -407,15 +411,19 @@ public class ModificarInspector extends javax.swing.JFrame {
         Random random = new Random();
         StringBuilder sb = new StringBuilder(4);
 
-        for (int i = 0; i < 4; i++) {
+        for (int i = 0; i < 4; i++) { //crea pin de manera al azar
             int indiceAleatorio = random.nextInt(caracteresPermitidos.length());
             char caracterAleatorio = caracteresPermitidos.charAt(indiceAleatorio);
             sb.append(caracterAleatorio);
         }
 
         String pin = sb.toString();
-        //******************************************aqui faltaría agregar mandar Pin por correo***************************************///
-        System.out.println(pin);
+
+        Correo correo = new Correo("juanpacamal08@gmail.com", "adqs eueu mrbs vngz", "smtp.gmail.com");
+        String asunto = "Pin de verificación";
+        String cuerpo = "Se ha generado el siguiente PIN para poder modificar su contraseña: "+ pin;
+        correo.enviarCorreo(inspector.getCorreo(), asunto, cuerpo);        
+        
         VerificarPinInspector2 pantalla = new VerificarPinInspector2(inspector,parqueo,pin);
         pantalla.setVisible(true);
         this.setVisible(false);

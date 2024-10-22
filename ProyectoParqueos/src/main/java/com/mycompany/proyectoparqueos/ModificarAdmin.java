@@ -7,7 +7,7 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author ximen
+ * @author ximena molina - juan pablo cambronero
  */
 public class ModificarAdmin extends javax.swing.JFrame {
 
@@ -359,9 +359,13 @@ public class ModificarAdmin extends javax.swing.JFrame {
                 LocalDate fecha = LocalDate.parse(fechaActualizada);
                 Administrador administrador2 = new Administrador(inpNombre.getText(), inpApellido.getText(), inpTelefono.getText(), inpCorreo.getText(), inpDireccion.getText(),fecha ,admin.getPin(), inpIdentificacion.getText());
                 String infoACambiar = administrador2.toString();
-                System.out.println(infoACambiar);
+   
             
                 administrador2.modificarDatosAdmin(infoACambiar);
+                Correo correo = new Correo("juanpacamal08@gmail.com", "adqs eueu mrbs vngz", "smtp.gmail.com");
+                String asunto = "Modificación de datos";
+                String cuerpo = "Sus datos del programa de parqueos callejeros han sido cambiados. A continuación se muestran los datos ingresados: "+ administrador2.toString();
+                correo.enviarCorreo(administrador2.getCorreo(), asunto, cuerpo);
                 MenuAdministrador pantalla = new MenuAdministrador(administrador2,parqueo);
                 pantalla.setVisible(true);
                 this.setVisible(false);
@@ -384,8 +388,11 @@ public class ModificarAdmin extends javax.swing.JFrame {
         }
 
         String pin = sb.toString();
-        //******************************************aqui faltaría agregar mandar Pin por correo***************************************///
-        System.out.println(pin);
+        Correo correo = new Correo("juanpacamal08@gmail.com", "adqs eueu mrbs vngz", "smtp.gmail.com");
+        String asunto = "Pin de verificación";
+        String cuerpo = "Se ha generado el siguiente PIN para poder modificar su contraseña: "+ pin;
+        correo.enviarCorreo(admin.getCorreo(), asunto, cuerpo);        
+
         VerificarPinAdmin pantalla = new VerificarPinAdmin(admin,parqueo,pin);
         pantalla.setVisible(true);
         this.setVisible(false);

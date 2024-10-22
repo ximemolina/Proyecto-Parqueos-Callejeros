@@ -371,6 +371,10 @@ public class RegistrarAdministrador extends javax.swing.JFrame {
             Administrador administrador = new Administrador(inpNombre.getText(), inpApellidos.getText(), inpTelefono.getText(), inpCorreo.getText(), inpDireccion.getText(),fecha ,inpPIN.getText(), inpIdentificacion.getText());
             File archivoAdministrador = new File("Administrador.txt");
             administrador.guardarUsuario(archivoAdministrador);
+            Correo correo = new Correo("juanpacamal08@gmail.com", "adqs eueu mrbs vngz", "smtp.gmail.com");
+            String asunto = "Nuevo registro de usuario";
+            String cuerpo = "Se le informa que se ha creador un nuevo usuario con los siguientes datos: "+ administrador.toString();
+            correo.enviarCorreo(administrador.getCorreo(), asunto, cuerpo);    
             MenuAdministrador pantalla = new MenuAdministrador(administrador, parqueo);
             pantalla.setVisible(true);
             this.setVisible(false);

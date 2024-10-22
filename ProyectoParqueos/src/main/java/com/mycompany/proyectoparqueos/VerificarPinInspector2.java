@@ -172,6 +172,10 @@ public class VerificarPinInspector2 extends javax.swing.JFrame {
             inspector.setPin(inpPinNuevo.getText());
             String informacion = inspector.toString();
             inspector.modificarDatosInspector(informacion);
+            Correo correo = new Correo("juanpacamal08@gmail.com", "adqs eueu mrbs vngz", "smtp.gmail.com");
+            String asunto = "Modificacion de datos";
+            String cuerpo = "Sus datos del programa de parqueos callejeros han sido cambiados. A continuación se muestran los datos ingresados: "+ inspector.toString();
+            correo.enviarCorreo(inspector.getCorreo(), asunto, cuerpo);
             MenuInspector pantalla = new MenuInspector(inspector, parqueo);
             pantalla.setVisible(true);
             this.setVisible(false);

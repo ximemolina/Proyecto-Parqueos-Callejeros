@@ -241,20 +241,18 @@ public class MenuCliente extends javax.swing.JFrame {
     private void btnReporteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReporteActionPerformed
         try {
              // Definir los archivos de historial y multas que serán utilizados
-             File archivoHistorial = new File("HistorialParqueo.txt");  // Asegúrate de que el archivo exista
-             File archivoMultas = new File("HistorialMulta.txt");       // Asegúrate de que el archivo exista
+             File archivoHistorial = new File("HistorialParqueo.txt");  
+             File archivoMultas = new File("HistorialMulta.txt");       
 
              // Definir el precio por hora, si ya tienes un valor establecido en algún lugar de tu código
-             int precioPorHora = parqueo.getPrecioHora();  // O un valor fijo, por ejemplo, 500
+             int precioPorHora = parqueo.getPrecioHora();  
 
-             // Ruta donde se generará el PDF
              File archivoPDF = new File("reporteCliente.pdf");
 
              // Llamar al método que genera el reporte para el cliente
              ReporteCliente reporte = new ReporteCliente(cliente, parqueo);
              reporte.generarReporteCliente(archivoHistorial, archivoMultas, precioPorHora, archivoPDF);
 
-             // Mostrar un mensaje de éxito cuando se haya generado el reporte
              JOptionPane.showMessageDialog(null, "Reporte generado exitosamente en: " + archivoPDF.getAbsolutePath(), "Éxito", JOptionPane.INFORMATION_MESSAGE);
          } catch (Exception e) {
              // Mostrar un mensaje de error si ocurre un problema al generar el reporte
@@ -266,7 +264,7 @@ public class MenuCliente extends javax.swing.JFrame {
         File archivoAdjunto = new File(rutaArchivoAdjunto); // Convertir la ruta en un archivo
 
         correo.enviarCorreoConAdjunto(
-        "juanpacamal08@gmail.com",  // Dirección de correo del destinatario correcta
+        cliente.getCorreo(),  // Dirección de correo del destinatario correcta
         "REPORTE CLIENTE",          // Asunto del correo
         "Este es el reporte del cliente del servicio de parqueo utilizado.", // Cuerpo del correo
         archivoAdjunto              // El archivo PDF adjunto
@@ -295,6 +293,10 @@ public class MenuCliente extends javax.swing.JFrame {
             try{
                 
             
+                Correo correo = new Correo("juanpacamal08@gmail.com", "adqs eueu mrbs vngz", "smtp.gmail.com"); //mandar correo informando sobre la eliminación de usuario
+                String asunto = "Eliminación de usuario";
+                String cuerpo = "Se le informa que se ha borrado el usuario de la aplicación de parqueos callejero";
+                correo.enviarCorreo(cliente.getCorreo(), asunto, cuerpo);
                 cliente.eliminarCliente(cliente.toString());
                 cliente = null;
                 MenuInicial menu = new MenuInicial(parqueo);
@@ -309,7 +311,8 @@ public class MenuCliente extends javax.swing.JFrame {
         } else if (opcion == JOptionPane.NO_OPTION) { 
             JOptionPane.showMessageDialog(null, "Se cancela la eliminación. "); 
         }
-                                                    
+           
+        
 
     }//GEN-LAST:event_btnEliminarActionPerformed
 
