@@ -280,7 +280,7 @@ public class MenuRevisarParqueo extends javax.swing.JFrame {
                     // Generar PDF con detalles de la multa
                     try {
                         File archivoPDF = new File("multa_" + carroEnEspacio.getPlaca() + ".pdf");
-                        generarPDFMulta(archivoPDF, espacioSeleccionado, carroEnEspacio);  // Llama a tu método para generar el PDF
+                        generarPDFMulta(archivoPDF, espacioSeleccionado, carroEnEspacio); 
 
                         // Buscar el correo del cliente usando la placa del carro
                         File archivoClientes = new File("Cliente.txt"); // Ruta al archivo de clientes

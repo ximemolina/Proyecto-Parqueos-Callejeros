@@ -187,7 +187,10 @@ public class MenuInspector extends javax.swing.JFrame {
         if (opcion == JOptionPane.YES_OPTION) {
 
             try{
-
+                Correo correo = new Correo("juanpacamal08@gmail.com", "adqs eueu mrbs vngz", "smtp.gmail.com");
+                String asunto = "Eliminación de usuario";
+                String cuerpo = "Se le informa que se ha borrado el usuario de la aplicación de parqueos callejero";
+                correo.enviarCorreo(inspector.getCorreo(), asunto, cuerpo);
                 inspector.eliminarInspector(inspector.toString());
                 inspector = null;
                 MenuInicial menu = new MenuInicial(parqueo);
