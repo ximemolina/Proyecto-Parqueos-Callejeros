@@ -249,6 +249,19 @@ public class Parqueo {
        } catch(Exception e){
            System.out.print(e.getMessage());
        }
-   } 
+   }
+   
+   public EspacioDeParqueo buscarEspacioPorCarro(Carro carro) {
+        for (EspacioDeParqueo espacio : espaciosParqueo) {
+            if (espacio.getCarro() != null && espacio.getCarro().equals(carro)) {
+                return espacio;
+            }
+        }
+        return null;  // Si no se encuentra el espacio
+    }
+   
+   
+
+
    
 }

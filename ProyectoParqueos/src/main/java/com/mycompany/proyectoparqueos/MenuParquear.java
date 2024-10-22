@@ -315,11 +315,11 @@ public class MenuParquear extends javax.swing.JFrame {
     }//GEN-LAST:event_comboBoxEspaciosDeParqueoActionPerformed
 
     private void BtnAceptarParquearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAceptarParquearActionPerformed
-       if (comboBoxCarros.getSelectedItem() == null || comboBoxCarros.getSelectedItem().equals("No hay carros disponibles para parquear")) {
-        JOptionPane.showMessageDialog(null, "Error: No hay carros disponibles para parquear.", "Error", JOptionPane.ERROR_MESSAGE);
-        return; // Salir de la función si no hay carros disponibles
-    }
-       
+        if (comboBoxCarros.getSelectedItem() == null || comboBoxCarros.getSelectedItem().equals("No hay carros disponibles para parquear")) {
+            JOptionPane.showMessageDialog(null, "Error: No hay carros disponibles para parquear.", "Error", JOptionPane.ERROR_MESSAGE);
+            return; // Salir de la función si no hay carros disponibles
+        }
+
         if (espacioSeleccionado != null) {
             // Intentar parquear el carro en el espacio primero
             File archivoParqueo = new File("Parqueo.txt");
@@ -339,6 +339,28 @@ public class MenuParquear extends javax.swing.JFrame {
 
                     // Guardar cambios en el archivo después de parquear y agregar tiempo
                     parqueo.guardarParqueo(archivoParqueo);
+
+                    // Enviar correo con los detalles del parqueo
+                    Correo correo = new Correo("juanpacamal08@gmail.com", "adqs eueu mrbs vngz", "smtp.gmail.com");
+                    String destinatario = cliente.getCorreo();
+                    String asunto = "Carro Parqueado - Detalles del Parqueo";
+                    String cuerpo = String.format(
+                        "Detalles del parqueo:\n" +
+                        "Carro parqueado:\n" +
+                        "Placa: %s\n" +
+                        "Marca: %s\n" +
+                        "Modelo: %s\n" +
+                        "Espacio asignado: %d\n" +
+                        "Tiempo comprado: %d minutos\n",
+                        carroSeleccionado.getPlaca(), 
+                        carroSeleccionado.getMarca(), 
+                        carroSeleccionado.getModelo(), 
+                        espacioSeleccionado.getNumeroEspacio(), 
+                        tiempoAgregar
+                    );
+                    correo.enviarCorreo(destinatario, asunto, cuerpo);
+
+                    JOptionPane.showMessageDialog(null, "Correo enviado con éxito.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
 
                     // Buscar el espacio 1 y mostrar su estado directamente
                     for (EspacioDeParqueo espacio : parqueo.getEspaciosParqueo()) {
@@ -366,7 +388,6 @@ public class MenuParquear extends javax.swing.JFrame {
         } else {
             JOptionPane.showMessageDialog(null, "Error: No se encontró el espacio seleccionado.", "Error", JOptionPane.ERROR_MESSAGE);
         }
-
 
     }//GEN-LAST:event_BtnAceptarParquearActionPerformed
 

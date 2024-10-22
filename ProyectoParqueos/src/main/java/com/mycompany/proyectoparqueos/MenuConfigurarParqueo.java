@@ -486,6 +486,24 @@ public class MenuConfigurarParqueo extends javax.swing.JFrame {
         File archivoParqueo = new File("Parqueo.txt");
         parqueo.guardarParqueo(archivoParqueo);
 
+        // Enviar correo con los detalles de la nueva configuración del parqueo
+        Correo correo = new Correo("juanpacamal08@gmail.com", "adqs eueu mrbs vngz", "smtp.gmail.com");
+        String destinatario = admin.getCorreo();
+        String asunto = "Nueva Configuración del Parqueo";
+        String cuerpo = String.format(
+            "Nueva configuración del parqueo:\n" +
+            "Horario de apertura: %s\n" +
+            "Horario de cierre: %s\n" +
+            "Precio por hora: %d\n" +
+            "Tiempo mínimo: %d minutos\n" +
+            "Costo de la multa: %d colones\n",
+            abreText, cierraText, parqueo.getPrecioHora(), parqueo.getTiempoMinimo(), parqueo.getCostoMulta()
+        );
+        correo.enviarCorreo(destinatario, asunto, cuerpo);
+
+        JOptionPane.showMessageDialog(null, "Configuración guardada y correo enviado.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+
+        // Regresar al menú administrador
         MenuAdministrador pantalla = new MenuAdministrador(admin, parqueo);
         pantalla.setVisible(true);
         this.setVisible(false);
