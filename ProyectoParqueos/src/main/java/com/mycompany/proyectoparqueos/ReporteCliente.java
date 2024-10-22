@@ -16,16 +16,29 @@ import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
+/**
+ *
+ * @author ximen
+ */
 public class ReporteCliente {
     
     private Cliente cliente;
     private Parqueo parqueo;
     
+    /**
+     *
+     * @param cliente
+     * @param parqueo
+     */
     public ReporteCliente(Cliente cliente, Parqueo parqueo){
         this.cliente = cliente;
         this.parqueo = parqueo;
     }
     
+    /**
+     *
+     * @return
+     */
     public List<EspacioDeParqueo> obtenerEspaciosDisponibles() {
         List<EspacioDeParqueo> espaciosDisponibles = new ArrayList<>();
         for (EspacioDeParqueo espacio : parqueo.getEspaciosParqueo()) {
@@ -37,6 +50,14 @@ public class ReporteCliente {
     }
 
         // Función para leer el archivo y devolver una lista ordenada de registros
+
+    /**
+     *
+     * @param archivoHistorial
+     * @param cliente
+     * @param precioPorHora
+     * @return
+     */
     public List<String> obtenerHistorialDescendentePorFecha(File archivoHistorial, Cliente cliente, int precioPorHora) {
         List<String> historial = new ArrayList<>();
 
@@ -95,8 +116,12 @@ public class ReporteCliente {
         return historial;
     }
 
-    
-    
+    /**
+     *
+     * @param archivoMultas
+     * @param cliente
+     * @return
+     */
     public List<String> obtenerMultasDescendentesPorFecha(File archivoMultas, Cliente cliente) {
         List<String> historialMultas = new ArrayList<>();
 
@@ -153,6 +178,13 @@ public class ReporteCliente {
         return historialMultas;
     }
     
+    /**
+     *
+     * @param archivoHistorial
+     * @param archivoMultas
+     * @param precioPorHora
+     * @param archivoPDF
+     */
     public void generarReporteCliente(File archivoHistorial, File archivoMultas, int precioPorHora, File archivoPDF) {
         try {
             // Crear el PDF

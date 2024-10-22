@@ -5,11 +5,20 @@ import javax.swing.JOptionPane;
 import java.time.*;
 import java.util.Random;
 
+/**
+ *
+ * @author ximen
+ */
 public class RegistrarInspector extends javax.swing.JFrame {
 
     private Administrador admin;
     private Parqueo parqueo;
     
+    /**
+     *
+     * @param admin
+     * @param parqueo
+     */
     public RegistrarInspector(Administrador admin, Parqueo parqueo) {
         initComponents();
         setAdmin(admin);
@@ -429,12 +438,22 @@ public class RegistrarInspector extends javax.swing.JFrame {
     }
 
     //setters
+
+    /**
+     *
+     * @param admin
+     */
     
     public void setAdmin(Administrador admin) {
         this.admin = admin;
     }
 
     //setters
+
+    /**
+     *
+     * @param parqueo
+     */
     public void setParqueo(Parqueo parqueo) {
         this.parqueo = parqueo;
     }    

@@ -1,15 +1,24 @@
 package com.mycompany.proyectoparqueos;
 
+/**
+ *
+ * @author ximen
+ */
 public class MenuRegistrar extends javax.swing.JFrame {
     Parqueo parqueo;
     /**
      * Creates new form MenuRegistrar
+     * @param parqueo
      */
     public MenuRegistrar(Parqueo parqueo) {
         initComponents();
         setParqueo(parqueo);
     }
     
+    /**
+     *
+     * @param parqueo
+     */
     public void setParqueo(Parqueo parqueo){
         this.parqueo = parqueo;
     }

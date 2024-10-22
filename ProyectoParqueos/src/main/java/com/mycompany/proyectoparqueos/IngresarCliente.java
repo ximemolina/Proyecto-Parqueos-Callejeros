@@ -8,15 +8,26 @@ import java.time.LocalDate;
 import javax.swing.JOptionPane;
 import java.time.format.DateTimeFormatter;
 
-
+/**
+ *
+ * @author ximen
+ */
 public class IngresarCliente extends javax.swing.JFrame {
     private Parqueo parqueo;
 
+    /**
+     *
+     * @param parqueo
+     */
     public IngresarCliente(Parqueo parqueo) {
         initComponents();
         setParqueo(parqueo);
     }
     
+    /**
+     *
+     * @param parqueo
+     */
     public void setParqueo(Parqueo parqueo){
         this.parqueo = parqueo;
     }
@@ -200,6 +211,12 @@ public class IngresarCliente extends javax.swing.JFrame {
         });
     }
         //lee el archivo y verifica si el usuario ingresado existe
+
+    /**
+     *
+     * @param id
+     * @param pin
+     */
     public void leerArchivo(String id, String pin){
         String contenido;
         try{

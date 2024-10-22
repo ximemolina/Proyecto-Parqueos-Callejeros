@@ -9,12 +9,22 @@ import javax.mail.internet.*;
 import java.io.File;
 import java.io.IOException;
 
+/**
+ *
+ * @author ximena molina - juan pablo cambronero
+ */
 public class Correo {
     private String from;
     private String password;
     private String host;
     private Properties properties;
 
+    /**
+     *
+     * @param from
+     * @param password
+     * @param host
+     */
     public Correo(String from, String password, String host) {
         this.from = from;
         this.password = password;
@@ -29,6 +39,13 @@ public class Correo {
         properties.put("mail.smtp.ssl.trust", host); // Confiar en el host SMTP
     }
 
+    /**
+     *
+     * @param to
+     * @param asunto
+     * @param cuerpo
+     * @param archivoAdjunto
+     */
     public void enviarCorreoConAdjunto(String to, String asunto, String cuerpo, File archivoAdjunto) {
         // Crear una sesión con autenticación
         Session session = Session.getInstance(properties, new Authenticator() {
@@ -74,6 +91,12 @@ public class Correo {
         }
     }
     
+    /**
+     *
+     * @param to
+     * @param asunto
+     * @param cuerpo
+     */
     public void enviarCorreo(String to, String asunto, String cuerpo) {
         // Crear una sesión con autenticación
         Session session = Session.getInstance(properties, new Authenticator() {

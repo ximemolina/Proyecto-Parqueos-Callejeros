@@ -4,14 +4,27 @@ import java.io.File;
 import java.io.FileWriter;
 import java.util.*;
 
+/**
+ *
+ * @author ximena molina - juan pablo cambronero
+ */
 public class HistorialParqueo {
     //atributos
     private ArrayList<EspacioDeParqueo> listaParqueo;
     //constructor
+
+    /**
+     *
+     */
     public HistorialParqueo(){
         setListaParqueo();       
     }
     //retornar string con informacion
+
+    /**
+     *
+     * @return
+     */
     public String toString(){
         String info = "";
         for(EspacioDeParqueo espacio : listaParqueo){
@@ -20,6 +33,10 @@ public class HistorialParqueo {
         return info;
     }
     //guarda información en archivo
+
+    /**
+     *
+     */
     public void guardarHistorialParqueo(){
        try{
             File nombreArchivo = new File("HistorialParqueo.txt");
@@ -32,14 +49,28 @@ public class HistorialParqueo {
        }
    } 
     //agregar actualización de espacios de parqueo
+
+    /**
+     *
+     * @param espacio
+     */
     public void agregarHistorialParqueo(EspacioDeParqueo espacio){
         listaParqueo.add(espacio);
     }
     //getter
+
+    /**
+     *
+     * @return
+     */
     public ArrayList<EspacioDeParqueo> getListaParqueo() {
         return listaParqueo;
     }
     //setter
+
+    /**
+     *
+     */
     public void setListaParqueo() {
         listaParqueo = new ArrayList<>();
     }

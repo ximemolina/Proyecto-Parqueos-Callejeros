@@ -4,11 +4,20 @@ package com.mycompany.proyectoparqueos;
 import java.io.File;
 import javax.swing.JOptionPane;
 
+/**
+ *
+ * @author ximen
+ */
 public class MenuInspector extends javax.swing.JFrame {
 
     private Inspector inspector;
     private Parqueo parqueo;
     
+    /**
+     *
+     * @param inspector
+     * @param parqueo
+     */
     public MenuInspector(Inspector inspector, Parqueo parqueo) {
         initComponents();
         setInspector(inspector);
@@ -249,10 +258,19 @@ public class MenuInspector extends javax.swing.JFrame {
         });
     }
     //setters
+
+    /**
+     *
+     * @param inspector
+     */
     public void setInspector(Inspector inspector) {
         this.inspector = inspector;
     }
 
+    /**
+     *
+     * @param parqueo
+     */
     public void setParqueo(Parqueo parqueo) {
         this.parqueo = parqueo;
     }

@@ -3,11 +3,19 @@ package com.mycompany.proyectoparqueos;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
-
+/**
+ *
+ * @author ximen
+ */
 public class ConsultarCliente extends javax.swing.JFrame {
     Parqueo parqueo;
     Cliente cliente;
     
+    /**
+     *
+     * @param cliente
+     * @param parqueo
+     */
     public ConsultarCliente(Cliente cliente, Parqueo parqueo) {
         initComponents();
         setCliente(cliente);
@@ -15,6 +23,10 @@ public class ConsultarCliente extends javax.swing.JFrame {
         mostrarInfoCliente();
     }
     
+    /**
+     *
+     * @param parqueo
+     */
     public void setParqueo(Parqueo parqueo){
         this.parqueo = parqueo;
     }
@@ -289,6 +301,10 @@ public class ConsultarCliente extends javax.swing.JFrame {
             }
         });
     }
+
+    /**
+     *
+     */
     public void mostrarInfoCliente(){
         lblNombre.setText("Nombre: " + cliente.getNombre());
         lblApellidos.setText("Apellidos: " + cliente.getApellido());
@@ -311,6 +327,11 @@ public class ConsultarCliente extends javax.swing.JFrame {
         }
         lblMin.setText("Minutos no utilizados de parqueo: " + cliente.getMinsNoUtilizados());
     }
+
+    /**
+     *
+     * @param pCliente
+     */
     public void setCliente(Cliente pCliente){
         cliente = pCliente;
     }

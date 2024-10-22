@@ -4,16 +4,25 @@ import java.io.File;
 import javax.swing.JOptionPane;
 import java.time.*;
 
+/**
+ *
+ * @author ximen
+ */
 public class RegistrarAdministrador extends javax.swing.JFrame {
     Parqueo parqueo;
     /**
      * Creates new form ScrRegistrarAdministrador
+     * @param parqueo
      */
     public RegistrarAdministrador(Parqueo parqueo) {
         initComponents();
         setParqueo(parqueo);
     }
     
+    /**
+     *
+     * @param parqueo
+     */
     public void setParqueo(Parqueo parqueo){
         this.parqueo = parqueo;
     }

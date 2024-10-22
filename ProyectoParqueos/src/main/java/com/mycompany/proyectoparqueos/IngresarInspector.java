@@ -7,11 +7,18 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import javax.swing.JOptionPane;
 
-
+/**
+ *
+ * @author ximen
+ */
 public class IngresarInspector extends javax.swing.JFrame {
 
     private Parqueo parqueo;
     
+    /**
+     *
+     * @param parqueo
+     */
     public IngresarInspector(Parqueo parqueo) {
         initComponents();
         setParqueo(parqueo);
@@ -160,6 +167,12 @@ public class IngresarInspector extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAceptarActionPerformed
 
     //lee el archivo y verifica si el usuario ingresado existe
+
+    /**
+     *
+     * @param id
+     * @param pin
+     */
     public void leerArchivo(String id, String pin){
         String contenido;
         try{
@@ -192,6 +205,10 @@ public class IngresarInspector extends javax.swing.JFrame {
         }
     }
     
+    /**
+     *
+     * @param args
+     */
     public void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -223,6 +240,11 @@ public class IngresarInspector extends javax.swing.JFrame {
             }
         });
     }
+
+    /**
+     *
+     * @param parqueo
+     */
     public void setParqueo(Parqueo parqueo){
         this.parqueo = parqueo;
     }

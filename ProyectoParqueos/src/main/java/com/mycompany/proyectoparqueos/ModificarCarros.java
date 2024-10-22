@@ -2,11 +2,20 @@ package com.mycompany.proyectoparqueos;
 import java.time.*;
 import javax.swing.JOptionPane;
 
+/**
+ *
+ * @author ximen
+ */
 public class ModificarCarros extends javax.swing.JFrame {
 
     private Cliente cliente;
     private Parqueo parqueo;
     
+    /**
+     *
+     * @param cliente
+     * @param parqueo
+     */
     public ModificarCarros(Cliente cliente, Parqueo parqueo) {
         initComponents();
         setCliente(cliente);
@@ -256,13 +265,27 @@ public class ModificarCarros extends javax.swing.JFrame {
     }
 
     //setters
+
+    /**
+     *
+     * @param cliente
+     */
     public void setCliente(Cliente cliente) {
         this.cliente = cliente;
     }
+
+    /**
+     *
+     * @param parqueo
+     */
     public void setParqueo(Parqueo parqueo) {
         this.parqueo = parqueo;
     }
     //muestra atributos en la pantalla
+
+    /**
+     *
+     */
     public void setInformacion(){
         for (Carro auto : cliente.getCarros()){ 
            inpPlaca.setText(inpPlaca.getText()+ auto.getPlaca() + "|");

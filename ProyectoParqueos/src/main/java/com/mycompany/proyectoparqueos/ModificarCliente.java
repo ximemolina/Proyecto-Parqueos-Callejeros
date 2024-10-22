@@ -4,11 +4,20 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import javax.swing.JOptionPane;
 
+/**
+ *
+ * @author ximen
+ */
 public class ModificarCliente extends javax.swing.JFrame {
 
     private Cliente cliente;
     private Parqueo parqueo;
     
+    /**
+     *
+     * @param cliente
+     * @param parqueo
+     */
     public ModificarCliente(Cliente cliente, Parqueo parqueo) {
         initComponents();
         setInformacion(cliente,  parqueo);
@@ -531,6 +540,12 @@ public class ModificarCliente extends javax.swing.JFrame {
         });
     }
         //muestra atributos en la pantalla
+
+    /**
+     *
+     * @param cliente
+     * @param parqueo
+     */
     public void setInformacion(Cliente cliente, Parqueo parqueo){
         try{
             this.cliente = cliente;

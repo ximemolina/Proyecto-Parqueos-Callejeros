@@ -5,18 +5,30 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import javax.swing.JOptionPane;
 
-
+/**
+ *
+ * @author ximen
+ */
 public class ModificarAdmin extends javax.swing.JFrame {
 
     Administrador admin;
     Parqueo parqueo;
     
+    /**
+     *
+     * @param pAdmin
+     * @param parqueo
+     */
     public ModificarAdmin(Administrador pAdmin, Parqueo parqueo) {
         initComponents();
         setInformacion(pAdmin);
         setParqueo(parqueo);
     }
     
+    /**
+     *
+     * @param parqueo
+     */
     public void setParqueo(Parqueo parqueo){
         this.parqueo = parqueo;
     }
@@ -425,6 +437,11 @@ public class ModificarAdmin extends javax.swing.JFrame {
         });
     }
     //muestra atributos en la pantalla
+
+    /**
+     *
+     * @param pAdmin
+     */
     public void setInformacion(Administrador pAdmin){
         try{
             admin = pAdmin;
