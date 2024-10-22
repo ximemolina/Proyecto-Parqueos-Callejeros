@@ -15,9 +15,10 @@ public class ConsultarAdmin extends javax.swing.JFrame {
      * Creates new form ScrConsultarAdmin
      * @param pAdmin
      */
-    public ConsultarAdmin(Administrador pAdmin) {
+    public ConsultarAdmin(Administrador pAdmin,Parqueo parqueo) {
         initComponents();
         setAdmin(pAdmin);
+        setParqueo(parqueo);
         mostrarInfoAdmin();
     }
     
@@ -25,8 +26,13 @@ public class ConsultarAdmin extends javax.swing.JFrame {
      *
      * @param administrador
      */
+    //setters
     public void setAdmin(Administrador administrador){
         admin = administrador;
+    }
+
+    public void setParqueo(Parqueo parqueo) {
+        this.parqueo = parqueo;
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -197,7 +203,7 @@ public class ConsultarAdmin extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                ConsultarAdmin pantalla = new ConsultarAdmin(admin);
+                ConsultarAdmin pantalla = new ConsultarAdmin(admin,parqueo);
                 pantalla.setVisible(true);
             }
             

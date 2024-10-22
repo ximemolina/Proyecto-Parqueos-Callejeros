@@ -5,7 +5,7 @@ import java.time.*;
 
 /**
  *
- * @author ximen
+ * @author ximena molina - juan pablo cambronero
  */
 public class Usuario {
     //atributos
