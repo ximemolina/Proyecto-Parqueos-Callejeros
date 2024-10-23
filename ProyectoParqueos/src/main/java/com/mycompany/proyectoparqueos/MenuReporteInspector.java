@@ -238,11 +238,7 @@ public class MenuReporteInspector extends javax.swing.JFrame {
             String rutaArchivoAdjunto = "reporteInspector.pdf";
             File archivoAdjunto = new File(rutaArchivoAdjunto); // Convertir la ruta en un archivo
 
-            correo.enviarCorreoConAdjunto(
-            "juanpacamal08@gmail.com",  // Dirección de correo del destinatario correcta
-            "REPORTE CLIENTE",          // Asunto del correo
-            "Este es el reporte del cliente del servicio de parqueo utilizado.", // Cuerpo del correo
-            archivoAdjunto);              // El archivo PDF adjunto
+            correo.enviarCorreoConAdjunto( inspector.getCorreo(),"REPORTE INSPECTOR","Este es el reporte del inspector del servicio de parqueo utilizado.", archivoAdjunto);     
         } catch (Exception e) {
             // Mostrar un mensaje de error si ocurre un problema al generar el reporte
             JOptionPane.showMessageDialog(null, "Error al generar el reporte: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
