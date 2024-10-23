@@ -265,7 +265,13 @@ public class MenuReporteAdministrador extends javax.swing.JFrame {
              reporte.generarReporte(archivoPDF);
              // Mostrar un mensaje de éxito cuando se haya generado el reporte
              JOptionPane.showMessageDialog(null, "Reporte generado exitosamente en: " + archivoPDF.getAbsolutePath(), "Éxito", JOptionPane.INFORMATION_MESSAGE);
-         } catch (Exception e) {
+            Correo correo = new Correo("juanpacamal08@gmail.com", "adqs eueu mrbs vngz", "smtp.gmail.com");
+            String rutaArchivoAdjunto = "reporteAdministrador.pdf";
+            File archivoAdjunto = new File(rutaArchivoAdjunto); // Convertir la ruta en un archivo
+
+            correo.enviarCorreoConAdjunto( administrador.getCorreo(),"REPORTE INSPECTOR","Este es el reporte del administrador del servicio de parqueo utilizado.", archivoAdjunto); 
+        
+        } catch (Exception e) {
              // Mostrar un mensaje de error si ocurre un problema al generar el reporte
              JOptionPane.showMessageDialog(null, "Error al generar el reporte: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
          }
