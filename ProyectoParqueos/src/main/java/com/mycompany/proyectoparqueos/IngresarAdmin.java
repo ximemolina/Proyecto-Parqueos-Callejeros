@@ -6,16 +6,25 @@ import java.time.*;
 import java.time.format.DateTimeFormatter;
 import javax.swing.JOptionPane;
 
+/**
+ *
+ * @author ximen
+ */
 public class IngresarAdmin extends javax.swing.JFrame {
     private Parqueo parqueo;
     /**
      * Creates new form IngresarAdmin
+     * @param parqueo
      */
     public IngresarAdmin(Parqueo parqueo) {
         initComponents();
         setParqueo(parqueo);
     }
     
+    /**
+     *
+     * @param parqueo
+     */
     public void setParqueo(Parqueo parqueo){
         this.parqueo = parqueo;
     }
@@ -202,6 +211,12 @@ public class IngresarAdmin extends javax.swing.JFrame {
     }
     
     //lee el archivo y verifica si el usuario ingresado existe
+
+    /**
+     *
+     * @param id
+     * @param pin
+     */
     public void leerArchivo(String id, String pin){
         String contenido;
         try{
@@ -212,7 +227,7 @@ public class IngresarAdmin extends javax.swing.JFrame {
             while(contenido != null){
                 
                 try{
-                    lista = contenido.split(","); //divide la linea en cada atributo de administrador
+                    lista = contenido.split("\\,"); //divide la linea en cada atributo de administrador
                     if(lista[0].equals(id) && lista[1].equals(pin)){
                         LocalDate fecha = LocalDate.parse(lista[7], DateTimeFormatter.ofPattern("yyyy/MM/dd"));
                         //crea objeto Administrador con atributos respectivos para poder pasarselos a pantalla de acciones de admin

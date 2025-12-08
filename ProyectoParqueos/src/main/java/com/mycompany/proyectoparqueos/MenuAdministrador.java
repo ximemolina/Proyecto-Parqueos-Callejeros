@@ -1,29 +1,61 @@
 package com.mycompany.proyectoparqueos;
 
 
+import java.io.File;
 import javax.swing.JOptionPane;
 
+/**
+ *
+ * @author ximen
+ */
 public class MenuAdministrador extends javax.swing.JFrame {
      
     private Administrador admin;
     private Parqueo parqueo;
     /**
      * Creates new form ScrAccionesAdministrador
+     * @param pAdmin
+     * @param parqueo
      */
     public MenuAdministrador(Administrador pAdmin, Parqueo parqueo) {
         initComponents();
         setAdmin(pAdmin);
         setParqueo(parqueo);
+        revisarEspaciosParqueo();
     }
-    
+    //setters
+
+    /**
+     *
+     * @param parqueo
+     */
     public void setParqueo(Parqueo parqueo){
         this.parqueo = parqueo;
     }
 
-    //setters
+    /**
+     *
+     * @param administrador
+     */
     public void setAdmin(Administrador administrador){
         admin = administrador;
     }
+    
+    private void revisarEspaciosParqueo() {
+        boolean todosEspaciosVacios = true;
+
+        // Recorrer los espacios del parqueo para verificar si alguno está ocupado
+        for (EspacioDeParqueo espacio : parqueo.getEspaciosParqueo()) {
+            if (!espacio.getDisponible()) {  // Si el espacio está ocupado, cambiamos el flag
+                todosEspaciosVacios = false;
+                break;
+            }
+        }
+
+        // Si todos los espacios están vacíos, habilitamos el botón
+        btnConfigurarParqueo1.setEnabled(todosEspaciosVacios); 
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -108,7 +140,7 @@ public class MenuAdministrador extends javax.swing.JFrame {
         });
 
         btnVolver.setBackground(new java.awt.Color(204, 204, 204));
-        btnVolver.setText("Volver");
+        btnVolver.setText("Cerrar sesión");
         btnVolver.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnVolverActionPerformed(evt);
@@ -133,7 +165,7 @@ public class MenuAdministrador extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(btnVolver)
-                        .addGap(152, 152, 152)
+                        .addGap(121, 121, 121)
                         .addComponent(jLabel2))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(41, 41, 41)
@@ -153,12 +185,12 @@ public class MenuAdministrador extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(20, 20, 20)
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(btnVolver)))
-                .addGap(52, 52, 52)
+                        .addComponent(btnVolver))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(21, 21, 21)
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(51, 51, 51)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnConfigurarParqueo1, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnGenerarReporte, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -206,7 +238,10 @@ public class MenuAdministrador extends javax.swing.JFrame {
         if (opcion == JOptionPane.YES_OPTION) {
             
             try{
-                
+                Correo correo = new Correo("juanpacamal08@gmail.com", "adqs eueu mrbs vngz", "smtp.gmail.com");
+                String asunto = "Eliminación de usuario";
+                String cuerpo = "Se le informa que se ha borrado el usuario de la aplicación de parqueos callejero";
+                correo.enviarCorreo(admin.getCorreo(), asunto, cuerpo);
             
                 admin.eliminarAdmin(admin.toString());
                 admin = null;
@@ -226,24 +261,32 @@ public class MenuAdministrador extends javax.swing.JFrame {
 
     private void btnConsultarAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarAdminActionPerformed
         this.setVisible(false);
-        ConsultarAdmin pantalla  =new ConsultarAdmin(admin);   
+        ConsultarAdmin pantalla  =new ConsultarAdmin(admin,parqueo);   
         pantalla.setVisible(true);
     }//GEN-LAST:event_btnConsultarAdminActionPerformed
 
     private void btnGenerarReporteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGenerarReporteActionPerformed
-        // TODO add your handling code here:
+        this.setVisible(false);
+        MenuReporteAdministrador menu = new MenuReporteAdministrador(parqueo, admin);
+        menu.setVisible(true);
     }//GEN-LAST:event_btnGenerarReporteActionPerformed
 
     private void btnConfigurarParqueo1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfigurarParqueo1ActionPerformed
+        
            MenuConfigurarParqueo pantalla = new MenuConfigurarParqueo(admin, parqueo);
            pantalla.setVisible(true);
            this.setVisible(false);
+        
     }//GEN-LAST:event_btnConfigurarParqueo1ActionPerformed
 
     private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
-            MenuInicial pantalla = new MenuInicial(parqueo);
-            pantalla.setVisible(true);
-            this.setVisible(false);
+        //crear ventana de menu inicial
+        File archivoParqueo = new File("Parqueo.txt");
+        parqueo.guardarParqueo(archivoParqueo);
+        Parqueo parqueo2 = new Parqueo("000000", 0, 0, "00:00", "00:01", 0);
+        MenuInicial pantalla = new MenuInicial(parqueo2);
+        pantalla.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_btnVolverActionPerformed
 
     private void btnRegistrarInspectorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarInspectorActionPerformed

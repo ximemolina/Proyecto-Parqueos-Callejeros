@@ -4,16 +4,25 @@ package com.mycompany.proyectoparqueos;
 import javax.swing.JOptionPane;
 import java.time.*;
 
+/**
+ *
+ * @author ximen
+ */
 public class RegistrarCliente extends javax.swing.JFrame {
     Parqueo parqueo;
     /**
      * Creates new form RegistrarCliente
+     * @param parqueo
      */
     public RegistrarCliente(Parqueo parqueo) {
         initComponents();
         setParqueo(parqueo);
     }
     
+    /**
+     *
+     * @param parqueo
+     */
     public void setParqueo(Parqueo parqueo){
         this.parqueo = parqueo;
     }
@@ -431,6 +440,10 @@ public class RegistrarCliente extends javax.swing.JFrame {
             int año = Integer.parseInt(inpAño.getText());
             int codigoValid = Integer.parseInt(inpCodValidacion.getText());
             Cliente cliente = new Cliente(inpNombre.getText(), inpApellidos.getText(), inpTelefono.getText(), inpCorreo.getText(), inpDireccion.getText(),fecha ,inpPIN.getText(), inpIdentificacion.getText(),codigo, mes, año,  codigoValid,0);
+            Correo correo = new Correo("juanpacamal08@gmail.com", "adqs eueu mrbs vngz", "smtp.gmail.com");
+            String asunto = "Creacion de usuario";
+            String cuerpo = "Se ha creado un nuevo usuario. A continuación se muestra datos ingresados: "+ cliente.toString();
+            correo.enviarCorreo(cliente.getCorreo(), asunto, cuerpo);
             AñadirCarroCliente pantalla = new AñadirCarroCliente(cliente, parqueo);
             pantalla.setVisible(true);
             this.setVisible(false);

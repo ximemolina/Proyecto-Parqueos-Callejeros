@@ -2,22 +2,39 @@ package com.mycompany.proyectoparqueos;
 
 import java.time.*;
 
+/**
+ *
+ * @author ximena molina - juan pablo cambronero
+ */
 public class EspacioDeParqueo {
     private int numeroEspacio;
     private int tiempoComprado;
     private Carro carro;
     private boolean disponible;
     private LocalDateTime horaInicioParqueo;
+    private LocalDateTime horaFinParqueo;
+    
 
     // Constructor
+
+    /**
+     *
+     * @param pNumeroEspacio
+     */
     public EspacioDeParqueo(int pNumeroEspacio){
         setNumeroEspacio(pNumeroEspacio);
         tiempoComprado = 0;
         carro = null;
         disponible = true;
-        horaInicioParqueo = null;  // Inicializa en null hasta que el carro se parquea
+        estadoPago = false;
+        horaInicioParqueo = null;
+        horaFinParqueo = null;
     }
     
+    /**
+     *
+     * @param pNumeroEspacio
+     */
     public void setNumeroEspacio(int pNumeroEspacio) {   
         if (String.valueOf(pNumeroEspacio).length() < 1 || String.valueOf(pNumeroEspacio).length() > 5) {
             throw new ValidacionesExceptions("El número de espacio debe tener entre 1 y 5 dígitos.");
@@ -25,10 +42,18 @@ public class EspacioDeParqueo {
         this.numeroEspacio = pNumeroEspacio;
     }
     
+    /**
+     *
+     * @param pTiempoComprado
+     */
     public void setTiempoComprado(int pTiempoComprado) {
         this.tiempoComprado = pTiempoComprado; 
     }
     
+    /**
+     *
+     * @param carro
+     */
     public void setCarro(Carro carro){
         if (carro != null) {
             this.carro = carro;
@@ -41,36 +66,99 @@ public class EspacioDeParqueo {
         }
     }
 
+    /**
+     *
+     * @param disponible
+     */
     public void setDisponible(boolean disponible){
         this.disponible = disponible;
     }
     
-    public void setHoraInicioParqueo(LocalDateTime horaInicioParqueo){
-        if (horaInicioParqueo != null) {
-            this.horaInicioParqueo = horaInicioParqueo;
-        }
+    /**
+     *
+     * @param estadoPago
+     */
+    public void setEstadoPago(boolean estadoPago){
+        this.estadoPago = estadoPago;
     }
     
+    /**
+     *
+     * @param horaInicioParqueo
+     */
+    public void setHoraInicioParqueo(LocalDateTime horaInicioParqueo){
+            this.horaInicioParqueo = horaInicioParqueo;
+        }
+    
+    /**
+     *
+     * @param horaFinParqueo
+     */
+    public void setHoraFinParqueo(LocalDateTime horaFinParqueo){
+            this.horaFinParqueo = horaFinParqueo;
+    }
+    
+    /**
+     *
+     * @return
+     */
     public int getNumeroEspacio(){
         return numeroEspacio;
     }
     
+    /**
+     *
+     * @return
+     */
     public int getTiempoComprado(){
         return tiempoComprado;
     }
     
+    /**
+     *
+     * @return
+     */
     public Carro getCarro(){
         return carro;
     }
     
+    /**
+     *
+     * @return
+     */
+    public boolean getEstadoPago(){
+        return estadoPago;
+    }
+    
+    /**
+     *
+     * @return
+     */
     public boolean getDisponible(){
         return disponible;
     }
     
+    /**
+     *
+     * @return
+     */
     public LocalDateTime getHoraInicioParqueo(){
         return horaInicioParqueo;
     }
+
+    /**
+     *
+     * @return
+     */
+    public LocalDateTime getHoraFinParqueo() {
+        return horaFinParqueo;
+    }
     
+    /**
+     *
+     * @param espacio
+     * @return
+     */
     public long calcularTiempoParqueo(EspacioDeParqueo espacio) {
         LocalDateTime horaInicio = espacio.getHoraInicioParqueo();
         LocalDateTime horaActual = LocalDateTime.now();
@@ -86,7 +174,20 @@ public class EspacioDeParqueo {
         return minutosParqueo;
     }
 
-    public double calcularMontoAPagar(EspacioDeParqueo espacio, Parqueo parqueo) {
+    /**
+     *
+     * @param espacio
+     * @param parqueo
+     * @param cliente
+     * @return
+     */
+    public double calcularMontoAPagar(EspacioDeParqueo espacio, Parqueo parqueo, Cliente cliente) {
+        // Verificar si el parqueo está dentro del horario de operación
+        if (!parqueo.estaDentroDeHorario()) {
+            System.out.println("El parqueo está fuera de horario de operación. No se requiere pago.");
+            return 0;  // No se cobra si está fuera del horario de operación
+        }
+
         // Calcular el tiempo de parqueo en minutos
         long minutosParqueo = calcularTiempoParqueo(espacio);
 
@@ -95,6 +196,16 @@ public class EspacioDeParqueo {
 
         // Si el tiempo de parqueo es menor que el tiempo mínimo, se cobrará por el tiempo mínimo
         long minutosFacturables = Math.max(minutosParqueo, tiempoMinimo);
+
+        // Restar los minutos no utilizados del cliente
+        if (cliente.getMinsNoUtilizados() > 0) {
+            minutosFacturables -= cliente.getMinsNoUtilizados();  // Restar minutos no utilizados
+        }
+
+        // Asegurarse de que los minutos facturables no sean negativos
+        if (minutosFacturables < 0) {
+            minutosFacturables = 0;  // Evitar valores negativos
+        }
 
         // Calcular el número de horas a facturar, redondeando hacia arriba
         double horasFacturables = Math.ceil(minutosFacturables / 60.0);
@@ -105,14 +216,51 @@ public class EspacioDeParqueo {
         // Calcular el monto total
         double montoTotal = horasFacturables * precioPorHora;
 
+        // Asegurarse de que el monto total no sea negativo
+        if (montoTotal < 0) {
+            montoTotal = 0;
+        }
+
+        // Resetear los minutos no utilizados del cliente después de calcular el monto
+        cliente.setMinsNoUtilizados(0);
+
         return montoTotal;
     }
+    
+    /**
+     *
+     * @return
+     */
+    public long calcularTiempoRestante() {
+        LocalDateTime horaInicio = this.getHoraInicioParqueo();
+        LocalDateTime horaActual = LocalDateTime.now();
 
-    public String toString(){
-        try{
-            return getNumeroEspacio() +","+ getTiempoComprado() +","+getHoraInicioParqueo()+ "," + getCarro().getPlaca()+","+getCarro().getMarca()+","+getCarro().getModelo() + "," + getDisponible() +"\n";
-        }catch(NullPointerException e){
-            return getNumeroEspacio() +","+ getTiempoComprado() +","+getHoraInicioParqueo()+ "," +","+"," + "," + getDisponible() +"\n";
+        // Tiempo en minutos desde que el carro fue aparcado
+        long minutosParqueo = Duration.between(horaInicio, horaActual).toMinutes();
+
+        // Restar el tiempo ya utilizado del tiempo comprado
+        long minutosRestantes = this.tiempoComprado - minutosParqueo;
+
+        return minutosRestantes > 0 ? minutosRestantes : 0;  // Retornar solo los minutos restantes positivos
+    }
+
+    /**
+     *
+     * @return
+     */
+    public String toString() {
+        // Verificamos si horaInicioParqueo y horaFinParqueo son null
+        String horaInicioStr = (getHoraInicioParqueo() != null) ? getHoraInicioParqueo().toString() : "null";
+        String horaFinStr = (getHoraFinParqueo() != null) ? getHoraFinParqueo().toString() : "null";
+
+        try {
+            return getNumeroEspacio() + "," + getTiempoComprado() + "," + getCarro().getPlaca() + "," +
+                   getCarro().getMarca() + "," + getCarro().getModelo() + "," + horaInicioStr + "," + horaFinStr + "," + getDisponible() + "\n";
+        } catch (NullPointerException e) {
+            return getNumeroEspacio() + "," + getTiempoComprado() + ",," + "," + "," + horaInicioStr + "," + horaFinStr + "," + getDisponible() + "\n";
         }
     }
+
 }
+
+

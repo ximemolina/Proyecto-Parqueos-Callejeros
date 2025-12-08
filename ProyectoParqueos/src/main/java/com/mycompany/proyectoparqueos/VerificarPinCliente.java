@@ -2,11 +2,23 @@
 package com.mycompany.proyectoparqueos;
 
 import javax.swing.JOptionPane;
+
+/**
+ *
+ * @author ximen
+ */
 public class VerificarPinCliente extends javax.swing.JFrame {
 
     Cliente cliente;
     Parqueo parqueo;
     String pin; 
+
+    /**
+     *
+     * @param cliente
+     * @param parqueo
+     * @param pin
+     */
     public VerificarPinCliente(Cliente cliente, Parqueo parqueo,String pin) {
         initComponents();
         setCliente(cliente);
@@ -162,6 +174,10 @@ public class VerificarPinCliente extends javax.swing.JFrame {
             cliente.setPin(inpPinNuevo.getText());
             String info = cliente.toString();
             cliente.modificarDatosCliente(info);
+            Correo correo = new Correo("juanpacamal08@gmail.com", "adqs eueu mrbs vngz", "smtp.gmail.com");
+            String asunto = "Modificación de datos";
+            String cuerpo = "Sus datos del programa de parqueos callejeros han sido cambiados. A continuación se muestran los datos ingresados: "+ cliente.toString();
+            correo.enviarCorreo(cliente.getCorreo(), asunto, cuerpo);
             MenuCliente pantalla = new MenuCliente (cliente, parqueo);
             pantalla.setVisible(true);
             this.setVisible(false);
@@ -207,13 +223,26 @@ public class VerificarPinCliente extends javax.swing.JFrame {
         });
     }
 
+    /**
+     *
+     * @param cliente
+     */
     public void setCliente(Cliente cliente) {
         this.cliente = cliente;
     }
 
+    /**
+     *
+     * @param parqueo
+     */
     public void setParqueo(Parqueo parqueo) {
         this.parqueo = parqueo;
     }
+
+    /**
+     *
+     * @param pin
+     */
     public void setPin(String pin) {
         this.pin = pin;
     }

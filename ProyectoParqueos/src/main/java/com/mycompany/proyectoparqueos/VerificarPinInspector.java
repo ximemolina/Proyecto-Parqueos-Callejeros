@@ -3,11 +3,23 @@ package com.mycompany.proyectoparqueos;
 
 import java.io.File;
 import javax.swing.JOptionPane;
+
+/**
+ *
+ * @author ximen
+ */
 public class VerificarPinInspector extends javax.swing.JFrame {
 
     private Inspector inspector;
     private Parqueo parqueo;
     private String pin; 
+
+    /**
+     *
+     * @param inspector
+     * @param parqueo
+     * @param pin
+     */
     public VerificarPinInspector(Inspector inspector, Parqueo parqueo, String pin) {
         initComponents();
         setPin(pin);
@@ -161,6 +173,10 @@ public class VerificarPinInspector extends javax.swing.JFrame {
             inspector.setPin(inpPinNuevo.getText());
             File archivoAdministrador = new File("Inspector.txt");
             inspector.guardarUsuario(archivoAdministrador);
+            Correo correo = new Correo("juanpacamal08@gmail.com", "adqs eueu mrbs vngz", "smtp.gmail.com");
+            String asunto = "Creacion de usuario";
+            String cuerpo = "Sus datos del programa de parqueos callejeros se han actualizado. A continuación se muestran los datos ingresados: "+ inspector.toString();
+            correo.enviarCorreo(inspector.getCorreo(), asunto, cuerpo);
             MenuInspector pantalla = new MenuInspector(inspector, parqueo);
             pantalla.setVisible(true);
             this.setVisible(false);
@@ -207,14 +223,26 @@ public class VerificarPinInspector extends javax.swing.JFrame {
     }
     //setters
     
+    /**
+     *
+     * @param inspector
+     */
     public void setInspector(Inspector inspector) {
         this.inspector = inspector;
     }
 
+    /**
+     *
+     * @param parqueo
+     */
     public void setParqueo(Parqueo parqueo) {
         this.parqueo = parqueo;
     }
 
+    /**
+     *
+     * @param pin
+     */
     public void setPin(String pin) {
         this.pin = pin;
     }

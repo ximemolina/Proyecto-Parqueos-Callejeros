@@ -2,11 +2,20 @@ package com.mycompany.proyectoparqueos;
 import java.time.*;
 import javax.swing.JOptionPane;
 
+/**
+ *
+ * @author ximen
+ */
 public class ModificarCarros extends javax.swing.JFrame {
 
     private Cliente cliente;
     private Parqueo parqueo;
     
+    /**
+     *
+     * @param cliente
+     * @param parqueo
+     */
     public ModificarCarros(Cliente cliente, Parqueo parqueo) {
         initComponents();
         setCliente(cliente);
@@ -211,7 +220,11 @@ public class ModificarCarros extends javax.swing.JFrame {
             String infoACambiar = cliente2.toString();
 
             cliente2.modificarDatosCliente(infoACambiar);
-            MenuCliente pantalla = new MenuCliente(cliente, parqueo);
+            Correo correo = new Correo("juanpacamal08@gmail.com", "adqs eueu mrbs vngz", "smtp.gmail.com");
+            String asunto = "Modificación de datos";
+            String cuerpo = "Sus datos del programa de parqueos callejeros han sido cambiados. A continuación se muestran los datos ingresados: "+ cliente2.toString();
+            correo.enviarCorreo(cliente2.getCorreo(), asunto, cuerpo);
+            MenuCliente pantalla = new MenuCliente(cliente2, parqueo);
             pantalla.setVisible(true);
             this.setVisible(false);
         }
@@ -256,13 +269,27 @@ public class ModificarCarros extends javax.swing.JFrame {
     }
 
     //setters
+
+    /**
+     *
+     * @param cliente
+     */
     public void setCliente(Cliente cliente) {
         this.cliente = cliente;
     }
+
+    /**
+     *
+     * @param parqueo
+     */
     public void setParqueo(Parqueo parqueo) {
         this.parqueo = parqueo;
     }
     //muestra atributos en la pantalla
+
+    /**
+     *
+     */
     public void setInformacion(){
         for (Carro auto : cliente.getCarros()){ 
            inpPlaca.setText(inpPlaca.getText()+ auto.getPlaca() + "|");

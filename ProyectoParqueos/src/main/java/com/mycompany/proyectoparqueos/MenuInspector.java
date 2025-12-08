@@ -1,13 +1,23 @@
 
 package com.mycompany.proyectoparqueos;
 
+import java.io.File;
 import javax.swing.JOptionPane;
 
+/**
+ *
+ * @author ximen
+ */
 public class MenuInspector extends javax.swing.JFrame {
 
     private Inspector inspector;
     private Parqueo parqueo;
     
+    /**
+     *
+     * @param inspector
+     * @param parqueo
+     */
     public MenuInspector(Inspector inspector, Parqueo parqueo) {
         initComponents();
         setInspector(inspector);
@@ -37,7 +47,7 @@ public class MenuInspector extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(153, 153, 153));
 
         btnVolver.setBackground(new java.awt.Color(204, 204, 204));
-        btnVolver.setText("Volver");
+        btnVolver.setText("Cerrar sesión");
         btnVolver.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnVolverActionPerformed(evt);
@@ -155,13 +165,19 @@ public class MenuInspector extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
-        MenuInicial pantalla = new MenuInicial(parqueo);
+        //crear ventana de menu inicial
+        File archivoParqueo = new File("Parqueo.txt");
+        parqueo.guardarParqueo(archivoParqueo);
+        Parqueo parqueo2 = new Parqueo("000000", 0, 0, "00:00", "00:01", 0);
+        MenuInicial pantalla = new MenuInicial(parqueo2);
         pantalla.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_btnVolverActionPerformed
 
     private void btnRevisarParqueoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRevisarParqueoActionPerformed
-
+        MenuRevisarParqueo pantalla = new MenuRevisarParqueo(inspector, parqueo);
+        pantalla.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_btnRevisarParqueoActionPerformed
 
     private void btnEliminarInspectorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarInspectorActionPerformed
@@ -171,7 +187,10 @@ public class MenuInspector extends javax.swing.JFrame {
         if (opcion == JOptionPane.YES_OPTION) {
 
             try{
-
+                Correo correo = new Correo("juanpacamal08@gmail.com", "adqs eueu mrbs vngz", "smtp.gmail.com");
+                String asunto = "Eliminación de usuario";
+                String cuerpo = "Se le informa que se ha borrado el usuario de la aplicación de parqueos callejero";
+                correo.enviarCorreo(inspector.getCorreo(), asunto, cuerpo);
                 inspector.eliminarInspector(inspector.toString());
                 inspector = null;
                 MenuInicial menu = new MenuInicial(parqueo);
@@ -196,7 +215,9 @@ public class MenuInspector extends javax.swing.JFrame {
 
     private void btnGenerarInspectorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGenerarInspectorActionPerformed
 
-        
+        MenuReporteInspector menu = new MenuReporteInspector(inspector, parqueo);
+        menu.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_btnGenerarInspectorActionPerformed
 
     private void btnConsultarInspectorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarInspectorActionPerformed
@@ -240,10 +261,19 @@ public class MenuInspector extends javax.swing.JFrame {
         });
     }
     //setters
+
+    /**
+     *
+     * @param inspector
+     */
     public void setInspector(Inspector inspector) {
         this.inspector = inspector;
     }
 
+    /**
+     *
+     * @param parqueo
+     */
     public void setParqueo(Parqueo parqueo) {
         this.parqueo = parqueo;
     }

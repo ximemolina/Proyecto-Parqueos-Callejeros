@@ -3,22 +3,36 @@ package com.mycompany.proyectoparqueos;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
-
+/**
+ *
+ * @author ximen
+ */
 public class ConsultarAdmin extends javax.swing.JFrame {
     
     Administrador admin;
     Parqueo parqueo;
     /**
      * Creates new form ScrConsultarAdmin
+     * @param pAdmin
      */
-    public ConsultarAdmin(Administrador pAdmin) {
+    public ConsultarAdmin(Administrador pAdmin,Parqueo parqueo) {
         initComponents();
         setAdmin(pAdmin);
+        setParqueo(parqueo);
         mostrarInfoAdmin();
     }
     
+    /**
+     *
+     * @param administrador
+     */
+    //setters
     public void setAdmin(Administrador administrador){
         admin = administrador;
+    }
+
+    public void setParqueo(Parqueo parqueo) {
+        this.parqueo = parqueo;
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -189,13 +203,16 @@ public class ConsultarAdmin extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                ConsultarAdmin pantalla = new ConsultarAdmin(admin);
+                ConsultarAdmin pantalla = new ConsultarAdmin(admin,parqueo);
                 pantalla.setVisible(true);
             }
             
         });
     }
     
+    /**
+     *
+     */
     public void mostrarInfoAdmin(){
         lblNombre.setText("Nombre: " + admin.getNombre());
         lblApellidos.setText("Apellidos: " + admin.getApellido());

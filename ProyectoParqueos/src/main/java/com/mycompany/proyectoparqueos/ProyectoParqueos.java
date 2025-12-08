@@ -3,17 +3,26 @@ package com.mycompany.proyectoparqueos;
  *
  * @author ximena molina - juan pablo cambronero
  */
-
 import java.io.File;//librería para utilizar archivos
 
-public class ProyectoParqueos {
+/**
+ *
+ * @author ximen
+ */
+public class ProyectoParqueos { 
     
-    
-    public static void main(String[] args) {        
+    /**
+     *
+     * @param args
+     */
+    public static void main(String[] args) {   
+        //inicializan archivos
         File archivoCliente = new File("Cliente.txt");
         File archivoAdministrador = new File("Administrador.txt");
         File archivoInspector = new File("Inspector.txt");
         File archivoParqueo = new File("Parqueo.txt");
+        File archivoHistorialMulta = new File("HistorialMulta.txt");
+        File archivoHistorialParqueo = new File("HistorialParqueo.txt");
         //se  crean archivos de las clases si no han sido creados                
         try{
             if(!archivoCliente.exists())
@@ -43,10 +52,27 @@ public class ProyectoParqueos {
         catch(Exception e){
             e.getMessage();
         }
-
+        try{
+            if(!archivoHistorialMulta.exists())
+                archivoHistorialMulta.createNewFile();
+        }
+        catch(Exception e){
+            e.getMessage();
+        }
+        try{
+            if(!archivoHistorialParqueo.exists())
+                archivoHistorialParqueo.createNewFile();
+        }
+        catch(Exception e){
+            e.getMessage();
+        }        
 
         //crear ventana de menu inicial
         Parqueo parqueo = new Parqueo("000000", 0, 0, "00:00", "00:01", 0);
+        HistorialParqueo nuevo = new HistorialParqueo();
+        parqueo.setHistorialParqueo(nuevo);
+        HistorialMultas nuevo2 = new HistorialMultas();
+        parqueo.setHistorialMultas(nuevo2);
         MenuInicial menuInicial = new MenuInicial(parqueo);
         menuInicial.setVisible(true); //permite que menu inicial sea visible        
         /*

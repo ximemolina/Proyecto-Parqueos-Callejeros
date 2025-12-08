@@ -5,6 +5,8 @@
 package com.mycompany.proyectoparqueos;
 
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Admin
@@ -15,6 +17,8 @@ public class MenuPagar extends javax.swing.JFrame {
     EspacioDeParqueo espacioSeleccionado;
     /**
      * Creates new form MenuPagar
+     * @param cliente
+     * @param parqueo
      */
     public MenuPagar(Cliente cliente, Parqueo parqueo) {
         initComponents();
@@ -23,10 +27,18 @@ public class MenuPagar extends javax.swing.JFrame {
         llenarComboBoxEspaciosOcupados();
     }
     
+    /**
+     *
+     * @param parqueo
+     */
     public void setParqueo(Parqueo parqueo){
         this.parqueo = parqueo;
     }
     
+    /**
+     *
+     * @param cliente
+     */
     public void setCliente(Cliente cliente){
         this.cliente = cliente;
     }
@@ -182,11 +194,6 @@ public class MenuPagar extends javax.swing.JFrame {
                                         .addComponent(jLabelMonto))
                                     .addComponent(jLabel2))
                                 .addGap(18, 18, 18)
-                                .addComponent(comboBoxEspaciosOcupados, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(259, 259, 259)
-                        .addComponent(btnAceptar, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(202, Short.MAX_VALUE))
                                 .addComponent(comboBoxEspaciosOcupados, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel4)
@@ -253,48 +260,47 @@ public class MenuPagar extends javax.swing.JFrame {
     }//GEN-LAST:event_btnVolver1ActionPerformed
 
     private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
-        // TODO add your handling code here:
-
         try {
-        // Obtener el código de validación ingresado desde el text field
-        int codigoValidacionIngresado = Integer.parseInt(inpCodigoValidacion.getText());
+            // Obtener el código de validación ingresado desde el text field
+            int codigoValidacionIngresado = Integer.parseInt(inpCodigoValidacion.getText());
 
-        // Obtener la tarjeta del cliente
-        Tarjeta tarjetaCliente = cliente.getTarjeta();
+            // Obtener la tarjeta del cliente
+            Tarjeta tarjetaCliente = cliente.getTarjeta();
 
-        // Obtener el espacio seleccionado en el comboBox
-        String espacioSeleccionadoStr = (String) comboBoxEspaciosOcupados.getSelectedItem();
-        if (espacioSeleccionadoStr != null && !espacioSeleccionadoStr.equals("No hay espacios ocupados")) {
-            int numeroEspacioSeleccionado = Integer.parseInt(espacioSeleccionadoStr);
+            // Obtener el espacio seleccionado en el comboBox
+            String espacioSeleccionadoStr = (String) comboBoxEspaciosOcupados.getSelectedItem();
+            if (espacioSeleccionadoStr != null && !espacioSeleccionadoStr.equals("No hay espacios ocupados")) {
+                int numeroEspacioSeleccionado = Integer.parseInt(espacioSeleccionadoStr);
 
-            // Encontrar el espacio de parqueo correspondiente
-            EspacioDeParqueo espacioSeleccionado = null;
-            for (EspacioDeParqueo espacio : parqueo.getEspaciosParqueo()) {
-                if (espacio.getNumeroEspacio() == numeroEspacioSeleccionado) {
-                    espacioSeleccionado = espacio;
-                    break;
+                // Encontrar el espacio de parqueo correspondiente
+                EspacioDeParqueo espacioSeleccionado = null;
+                for (EspacioDeParqueo espacio : parqueo.getEspaciosParqueo()) {
+                    if (espacio.getNumeroEspacio() == numeroEspacioSeleccionado) {
+                        espacioSeleccionado = espacio;
+                        break;
+                    }
                 }
-            }
 
-            // Verificar que el espacio seleccionado no sea nulo
-            if (espacioSeleccionado != null) {
-                // Llamar al método pagar del cliente
-                cliente.pagar(parqueo, espacioSeleccionado, tarjetaCliente, codigoValidacionIngresado);
+                // Verificar que el espacio seleccionado no sea nulo
+                if (espacioSeleccionado != null) {
+                    // Llamar al método pagar del cliente
+                    cliente.pagar(parqueo, espacioSeleccionado, tarjetaCliente, codigoValidacionIngresado);
 
-                // Actualizar la interfaz gráfica después del pago
-                jLabelMontoAPagar.setText("0"); // Resetear el monto después del pago
-                jLabelTiempoGuardado.setText("0"); // Resetear el tiempo guardado después del pago
+                    // Actualizar la interfaz gráfica después del pago
+                    jLabelMontoAPagar.setText("0"); // Resetear el monto después del pago
+                    jLabelTiempoGuardado.setText("0"); // Resetear el tiempo guardado después del pago
 
-                System.out.println("Pago procesado con éxito.");
+                    JOptionPane.showMessageDialog(null, "Pago procesado con éxito.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+                } else {
+                    JOptionPane.showMessageDialog(null, "Error: Espacio seleccionado no encontrado.", "Error", JOptionPane.ERROR_MESSAGE);
+                }
             } else {
-                System.out.println("Error: Espacio seleccionado no encontrado.");
+                JOptionPane.showMessageDialog(null, "Error: No se ha seleccionado un espacio.", "Error", JOptionPane.ERROR_MESSAGE);
             }
-        } else {
-            System.out.println("Error: No se ha seleccionado un espacio.");
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, "Error: Ingrese un código de validación numérico válido.", "Error", JOptionPane.ERROR_MESSAGE);
         }
-    } catch (NumberFormatException e) {
-        System.out.println("Error: Ingrese un código de validación numérico válido.");
-    }
+
         MenuCliente pantalla = new MenuCliente(cliente, parqueo);
         pantalla.setVisible(true);
         this.setVisible(false);

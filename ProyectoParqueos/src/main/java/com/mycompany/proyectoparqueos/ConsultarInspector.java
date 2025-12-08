@@ -7,12 +7,20 @@ package com.mycompany.proyectoparqueos;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
-
+/**
+ *
+ * @author ximen
+ */
 public class ConsultarInspector extends javax.swing.JFrame {
 
     private Inspector inspector;
     private Parqueo parqueo;
     
+    /**
+     *
+     * @param inspector
+     * @param parqueo
+     */
     public ConsultarInspector(Inspector inspector, Parqueo parqueo) {
         initComponents();
         setInspector(inspector);
@@ -56,7 +64,7 @@ public class ConsultarInspector extends javax.swing.JFrame {
 
         jLabel2.setFont(new java.awt.Font("Segoe UI Variable", 1, 18)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("Consultar Información de Administrador");
+        jLabel2.setText("Consultar Información de Inspector");
 
         lblNombre.setFont(new java.awt.Font("Segoe UI Variable", 0, 18)); // NOI18N
         lblNombre.setForeground(new java.awt.Color(255, 255, 255));
@@ -99,7 +107,7 @@ public class ConsultarInspector extends javax.swing.JFrame {
                 .addComponent(btnVolver)
                 .addGap(56, 56, 56)
                 .addComponent(jLabel2)
-                .addContainerGap(138, Short.MAX_VALUE))
+                .addContainerGap(182, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -201,6 +209,10 @@ public class ConsultarInspector extends javax.swing.JFrame {
         });
     }
     //mostrar informacion de inspector
+
+    /**
+     *
+     */
     public void mostrarInfoInspector(){
         lblNombre.setText("Nombre: " + inspector.getNombre());
         lblApellidos.setText("Apellidos: " + inspector.getApellido());
@@ -217,10 +229,19 @@ public class ConsultarInspector extends javax.swing.JFrame {
         
     }
     //setters
+
+    /**
+     *
+     * @param inspector
+     */
     public void setInspector(Inspector inspector) {
         this.inspector = inspector;
     }
 
+    /**
+     *
+     * @param parqueo
+     */
     public void setParqueo(Parqueo parqueo) {
         this.parqueo = parqueo;
     }

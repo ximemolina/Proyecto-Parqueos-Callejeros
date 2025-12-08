@@ -1,16 +1,79 @@
 package com.mycompany.proyectoparqueos;
-import java.time.*;
+
+import java.io.File;
+import java.io.FileWriter;
+import java.util.*;
+
+/**
+ *
+ * @author ximena molina - juan pablo cambronero
+ */
 public class HistorialParqueo {
     //atributos
-    private LocalDateTime InicioParquear;
-    private LocalDateTime FinDesparcar;
-    private int costo;
-    private int numeroEspacioParqueo;
+    private ArrayList<EspacioDeParqueo> listaParqueo;
     //constructor
-    
-    /*
-    Esta clase sería para la parte de historial de parqueo en un intervalo de tiempo
-    Lista de Espacios de estado actualse hace con EspaciosParqueo
-    */
+
+    /**
+     *
+     */
+    public HistorialParqueo(){
+        setListaParqueo();       
+    }
+    //retornar string con informacion
+
+    /**
+     *
+     * @return
+     */
+    public String toString(){
+        String info = "";
+        for(EspacioDeParqueo espacio : listaParqueo){
+            info = espacio.toString()+"\n";
+        }
+        return info;
+    }
+    //guarda información en archivo
+
+    /**
+     *
+     */
+    public void guardarHistorialParqueo(){
+       try{
+            File nombreArchivo = new File("HistorialParqueo.txt");
+            String contenido = toString();
+            FileWriter escribir = new FileWriter(nombreArchivo,true); //permite escribir en diferentes ocasiones en archivos
+            escribir.write(toString()); //escribe informarion de usuario
+            escribir.close(); //cierra escritor
+       } catch(Exception e){
+           System.out.print(e.getMessage());
+       }
+   } 
+    //agregar actualización de espacios de parqueo
+
+    /**
+     *
+     * @param espacio
+     */
+    public void agregarHistorialParqueo(EspacioDeParqueo espacio){
+        listaParqueo.add(espacio);
+    }
+    //getter
+
+    /**
+     *
+     * @return
+     */
+    public ArrayList<EspacioDeParqueo> getListaParqueo() {
+        return listaParqueo;
+    }
+    //setter
+
+    /**
+     *
+     */
+    public void setListaParqueo() {
+        listaParqueo = new ArrayList<>();
+    }
+
     
 }

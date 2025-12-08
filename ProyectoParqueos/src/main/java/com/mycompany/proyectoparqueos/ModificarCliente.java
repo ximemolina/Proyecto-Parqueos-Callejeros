@@ -4,11 +4,20 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import javax.swing.JOptionPane;
 
+/**
+ *
+ * @author ximen
+ */
 public class ModificarCliente extends javax.swing.JFrame {
 
     private Cliente cliente;
     private Parqueo parqueo;
     
+    /**
+     *
+     * @param cliente
+     * @param parqueo
+     */
     public ModificarCliente(Cliente cliente, Parqueo parqueo) {
         initComponents();
         setInformacion(cliente,  parqueo);
@@ -444,6 +453,10 @@ public class ModificarCliente extends javax.swing.JFrame {
             String infoACambiar = cliente2.toString();
 
             cliente2.modificarDatosCliente(infoACambiar);
+            Correo correo = new Correo("juanpacamal08@gmail.com", "adqs eueu mrbs vngz", "smtp.gmail.com");
+            String asunto = "Modificación de datos";
+            String cuerpo = "Sus datos del programa de parqueos callejeros han sido cambiados. A continuación se muestran los datos ingresados: "+ cliente2.toString();
+            correo.enviarCorreo(cliente2.getCorreo(), asunto, cuerpo);
             MenuCliente pantalla = new MenuCliente(cliente2, parqueo);
             pantalla.setVisible(true);
             this.setVisible(false);
@@ -454,11 +467,7 @@ public class ModificarCliente extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAceptarActionPerformed
 
     private void btnModificarPinActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarPinActionPerformed
-        String correo = JOptionPane.showInputDialog("Digite su correo electrónico para mandarle pin único:");
-        
-        if (correo == null) {
-            return;
-        } 
+
         String caracteresPermitidos = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
         Random random = new Random();
         StringBuilder sb = new StringBuilder(4);
@@ -468,10 +477,14 @@ public class ModificarCliente extends javax.swing.JFrame {
             char caracterAleatorio = caracteresPermitidos.charAt(indiceAleatorio);
             sb.append(caracterAleatorio);
         }
-
+        
         String pin = sb.toString();
-        //******************************************aqui faltaría agregar mandar Pin por correo***************************************///
-        System.out.println(pin);
+        
+        Correo correo = new Correo("juanpacamal08@gmail.com", "adqs eueu mrbs vngz", "smtp.gmail.com");
+        String asunto = "Pin de verificación";
+        String cuerpo = "Se ha generado el siguiente PIN para poder modificar su contraseña: "+ pin;
+        correo.enviarCorreo(cliente.getCorreo(), asunto, cuerpo);
+        
         VerificarPinCliente pantalla = new VerificarPinCliente(cliente, parqueo,pin);
         pantalla.setVisible(true);
         this.setVisible(false);
@@ -535,6 +548,12 @@ public class ModificarCliente extends javax.swing.JFrame {
         });
     }
         //muestra atributos en la pantalla
+
+    /**
+     *
+     * @param cliente
+     * @param parqueo
+     */
     public void setInformacion(Cliente cliente, Parqueo parqueo){
         try{
             this.cliente = cliente;

@@ -3,11 +3,22 @@ package com.mycompany.proyectoparqueos;
 
 import javax.swing.JOptionPane;
 
+/**
+ *
+ * @author ximen
+ */
 public class VerificarPinAdmin extends javax.swing.JFrame {
 
     Administrador admin;
     Parqueo parqueo;
     String pin;
+
+    /**
+     *
+     * @param admin
+     * @param parqueo
+     * @param pin
+     */
     public VerificarPinAdmin(Administrador admin, Parqueo parqueo, String pin) {
         initComponents();
         setAdmin(admin);
@@ -163,6 +174,10 @@ public class VerificarPinAdmin extends javax.swing.JFrame {
             admin.setPin(inpPinNuevo.getText());
             String info = admin.toString();
             admin.modificarDatosAdmin(info);
+            Correo correo = new Correo("juanpacamal08@gmail.com", "adqs eueu mrbs vngz", "smtp.gmail.com");
+            String asunto = "Modificación de datos";
+            String cuerpo = "Sus datos del programa de parqueos callejeros han sido cambiados. A continuación se muestran los datos ingresados: "+ admin.toString();
+            correo.enviarCorreo(admin.getCorreo(), asunto, cuerpo);
             MenuAdministrador pantalla = new MenuAdministrador(admin, parqueo);
             pantalla.setVisible(true);
             this.setVisible(false);
@@ -208,15 +223,26 @@ public class VerificarPinAdmin extends javax.swing.JFrame {
         });
     }
 
+    /**
+     *
+     * @param admin
+     */
     public void setAdmin(Administrador admin) {
         this.admin = admin;
     }
 
+    /**
+     *
+     * @param parqueo
+     */
     public void setParqueo(Parqueo parqueo) {
         this.parqueo = parqueo;
     }
 
-
+    /**
+     *
+     * @param pin
+     */
     public void setPin(String pin) {
         this.pin = pin;
     }

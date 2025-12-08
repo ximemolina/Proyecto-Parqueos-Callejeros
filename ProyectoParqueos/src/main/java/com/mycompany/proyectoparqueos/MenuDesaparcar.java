@@ -4,8 +4,10 @@
  */
 package com.mycompany.proyectoparqueos;
 
-import java.io.*;
+import java.io.File;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Admin
@@ -16,6 +18,8 @@ public class MenuDesaparcar extends javax.swing.JFrame {
     private Carro carroSeleccionado;
     /**
      * Creates new form MenuDesaparcar
+     * @param cliente
+     * @param parqueo
      */
     public MenuDesaparcar(Cliente cliente, Parqueo parqueo) {
         initComponents();
@@ -24,10 +28,18 @@ public class MenuDesaparcar extends javax.swing.JFrame {
         llenarComboBoxCarrosAparcados();
     }
     
+    /**
+     *
+     * @param parqueo
+     */
     public void setParqueo(Parqueo parqueo){
         this.parqueo = parqueo;
     }
     
+    /**
+     *
+     * @param cliente
+     */
     public void setCliente(Cliente cliente){
         this.cliente = cliente;
     }
@@ -183,13 +195,13 @@ public class MenuDesaparcar extends javax.swing.JFrame {
     }//GEN-LAST:event_btnVolverActionPerformed
 
     private void btnAceptarDesaparcarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarDesaparcarActionPerformed
-         String placaSeleccionada = (String) comboBoxCarrosAparcados.getSelectedItem();
+        String placaSeleccionada = (String) comboBoxCarrosAparcados.getSelectedItem();
         if (placaSeleccionada == null || placaSeleccionada.equals("No hay carros aparcados")) {
-            System.out.println("No hay carros seleccionados para desaparcar.");
+            JOptionPane.showMessageDialog(null, "No hay carros seleccionados para desaparcar.", "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
 
-        // Buscar el carro en la lista de carros del cliente
+    // Buscar el carro en la lista de carros del cliente
         for (Carro carro : cliente.getCarros()) {
             if (carro.getPlaca().equals(placaSeleccionada)) {
                 carroSeleccionado = carro;  // Selecciona el carro
@@ -197,16 +209,28 @@ public class MenuDesaparcar extends javax.swing.JFrame {
             }
         }
 
+        // Obtener el espacio en el que estaba el carro antes de desaparcar
+        EspacioDeParqueo espacioEnQueEstaba = parqueo.buscarEspacioPorCarro(carroSeleccionado);
+
         // Llamar al método desaparcar del cliente
-        boolean resultado = cliente.desaparcar(carroSeleccionado, parqueo);
+        File archivoParqueo = new File("Parqueo.txt");
+        boolean resultado = cliente.desaparcar(carroSeleccionado, parqueo, archivoParqueo);
         if (resultado) {
-            System.out.println("El carro con placa " + carroSeleccionado.getPlaca() + " ha sido desaparcado.");
+            JOptionPane.showMessageDialog(null, "El carro con placa " + carroSeleccionado.getPlaca() + " ha sido desaparcado.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
             parqueo.mostrarEspaciosYCarros();
-            File archivoParqueo = new File("Parqueo.txt"); 
-            parqueo.guardarParqueo(archivoParqueo); //actualiza archivos
             llenarComboBoxCarrosAparcados();  // Actualizar el comboBox después de desaparcar
+
+            // Enviar correo con los detalles del carro desaparcado
+            Correo correo = new Correo("juanpacamal08@gmail.com", "adqs eueu mrbs vngz", "smtp.gmail.com");
+            String asunto = "Reporte de Desaparque";
+            String cuerpo = "El carro con placa " + carroSeleccionado.getPlaca() + " ha sido desaparcado.\n" +
+                            "Detalles del carro:\n" +
+                            "Marca: " + carroSeleccionado.getMarca() + "\n" +
+                            "Modelo: " + carroSeleccionado.getModelo() + "\n" +
+                            "Espacio en el que estaba: " + (espacioEnQueEstaba != null ? espacioEnQueEstaba.getNumeroEspacio() : "Desconocido");
+            correo.enviarCorreo(cliente.getCorreo(), asunto, cuerpo);
         } else {
-            System.out.println("Error al desaparcar el carro.");
+            JOptionPane.showMessageDialog(null, "Error al desaparcar el carro.", "Error", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_btnAceptarDesaparcarActionPerformed
     

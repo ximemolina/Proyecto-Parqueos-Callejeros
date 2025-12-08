@@ -1,16 +1,24 @@
 
 package com.mycompany.proyectoparqueos;
 
-import java.io.File;
 import javax.swing.JOptionPane;
 import java.time.*;
 import java.util.Random;
 
+/**
+ *
+ * @author ximen
+ */
 public class RegistrarInspector extends javax.swing.JFrame {
 
     private Administrador admin;
     private Parqueo parqueo;
     
+    /**
+     *
+     * @param admin
+     * @param parqueo
+     */
     public RegistrarInspector(Administrador admin, Parqueo parqueo) {
         initComponents();
         setAdmin(admin);
@@ -346,12 +354,7 @@ public class RegistrarInspector extends javax.swing.JFrame {
             String fechaActualizada = año + "-"+mes+"-"+dia;
             LocalDate fecha = LocalDate.parse(fechaActualizada);
             Inspector inspector = new Inspector(inpNombre.getText(), inpApellidos.getText(), inpTelefono.getText(), inpCorreo.getText(), inpDireccion.getText(),fecha ,"0000", inpIdentificacion.getText(), inpTerminal.getText());
-       
-            String correo = JOptionPane.showInputDialog("Digite su correo electrónico para mandarle pin único:");
-
-            if (correo == null) {
-                return;
-            } 
+        
             String caracteresPermitidos = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
             Random random = new Random();
             StringBuilder sb = new StringBuilder(4);
@@ -363,8 +366,11 @@ public class RegistrarInspector extends javax.swing.JFrame {
             }
 
             String pin = sb.toString();
-            //******************************************aqui faltaría agregar mandar Pin por correo***************************************///
-            System.out.println(pin);
+            Correo correo = new Correo("juanpacamal08@gmail.com", "adqs eueu mrbs vngz", "smtp.gmail.com");
+            String asunto = "PIN de Confirmacion";
+            String cuerpo = "Utilice el siguiente pin para configurar su contraseña: "+ pin;
+            correo.enviarCorreo(inpCorreo.getText(), asunto, cuerpo);
+
             VerificarPinInspector pantalla = new VerificarPinInspector(inspector, parqueo,pin);
             pantalla.setVisible(true);
             this.setVisible(false); 
@@ -430,12 +436,22 @@ public class RegistrarInspector extends javax.swing.JFrame {
     }
 
     //setters
+
+    /**
+     *
+     * @param admin
+     */
     
     public void setAdmin(Administrador admin) {
         this.admin = admin;
     }
 
     //setters
+
+    /**
+     *
+     * @param parqueo
+     */
     public void setParqueo(Parqueo parqueo) {
         this.parqueo = parqueo;
     }    
